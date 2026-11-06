@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_resend_inbound_email_list" model="ir.ui.view">
+        <field name="name">resend.inbound.email.list</field>
+        <field name="model">resend.inbound.email</field>
+        <field name="arch" type="xml">
+            <list string="Inbound Emails" create="0"
+                decoration-danger="state == 'failed'"
+                decoration-warning="state in ('unrouted', 'pending')"
+                decoration-success="state == 'processed'">
+                <field name="received_date"/>
+                <field name="from_email"/>
+                <field name="to_emails"/>
+                <field name="subject"/>
+                <field name="state" widget="badge"/>
+                <field name="mail_message_id" optional="show"/>
+                <field name="attachment_count" optional="hide"/>
+                <field name="error" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_resend_inbound_email_form" model="ir.ui.view">
+        <field name="name">resend.inbound.email.form</field>
+        <field name="model">resend.inbound.email</field>
+        <field name="arch" type="xml">
+            <form string="Inbound Email" create="0" edit="0">
+                <header>
+                    <button name="action_open_message" string="Open in Odoo" type="object"
+                        class="btn-primary" invisible="not mail_message_id" icon="fa-external-link"/>
+                    <button name="action_reprocess" string="Process Again" type="object"
+                        invisible="state == 'processed'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="subject" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="from_email"/>
+                            <field name="to_emails"/>
+                            <field name="cc_emails" invisible="not cc_emails"/>
+                            <field name="received_date"/>
+                        </group>
+                        <group>
+                            <field name="resend_email_id"/>
+                            <field name="message_id"/>
+                            <field name="mail_message_id"/>
+                            <field name="attachment_count"/>
+                            <field name="raw_size"/>
+                        </group>
+                    </group>
+                    <group string="Error" invisible="not error">
+                        <field name="error" colspan="2"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_resend_inbound_email_search" model="ir.ui.view">
+        <field name="name">resend.inbound.email.search</field>
+        <field name="model">resend.inbound.email</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="subject"/>
+                <field name="from_email"/>
+                <field name="to_emails"/>
+                <field name="message_id"/>
+                <filter name="filter_unrouted" string="No Route" domain="[('state', '=', 'unrouted')]"/>
+                <filter name="filter_failed" string="Failed" domain="[('state', '=', 'failed')]"/>
+                <filter name="filter_pending" string="Pending" domain="[('state', '=', 'pending')]"/>
+                <group>
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_resend_inbound_email" model="ir.actions.act_window">
+        <field name="name">Inbound Emails</field>
+        <field name="res_model">resend.inbound.email</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_resend_inbound_email_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No inbound email yet</p>
+            <p>Point the MX record of a Resend receiving domain to Resend, create a
+               webhook for the <b>email.received</b> event, and replies will appear here
+               and in the chatter of the records they answer.</p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Inbound emails whose webhook could not be processed synchronously. -->
+        <record id="ir_cron_resend_process_webhooks" model="ir.cron" forcecreate="True">
+            <field name="name">Resend: Process queued webhook events</field>
+            <field name="model_id" ref="model_resend_webhook_event"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_process_queued()</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">2</field>
+            <field name="interval_type">minutes</field>
+            <field name="priority">8</field>
+        </record>
+
+        <!-- Synchronise domains / DNS records and refresh the verified list. -->
+        <record id="ir_cron_resend_sync_domains" model="ir.cron" forcecreate="True">
+            <field name="name">Resend: Synchronise domains</field>
+            <field name="model_id" ref="model_resend_domain"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_sync_domains()</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="priority">50</field>
+        </record>
+
+        <!-- Retry emails that failed for a transient reason (network, 429, 5xx). -->
+        <record id="ir_cron_resend_retry_failed" model="ir.cron" forcecreate="True">
+            <field name="name">Resend: Retry transient failures</field>
+            <field name="model_id" ref="model_resend_email"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_retry_failed()</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">15</field>
+            <field name="interval_type">minutes</field>
+            <field name="priority">20</field>
+        </record>
+
+        <!-- Reconcile emails without webhooks (endpoint disabled, local setup...). -->
+        <record id="ir_cron_resend_reconcile" model="ir.cron" forcecreate="True">
+            <field name="name">Resend: Reconcile delivery status</field>
+            <field name="model_id" ref="model_resend_email"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_reconcile_status()</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="priority">60</field>
+        </record>
+
+        <!-- Housekeeping: purge old webhook events / failed tracking rows. -->
+        <record id="ir_cron_resend_gc" model="ir.cron" forcecreate="True">
+            <field name="name">Resend: Housekeeping</field>
+            <field name="model_id" ref="model_resend_webhook_event"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_gc()</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="priority">90</field>
+        </record>
+    </data>
+</odoo>

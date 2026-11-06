@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_resend_domain_list" model="ir.ui.view">
+        <field name="name">resend.domain.list</field>
+        <field name="model">resend.domain</field>
+        <field name="arch" type="xml">
+            <list string="Resend Domains"
+                decoration-success="status == 'verified'"
+                decoration-warning="status in ('pending', 'not_started', 'temporary_failure')"
+                decoration-danger="status == 'failure'">
+                <field name="name"/>
+                <field name="status" widget="badge"/>
+                <field name="is_primary"/>
+                <field name="receiving_enabled" optional="show"/>
+                <field name="region" optional="show"/>
+                <field name="last_sync" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_resend_domain_form" model="ir.ui.view">
+        <field name="name">resend.domain.form</field>
+        <field name="model">resend.domain</field>
+        <field name="arch" type="xml">
+            <form string="Resend Domain">
+                <header>
+                    <button name="action_verify" string="Verify Now" type="object"
+                        class="btn-primary" invisible="not resend_domain_id"/>
+                    <button name="action_sync" string="Synchronise" type="object"/>
+                    <button name="action_create_remote" string="Register in Resend" type="object"
+                        class="btn-primary" invisible="resend_domain_id"/>
+                    <field name="status" widget="statusbar"
+                        statusbar_visible="pending,verified"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" placeholder="e.g. mg.example.com"/>
+                            <field name="region" placeholder="us-east-1"/>
+                            <field name="is_primary"/>
+                        </group>
+                        <group>
+                            <field name="resend_domain_id"/>
+                            <field name="sending_enabled"/>
+                            <field name="receiving_enabled"/>
+                            <field name="last_sync"/>
+                            <field name="api_created_at"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="records" string="DNS Records">
+                            <field name="record_ids" readonly="1">
+                                <list>
+                                    <field name="record_type"/>
+                                    <field name="name"/>
+                                    <field name="value"/>
+                                    <field name="ttl"/>
+                                    <field name="status" optional="show"/>
+                                    <field name="priority" optional="hide"/>
+                                </list>
+                            </field>
+                            <div class="alert alert-info mt-3" role="alert">
+                                Add these records at your DNS provider, then click
+                                <b>Verify Now</b>. Verification may take a few minutes
+                                (DNS propagation). SPF, DKIM and DMARC together are what
+                                keeps your mail out of the spam folder.
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_resend_domain_search" model="ir.ui.view">
+        <field name="name">resend.domain.search</field>
+        <field name="model">resend.domain</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter name="filter_verified" string="Verified" domain="[('status', '=', 'verified')]"/>
+                <filter name="filter_pending" string="Pending" domain="[('status', '!=', 'verified')]"/>
+                <group>
+                    <filter name="group_status" string="Status" context="{'group_by': 'status'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_resend_domain" model="ir.actions.act_window">
+        <field name="name">Domains</field>
+        <field name="res_model">resend.domain</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_resend_domain_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No domain yet</p>
+            <p>Add the domain you want to send from. Resend gives you the SPF, DKIM and
+               MX records to publish at your DNS provider.</p>
+        </field>
+    </record>
+</odoo>

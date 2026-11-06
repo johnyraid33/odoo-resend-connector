@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_resend_email_event_list" model="ir.ui.view">
+        <field name="name">resend.email.event.list</field>
+        <field name="model">resend.email.event</field>
+        <field name="arch" type="xml">
+            <list string="Resend Email Events" create="0" edit="0">
+                <field name="event_date"/>
+                <field name="event_type"/>
+                <field name="resend_message_id"/>
+                <field name="email_id"/>
+                <field name="bounce_type"/>
+                <field name="click_url"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_resend_email_event_form" model="ir.ui.view">
+        <field name="name">resend.email.event.form</field>
+        <field name="model">resend.email.event</field>
+        <field name="arch" type="xml">
+            <form string="Resend Email Event" create="0" edit="0">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="event_type"/>
+                            <field name="event_date"/>
+                            <field name="email_id"/>
+                            <field name="resend_message_id"/>
+                        </group>
+                        <group>
+                            <field name="click_url"/>
+                            <field name="bounce_type"/>
+                            <field name="bounce_code"/>
+                            <field name="bounce_message"/>
+                        </group>
+                    </group>
+                    <group string="Raw payload">
+                        <field name="payload" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_resend_email_event" model="ir.actions.act_window">
+        <field name="name">Delivery Events</field>
+        <field name="res_model">resend.email.event</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_resend_settings" model="ir.actions.act_window">
+        <field name="name">Resend Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="context">{'module': 'resend_connector'}</field>
+    </record>
+
+    <record id="action_resend_documentation" model="ir.actions.act_url">
+        <field name="name">Documentation</field>
+        <field name="url">/resend/documentation</field>
+        <field name="target">self</field>
+    </record>
+
+    <menuitem id="menu_resend_root" name="Resend"
+        web_icon="resend_connector,static/description/icon.png"
+        groups="resend_connector.group_resend_manager" sequence="75"/>
+
+    <menuitem id="menu_resend_emails" parent="menu_resend_root" name="Emails"
+        action="action_resend_email" sequence="10"/>
+    <menuitem id="menu_resend_inbound" parent="menu_resend_root" name="Inbound"
+        action="action_resend_inbound_email" sequence="20"/>
+    <menuitem id="menu_resend_domains" parent="menu_resend_root" name="Domains"
+        action="action_resend_domain" sequence="30"/>
+
+    <menuitem id="menu_resend_configuration" parent="menu_resend_root" name="Configuration"
+        sequence="80"/>
+    <menuitem id="menu_resend_settings" parent="menu_resend_configuration" name="Settings"
+        action="action_resend_settings" sequence="10"/>
+    <menuitem id="menu_resend_webhook_events" parent="menu_resend_configuration"
+        name="Webhook Events" action="action_resend_webhook_event" sequence="20"/>
+    <menuitem id="menu_resend_email_events" parent="menu_resend_configuration"
+        name="Delivery Events" action="action_resend_email_event" sequence="30"/>
+    <menuitem id="menu_resend_test_mail" parent="menu_resend_configuration"
+        name="Send Test Email" action="action_resend_test_mail" sequence="40"/>
+
+    <menuitem id="menu_resend_docs" parent="menu_resend_root" name="Documentation"
+        action="action_resend_documentation" sequence="95"/>
+</odoo>

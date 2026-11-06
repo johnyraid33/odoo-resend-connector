@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="documentation_page" name="Resend Email Connector - Documentation">
+        <t t-call="web.layout">
+            <t t-set="title">Resend Email Connector - Documentation</t>
+            <div class="container py-4" id="resend_documentation">
+                <style>
+                    #resend_documentation { max-width: 980px; }
+                    #resend_documentation h1 { font-weight: 600; letter-spacing: -0.01em; }
+                    #resend_documentation h2 { margin-top: 36px; font-size: 22px; font-weight: 600; }
+                    #resend_documentation h3 { margin-top: 22px; font-size: 17px; font-weight: 600; }
+                    #resend_documentation p, #resend_documentation li { line-height: 1.6; }
+                    #resend_documentation code { background: #f3f3f7; padding: 1px 5px; border-radius: 3px; }
+                    #resend_documentation pre { background: #14141a; color: #f2f2f5; padding: 14px; border-radius: 6px; overflow-x: auto; }
+                    #resend_documentation .step { border-left: 3px solid #14141a; padding-left: 16px; margin: 18px 0; }
+                    #resend_documentation .step > h3 { margin-top: 0; }
+                    #resend_documentation table { font-size: 14px; }
+                    #resend_documentation .toc a { display: block; padding: 2px 0; }
+                </style>
+
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div>
+                        <h1 class="mb-1">Resend Email Connector</h1>
+                        <p class="text-muted mb-0">
+                            Setup guide for administrators and users. Sends and receives Odoo
+                            email through Resend and keeps the delivery status of each message.
+                        </p>
+                    </div>
+                    <a class="btn btn-outline-dark" href="/web#action=resend_connector.action_resend_settings">
+                        Open settings
+                    </a>
+                </div>
+
+                <div t-if="not is_admin" class="alert alert-warning">
+                    Only administrators can change this configuration. The page can be read
+                    by every user.
+                </div>
+
+                <div class="alert alert-secondary" role="status">
+                    <b>Current status.</b>
+                    <span t-if="config['enabled'] and config['api_key']">Resend is enabled.</span>
+                    <span t-if="not config['enabled']">The master switch is off, email goes through SMTP.</span>
+                    <span t-if="config['enabled'] and not config['api_key']">The master switch is on but no API key is set.</span>
+                    <br/>
+                    <b>Webhook URL:</b> <code t-out="webhook_url"/>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-7">
+                        <h2 id="about">1. What the module does</h2>
+                        <p>
+                            Odoo prepares email as usual: templates, quotations, invoices, chatter
+                            notifications, mass mailings, attachments, Bcc and alias domains. The
+                            module replaces only the transport. Instead of opening an SMTP
+                            connection, the message is sent to the Resend API over HTTPS, and the
+                            events Resend reports are written back to the Odoo record.
+                        </p>
+                        <p>
+                            Incoming mail can be received from Resend as well. The module downloads
+                            the original message, restores the reference to the Odoo thread and
+                            passes it to Odoo's mail gateway, so replies appear in the chatter.
+                        </p>
+
+                        <h2 id="before">2. Before you start</h2>
+                        <ul>
+                            <li>You can log in to Odoo as an administrator.</li>
+                            <li>You have access to the DNS records of the sending domain.</li>
+                            <li>Odoo has a public HTTPS address. It is required for delivery webhooks.</li>
+                            <li>You have a Resend account (a free plan is enough for testing).</li>
+                        </ul>
+
+                        <h2 id="key">3. Create a Resend account and API key</h2>
+                        <div class="step">
+                            <ol>
+                                <li>Create an account on <a href="https://resend.com" target="_blank" rel="noopener">resend.com</a>.</li>
+                                <li>Open API Keys and create a key.
+                                    <ul>
+                                        <li><b>Full access</b> is needed to manage domains and webhooks from Odoo.</li>
+                                        <li><b>Sending access</b> is enough if domains and webhooks are configured in the Resend dashboard.</li>
+                                    </ul>
+                                </li>
+                                <li>Copy the key, it starts with <code>re_</code>, and paste it in the settings.</li>
+                            </ol>
+                        </div>
+
+                        <h2 id="domain">4. Verify a sending domain</h2>
+                        <div class="step">
+                            <ol>
+                                <li>Open <b>Resend &gt; Domains</b>, create the domain and click
+                                    <b>Register in Resend</b>.</li>
+                                <li>Copy the SPF and DKIM records shown on the form to your DNS provider.</li>
+                                <li>Add a DMARC record, for example
+                                    <code>v=DMARC1; p=none; rua=mailto:dmarc@example.com</code>.</li>
+                                <li>Click <b>Verify Now</b> and wait for DNS propagation.</li>
+                            </ol>
+                            <p class="text-muted mb-0">
+                                A subdomain such as mg.example.com is recommended, so the reputation
+                                of the email domain is independent from the main website.
+                            </p>
+                        </div>
+                        <div t-if="domains" class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr><th>Domain</th><th>Status</th><th>Records</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="domains" t-as="domain">
+                                        <td><t t-out="domain.name"/></td>
+                                        <td>
+                                            <span class="badge"
+                                                t-attf-class="badge #{'text-bg-success' if domain.status == 'verified' else 'text-bg-warning'}">
+                                                <t t-out="domain.status"/>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div t-foreach="domain.record_ids" t-as="record" class="small">
+                                                <b t-out="record.record_type"/> <t t-out="record.name"/>
+                                                = <code t-out="record.value"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h2 id="configure">5. Configure outgoing email</h2>
+                        <div class="step">
+                            <ol>
+                                <li>In <b>Settings &gt; Discuss &gt; Resend</b> tick
+                                    <b>Send emails through Resend</b>, paste the API key and set the
+                                    <b>From Address</b> on the verified domain.</li>
+                                <li>Leave <b>Rewrite From</b> on its default value. Odoo may choose a
+                                    sender on a domain Resend does not know; the module then sends
+                                    from the verified address and keeps the original sender in
+                                    Reply-To.</li>
+                                <li>Open <b>Settings &gt; Technical &gt; Outgoing Mail Servers</b>,
+                                    tick <b>Use Resend API</b> on the server Odoo should use and click
+                                    <b>Test Connection</b>.</li>
+                            </ol>
+                            <p class="text-muted mb-0">
+                                Servers without the option keep using SMTP. The master switch is a
+                                quick way to disable Resend for all servers.
+                            </p>
+                        </div>
+
+                        <h2 id="test">6. Send a test email</h2>
+                        <div class="step">
+                            <p>
+                                Open a quotation or an invoice and send it by email, then open
+                                <b>Resend &gt; Emails</b>. The row shows the Resend id and the
+                                status. The test wizard in the settings sends a message through the
+                                full pipeline.
+                            </p>
+                            <p class="mb-1">Without a verified domain, Resend accepts only these recipients:</p>
+                            <ul>
+                                <li><code>delivered@resend.dev</code>: delivered;</li>
+                                <li><code>bounced@resend.dev</code>: hard bounce;</li>
+                                <li><code>complained@resend.dev</code>: delivered, then marked as spam;</li>
+                                <li><code>suppressed@resend.dev</code>: suppressed address.</li>
+                            </ul>
+                        </div>
+
+                        <h2 id="webhook">7. Delivery webhooks</h2>
+                        <div class="step">
+                            <ol>
+                                <li>Check the <b>Webhook URL</b> in the settings. Odoo must be
+                                    reachable from the internet at that address. If required, set
+                                    <b>Public Base URL</b> to the public address of the instance.</li>
+                                <li>Click <b>Create / update webhook in Resend</b>. The endpoint is
+                                    created, subscribed to the email events and the signing secret is
+                                    stored.</li>
+                                <li>Open <b>Resend &gt; Configuration &gt; Webhook Events</b> to see
+                                    the calls received from Resend.</li>
+                            </ol>
+                            <p class="mb-1">Events used by the module:</p>
+                            <pre>email.sent, email.delivered, email.delivery_delayed, email.opened,
+email.clicked, email.bounced, email.complained, email.failed,
+email.suppressed, email.received</pre>
+                            <p class="text-muted mb-0">
+                                Every call is verified with the Svix HMAC-SHA256 signature, a five
+                                minute tolerance and a unique event id. Calls that cannot be
+                                processed immediately are retried by a scheduled job.
+                            </p>
+                        </div>
+
+                        <h2 id="inbound">8. Receive incoming email</h2>
+                        <div class="step">
+                            <ol>
+                                <li>Add the MX record of a subdomain, for example reply.example.com,
+                                    to your DNS provider. Resend uses the record with the lowest
+                                    priority.</li>
+                                <li>Set <b>Settings &gt; Discuss &gt; Alias Domain</b> to that
+                                    subdomain.</li>
+                                <li>Create a <b>mail.alias</b> for the address, for example
+                                    sales@reply.example.com, or simply reply to an email sent from
+                                    Odoo.</li>
+                            </ol>
+                            <p class="text-muted mb-0">
+                                Every address on the receiving domain is accepted by Resend.
+                                Routing is done by Odoo. Messages without a matching alias are
+                                listed in <b>Resend &gt; Inbound</b> with the status No Route.
+                            </p>
+                        </div>
+
+                        <h2 id="status">9. Delivery statuses</h2>
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead><tr><th>Status</th><th>Meaning</th><th>Odoo</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Sent</td><td>Accepted by the Resend API</td><td>Email sent</td></tr>
+                                    <tr><td>Delivered</td><td>Accepted by the recipient server</td><td>Notification delivered</td></tr>
+                                    <tr><td>Delivery delayed</td><td>Resend is still retrying</td><td>Warning only</td></tr>
+                                    <tr><td>Opened / Clicked</td><td>Tracking events</td><td>Informational</td></tr>
+                                    <tr><td>Bounced</td><td>Rejected by the recipient server</td><td>Email failed, notification bounced</td></tr>
+                                    <tr><td>Complained</td><td>Marked as spam by the recipient</td><td>Notification cancelled</td></tr>
+                                    <tr><td>Failed</td><td>Quota, invalid data, blocked attachment</td><td>Email failed with the reason</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h2 id="troubleshooting">10. Troubleshooting</h2>
+                        <div class="accordion" id="resendFaq">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">The email is not sent</button></h2>
+                                <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#resendFaq">
+                                    <div class="accordion-body">
+                                        Open the email and read the failure reason. It contains the
+                                        Resend error, for example domain is not verified,
+                                        invalid_api_key or daily_quota_exceeded.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">No delivery status appears</button></h2>
+                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#resendFaq">
+                                    <div class="accordion-body">
+                                        Open Resend &gt; Configuration &gt; Webhook Events. If the
+                                        list is empty, the webhook is missing or Odoo is not
+                                        reachable from the internet.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">The webhook answers 401</button></h2>
+                                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#resendFaq">
+                                    <div class="accordion-body">
+                                        The signing secret does not match. Copy the secret from the
+                                        Resend dashboard again and check the server clock.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">Replies do not appear in the chatter</button></h2>
+                                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#resendFaq">
+                                    <div class="accordion-body">
+                                        Check the MX record, the email.received subscription, the
+                                        Alias Domain and the Inbound list for messages without a
+                                        route.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">Mass mailing is slow</button></h2>
+                                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#resendFaq">
+                                    <div class="accordion-body">
+                                        Resend allows 10 requests per second per team. The module
+                                        limits itself to 8 and retries the rest, so the mailing takes
+                                        longer but no message is lost.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 id="security">11. Security</h2>
+                        <ul>
+                            <li>Webhook calls are verified with the Svix signature, a constant time
+                                comparison and a five minute tolerance. Duplicate calls are ignored.</li>
+                            <li>The API key and the signing secret are system parameters that only
+                                administrators can read. They are never written to the log.</li>
+                            <li>Each email is sent with an idempotency key, so a retry cannot deliver
+                                it twice.</li>
+                            <li>Attachments are checked against the file types and the size allowed
+                                by Resend before sending.</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <div class="border rounded p-3 toc">
+                            <b>Contents</b>
+                            <a href="#about">1. What the module does</a>
+                            <a href="#before">2. Before you start</a>
+                            <a href="#key">3. Account and API key</a>
+                            <a href="#domain">4. Verify a domain</a>
+                            <a href="#configure">5. Configure outgoing email</a>
+                            <a href="#test">6. Send a test email</a>
+                            <a href="#webhook">7. Delivery webhooks</a>
+                            <a href="#inbound">8. Incoming email</a>
+                            <a href="#status">9. Delivery statuses</a>
+                            <a href="#troubleshooting">10. Troubleshooting</a>
+                            <a href="#security">11. Security</a>
+                        </div>
+                        <div class="alert alert-info mt-3 small">
+                            The complete guide, including DNS details and a Russian version, is
+                            shipped in the <b>doc</b> folder of the module.
+                        </div>
+                        <div class="border rounded p-3 mt-3 small text-muted">
+                            <b>Resend Email Connector 1.0.0</b><br/>
+                            POLISHCHUK &amp; SONS LTD<br/>
+                            <a href="https://rex.cy" target="_blank" rel="noopener">https://rex.cy</a><br/>
+                            License LGPL-3.0
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ir_mail_server_view_form_resend" model="ir.ui.view">
+        <field name="name">ir.mail_server.form.resend</field>
+        <field name="model">ir.mail_server</field>
+        <field name="inherit_id" ref="base.ir_mail_server_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sequence']" position="after">
+                <field name="resend_enabled"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page name="resend" string="Resend" invisible="not resend_enabled">
+                    <group>
+                        <group>
+                            <field name="resend_api_key" password="True"
+                                placeholder="Leave empty to use the global API key"/>
+                            <field name="resend_from_email"
+                                placeholder="Leave empty to use the global From address"/>
+                        </group>
+                        <group>
+                            <field name="resend_last_check"/>
+                            <field name="resend_last_error"/>
+                        </group>
+                    </group>
+                    <div class="alert alert-info" role="alert">
+                        This server delivers through the Resend HTTP API: no SMTP port is
+                        opened. Turn on the master switch in
+                        <b>Settings &gt; Discuss &gt; Resend</b> and tick
+                        <b>Use Resend API</b> above. The From address must be on a domain
+                        verified in Resend.
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="ir_mail_server_view_list_resend" model="ir.ui.view">
+        <field name="name">ir.mail_server.list.resend</field>
+        <field name="model">ir.mail_server</field>
+        <field name="inherit_id" ref="base.ir_mail_server_list"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='smtp_host']" position="before">
+                <field name="resend_enabled" widget="boolean_toggle" optional="show"/>
+            </xpath>
+            <xpath expr="//field[@name='smtp_host']" position="attributes">
+                <attribute name="optional">show</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

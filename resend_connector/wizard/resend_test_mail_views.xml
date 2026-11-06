@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_resend_test_mail_form" model="ir.ui.view">
+        <field name="name">resend.test.mail.form</field>
+        <field name="model">resend.test.mail</field>
+        <field name="arch" type="xml">
+            <form string="Send a Test Email">
+                <group>
+                    <field name="mail_server_id"/>
+                    <field name="email_to" placeholder="you@example.com"/>
+                    <field name="subject"/>
+                </group>
+                <group string="Body">
+                    <field name="body_html" nolabel="1" options="{'collaborative': false}"/>
+                </group>
+                <div class="alert alert-info" role="alert">
+                    test@resend.dev addresses: <b>delivered@resend.dev</b> (success),
+                    <b>bounced@resend.dev</b> (hard bounce), <b>complained@resend.dev</b>
+                    (spam complaint). They only work when sending from a @resend.dev address,
+                    which is allowed without a verified domain.
+                </div>
+                <footer>
+                    <button name="action_send" string="Send" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_resend_test_mail" model="ir.actions.act_window">
+        <field name="name">Send a Test Email</field>
+        <field name="res_model">resend.test.mail</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

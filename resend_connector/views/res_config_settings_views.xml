@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_resend" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.resend</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='emails']" position="after">
+                <div id="resend_setting">
+                    <block title="Resend (email API)" id="resend">
+                        <setting id="resend_enabled_setting"
+                            string="Send emails through Resend"
+                            help="Deliver Odoo emails over HTTPS through Resend instead of SMTP: no mail port to open, real delivery status."
+                            documentation="https://resend.com/docs">
+                            <field name="resend_enabled"/>
+                            <div class="content-group mt-3" invisible="not resend_enabled">
+                                <div class="row">
+                                    <label for="resend_api_key" class="col-lg-3 o_light_label"/>
+                                    <field name="resend_api_key" password="True" class="col-lg-5"
+                                        placeholder="re_..."/>
+                                    <button name="action_resend_test_connection" type="object"
+                                        string="Test" class="btn-link col-lg-2" icon="fa-plug"/>
+                                    <button name="%(resend_connector.action_resend_test_mail)d" type="action"
+                                        string="Send test email" class="btn-link col-lg-3"
+                                        icon="fa-paper-plane-o"/>
+                                </div>
+                                <div class="row mt-2">
+                                    <label for="resend_from_email" class="col-lg-3 o_light_label"/>
+                                    <field name="resend_from_email" class="col-lg-5"
+                                        placeholder="no-reply@mg.example.com"/>
+                                </div>
+                                <div class="row mt-2">
+                                    <label for="resend_from_mode" class="col-lg-3 o_light_label"/>
+                                    <field name="resend_from_mode" class="col-lg-5"/>
+                                </div>
+                                <div class="row mt-2">
+                                    <label for="resend_status" class="col-lg-3 o_light_label"/>
+                                    <div class="col-lg-5">
+                                        <field name="resend_status" class="oe_inline"/>
+                                        <span class="text-muted ms-2" invisible="not resend_verified_domains">
+                                            (<field name="resend_verified_domains" class="oe_inline"/>)
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="mt8">
+                                    <button name="action_resend_sync_domains" type="object"
+                                        string="Synchronise domains" class="btn-link" icon="fa-refresh"/>
+                                    <button name="action_resend_open_domains" type="object"
+                                        string="Manage domains" class="btn-link" icon="fa-globe"/>
+                                    <button name="action_resend_open_documentation" type="object"
+                                        string="Setup guide" class="btn-link" icon="fa-book"/>
+                                </div>
+                            </div>
+                        </setting>
+
+                        <setting id="resend_webhook_setting"
+                            string="Delivery webhooks"
+                            help="Resend posts delivery events (delivered, opened, bounced, complained, received) to Odoo. Signed with a whsec_ secret."
+                            invisible="not resend_enabled">
+                            <div class="row">
+                                <label for="resend_webhook_url" class="col-lg-3 o_light_label"/>
+                                <field name="resend_webhook_url" class="col-lg-5" readonly="1"
+                                    widget="CopyClipboardChar"/>
+                            </div>
+                            <div class="row mt-2">
+                                <label for="resend_webhook_secret" class="col-lg-3 o_light_label"/>
+                                <field name="resend_webhook_secret" password="True" class="col-lg-5"
+                                    placeholder="whsec_..."/>
+                            </div>
+                            <div class="mt8">
+                                <button name="action_resend_create_webhook" type="object"
+                                    string="Create / update webhook in Resend" class="btn-link"
+                                    icon="fa-cloud-upload"/>
+                                <span class="text-success ms-2" invisible="not resend_webhook_configured">
+                                    <i class="fa fa-check"/> Secret configured
+                                </span>
+                                <span class="text-warning ms-2" invisible="resend_webhook_configured">
+                                    <i class="fa fa-exclamation-triangle"/> Not configured yet
+                                </span>
+                            </div>
+                            <div class="text-muted mt-2">
+                                The endpoint must be reachable from the Internet (a public
+                                HTTPS URL). Test it with
+                                <field name="resend_webhook_url" class="oe_inline" readonly="1"
+                                    invisible="1"/> the health URL shown in the setup guide.
+                            </div>
+                        </setting>
+
+                        <setting id="resend_advanced_setting" string="Advanced"
+                            invisible="not resend_enabled">
+                            <div class="row">
+                                <label for="resend_inline_images_mode" class="col-lg-3 o_light_label"/>
+                                <field name="resend_inline_images_mode" class="col-lg-5"/>
+                            </div>
+                            <div class="row mt-2">
+                                <label for="resend_rate_limit" class="col-lg-3 o_light_label"/>
+                                <field name="resend_rate_limit" class="col-lg-2"/>
+                                <span class="col-lg-3 text-muted">requests / second (Resend allows 10)</span>
+                            </div>
+                            <div class="row mt-2">
+                                <label for="resend_auto_retry_max" class="col-lg-3 o_light_label"/>
+                                <field name="resend_auto_retry_max" class="col-lg-2"/>
+                                <label for="resend_retry_delay" class="col-lg-2 o_light_label">delay (min)</label>
+                                <field name="resend_retry_delay" class="col-lg-2"/>
+                            </div>
+                            <div class="row mt-2">
+                                <label for="resend_preserve_message_id" class="col-lg-3 o_light_label"/>
+                                <field name="resend_preserve_message_id" class="col-lg-5"/>
+                            </div>
+                            <div class="row mt-2">
+                                <label for="resend_store_payloads" class="col-lg-3 o_light_label"/>
+                                <field name="resend_store_payloads" class="col-lg-5"/>
+                            </div>
+                            <div class="row mt-2">
+                                <label for="resend_save_inbound_original" class="col-lg-3 o_light_label"/>
+                                <field name="resend_save_inbound_original" class="col-lg-5"/>
+                            </div>
+                            <div class="row mt-2">
+                                <label for="resend_webhook_tolerance" class="col-lg-3 o_light_label"/>
+                                <field name="resend_webhook_tolerance" class="col-lg-2"/>
+                                <span class="col-lg-3 text-muted">seconds of clock tolerance</span>
+                            </div>
+                            <div class="row mt-2">
+                                <label for="resend_public_base_url" class="col-lg-3 o_light_label"/>
+                                <field name="resend_public_base_url" class="col-lg-5"
+                                    placeholder="https://odoo.example.com"/>
+                            </div>
+                            <div class="row mt-2">
+                                <label for="resend_base_url" class="col-lg-3 o_light_label"/>
+                                <field name="resend_base_url" class="col-lg-5"
+                                    placeholder="https://api.resend.com"/>
+                            </div>
+                        </setting>
+                    </block>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

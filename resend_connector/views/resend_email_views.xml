@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_resend_email_list" model="ir.ui.view">
+        <field name="name">resend.email.list</field>
+        <field name="model">resend.email</field>
+        <field name="arch" type="xml">
+            <list string="Resend Emails" create="0" edit="0"
+                decoration-danger="state in ('bounced', 'complained', 'failed')"
+                decoration-warning="state == 'delayed'"
+                decoration-success="state in ('delivered', 'opened', 'clicked')">
+                <field name="create_date" string="Created"/>
+                <field name="subject"/>
+                <field name="from_email"/>
+                <field name="to_emails"/>
+                <field name="state" widget="badge"/>
+                <field name="status_date"/>
+                <field name="last_event_type" optional="hide"/>
+                <field name="resend_message_id" optional="hide"/>
+                <field name="mail_mail_id" optional="hide"/>
+                <field name="error" optional="hide"/>
+                <field name="company_id" groups="base.group_multi_company" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_resend_email_form" model="ir.ui.view">
+        <field name="name">resend.email.form</field>
+        <field name="model">resend.email</field>
+        <field name="arch" type="xml">
+            <form string="Resend Email" create="0" edit="0">
+                <header>
+                    <button name="action_retry" string="Retry in Odoo" type="object"
+                        invisible="not mail_mail_id or state not in ('failed', 'bounced')"
+                        class="btn-primary"/>
+                    <field name="state" widget="statusbar"
+                        statusbar_visible="sent,delivered,opened,clicked"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="subject" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Delivery">
+                            <field name="from_email"/>
+                            <field name="to_emails"/>
+                            <field name="cc_emails" invisible="not cc_emails"/>
+                            <field name="bcc_emails" invisible="not bcc_emails"/>
+                        </group>
+                        <group string="Resend">
+                            <field name="resend_message_id"/>
+                            <field name="rfc_message_id"/>
+                            <field name="actual_message_id"/>
+                            <field name="status_date"/>
+                            <field name="last_event_type"/>
+                            <field name="mail_mail_id"/>
+                            <field name="mail_server_id"/>
+                        </group>
+                    </group>
+                    <group string="Error" invisible="not error">
+                        <field name="error" colspan="2"/>
+                        <field name="error_code"/>
+                    </group>
+                    <notebook>
+                        <page name="events" string="Events">
+                            <field name="event_ids" readonly="1">
+                                <list>
+                                    <field name="event_type"/>
+                                    <field name="event_date"/>
+                                    <field name="click_url"/>
+                                    <field name="bounce_type"/>
+                                    <field name="bounce_message"/>
+                                </list>
+                            </field>
+                            <div class="text-muted mt-2">
+                                Delivery events received from Resend webhooks (or
+                                reconciliation). At-least-once delivery is expected:
+                                duplicate svix-ids are ignored and states are ranked so
+                                a late event never rolls a status backwards.
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_resend_email_search" model="ir.ui.view">
+        <field name="name">resend.email.search</field>
+        <field name="model">resend.email</field>
+        <field name="arch" type="xml">
+            <search string="Resend Emails">
+                <field name="subject"/>
+                <field name="from_email" filter_domain="['|', '|', ('from_email', 'ilike', self), ('to_emails', 'ilike', self), ('subject', 'ilike', self)]" string="Email"/>
+                <field name="resend_message_id"/>
+                <field name="rfc_message_id"/>
+                <filter name="filter_delivered" string="Delivered" domain="[('state', 'in', ('delivered', 'opened', 'clicked'))]"/>
+                <filter name="filter_problems" string="Problems" domain="[('state', 'in', ('bounced', 'complained', 'failed', 'delayed'))]"/>
+                <filter name="filter_sent" string="In transit" domain="[('state', 'in', ('sent', 'accepted', 'sending'))]"/>
+                <separator/>
+                <filter name="filter_opened" string="Opened" domain="[('state', 'in', ('opened', 'clicked'))]"/>
+                <filter name="filter_bounced" string="Bounced" domain="[('state', '=', 'bounced')]"/>
+                <filter name="filter_complained" string="Complained" domain="[('state', '=', 'complained')]"/>
+                <group>
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                    <filter name="group_server" string="Mail Server" context="{'group_by': 'mail_server_id'}"/>
+                    <filter name="group_day" string="Day" context="{'group_by': 'create_date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_resend_email_graph" model="ir.ui.view">
+        <field name="name">resend.email.graph</field>
+        <field name="model">resend.email</field>
+        <field name="arch" type="xml">
+            <graph string="Resend Emails" type="bar">
+                <field name="create_date" interval="day"/>
+                <field name="state"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_resend_email_pivot" model="ir.ui.view">
+        <field name="name">resend.email.pivot</field>
+        <field name="model">resend.email</field>
+        <field name="arch" type="xml">
+            <pivot string="Resend Emails">
+                <field name="create_date" interval="month"/>
+                <field name="state" type="row"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_resend_email" model="ir.actions.act_window">
+        <field name="name">Emails</field>
+        <field name="res_model">resend.email</field>
+        <field name="view_mode">list,form,graph,pivot</field>
+        <field name="search_view_id" ref="view_resend_email_search"/>
+        <field name="context">{'search_default_filter_today': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No email delivered through Resend yet</p>
+            <p>Configure Resend and send an email from any Odoo record; every message
+               will be listed here with its delivery status.</p>
+        </field>
+    </record>
+
+    <record id="action_resend_email_problems" model="ir.actions.act_window">
+        <field name="name">Problems</field>
+        <field name="res_model">resend.email</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('state', 'in', ('bounced', 'complained', 'failed', 'delayed'))]</field>
+        <field name="context">{'search_default_filter_problems': 1}</field>
+    </record>
+</odoo>

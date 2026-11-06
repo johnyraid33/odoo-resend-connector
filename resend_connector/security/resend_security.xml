@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_resend_manager" model="res.groups">
+        <field name="name">Resend Manager</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="comment">Manage the Resend email integration: configuration,
+            domains, webhook events and delivery tracking.</field>
+    </record>
+
+    <!-- Administrators get the Resend application automatically. -->
+    <record id="base.group_system" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('resend_connector.group_resend_manager'))]"/>
+    </record>
+</odoo>
