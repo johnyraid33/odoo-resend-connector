@@ -3,7 +3,7 @@
 
 {
     'name': 'Resend Email Connector',
-    'version': '1.0.0',
+    'version': '20.0.1.0.0',
     'category': 'Productivity/Discuss',
     'summary': 'Send Odoo email through Resend, receive replies and follow delivery',
     'description': """
