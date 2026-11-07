@@ -6,22 +6,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 20.0-20261102\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-07 10:20+0000\n"
+"POT-Creation-Date: 2026-11-07 10:36+0000\n"
 "PO-Revision-Date: 2026-11-07 10:20+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: Ukrainian\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"Language: uk\n"
 
 #. module: rex_resend_connector
 #: model:ir.module.module,description:base.module_rex_resend_connector
 msgid ""
 "\n"
-"Resend Email Connector\n"
-"======================\n"
+"Mail Gateway for Resend\n"
+"=======================\n"
 "\n"
 "Send Odoo email through Resend and keep track of what happens to every message.\n"
 "\n"
@@ -54,7 +54,7 @@ msgid ""
 "Installation\n"
 "------------\n"
 "1. Copy the module into your addons path and update the Apps list.\n"
-"2. Install \"Resend Email Connector\".\n"
+"2. Install \"Mail Gateway for Resend\".\n"
 "3. Open Settings > Discuss > Resend, enter the API key and the From address.\n"
 "4. Open Settings > Technical > Outgoing Mail Servers and tick \"Use Resend API\" on\n"
 "   the server Odoo should use.\n"
@@ -74,8 +74,8 @@ msgid ""
 "Support: info@rex.cy\n"
 msgstr ""
 "\n"
-"Resend Email Connector\n"
-"======================\n"
+"Mail Gateway for Resend\n"
+"=======================\n"
 "\n"
 "Надсилайте пошту Odoo через Resend і відстежуйте долю кожного повідомлення.\n"
 "\n"
@@ -110,7 +110,7 @@ msgstr ""
 "Встановлення\n"
 "------------\n"
 "1. Скопіюйте модуль у шлях addons і оновіть список застосунків.\n"
-"2. Встановіть «Resend Email Connector».\n"
+"2. Встановіть «Mail Gateway for Resend».\n"
 "3. Відкрийте Налаштування > Обговорення > Resend, введіть API-ключ і адресу\n"
 "   відправника.\n"
 "4. Відкрийте Налаштування > Технічні налаштування > Сервери вихідної пошти та позначте\n"
@@ -222,10 +222,10 @@ msgstr "<b>Поточний статус.</b>"
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
 msgid ""
-"<b>Resend Email Connector 1.0.0</b><br/>\n"
+"<b>Mail Gateway for Resend 1.0.0</b><br/>\n"
 "                            POLISHCHUK &amp; SONS LTD,"
 msgstr ""
-"<b>Resend Email Connector 1.0.0</b><br/>\n"
+"<b>Mail Gateway for Resend 1.0.0</b><br/>\n"
 "                            POLISHCHUK &amp; SONS LTD,"
 
 #. module: rex_resend_connector
@@ -245,8 +245,7 @@ msgstr "<code>bounced@resend.dev</code>: жорстка відмова (hard bou
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
 msgid "<code>complained@resend.dev</code>: delivered, then marked as spam;"
-msgstr ""
-"<code>complained@resend.dev</code>: доставлено, потім позначено як спам;"
+msgstr "<code>complained@resend.dev</code>: доставлено, потім позначено як спам;"
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
@@ -256,14 +255,12 @@ msgstr "<code>delivered@resend.dev</code>: доставлено;"
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
 msgid "<code>suppressed@resend.dev</code>: suppressed address."
-msgstr ""
-"<code>suppressed@resend.dev</code>: адреса у списку блокування (suppressed)."
+msgstr "<code>suppressed@resend.dev</code>: адреса у списку блокування (suppressed)."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
 msgid "<span class=\"badge\" style=\"background:#5d3d55;border-color:#5d3d55;color:#fff\">Odoo 19 &amp; 20</span>"
-msgstr ""
-"<span class=\"badge\" style=\"background:#5d3d55;border-color:#5d3d55;color:#fff\">Odoo 19 &amp; 20</span>"
+msgstr "<span class=\"badge\" style=\"background:#5d3d55;border-color:#5d3d55;color:#fff\">Odoo 19 &amp; 20</span>"
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
@@ -299,8 +296,7 @@ msgstr ""
 #. module: rex_resend_connector
 #: model:ir.model.fields,help:rex_resend_connector.field_resend_email__transient_failure
 msgid "A transient failure (network, rate limit, 5xx) may be retried automatically."
-msgstr ""
-"Після тимчасової помилки (мережа, ліміт запитів, 5xx) надсилання може бути автоматично повторено."
+msgstr "Після тимчасової помилки (мережа, ліміт запитів, 5xx) надсилання може бути автоматично повторено."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_res_config_settings__resend_base_url
@@ -341,8 +337,7 @@ msgstr "Допустима різниця часу в секундах для п
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
 msgid "Add a DMARC record, for example <code>v=DMARC1; p=none; rua=mailto:dmarc@example.com</code>."
-msgstr ""
-"Додайте запис DMARC, наприклад <code>v=DMARC1; p=none; rua=mailto:dmarc@example.com</code>."
+msgstr "Додайте запис DMARC, наприклад <code>v=DMARC1; p=none; rua=mailto:dmarc@example.com</code>."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
@@ -378,14 +373,12 @@ msgstr ""
 #. module: rex_resend_connector
 #: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_from_email
 msgid "Address on a domain verified in Resend, e.g. no-reply@mg.example.com."
-msgstr ""
-"Адреса на домені, підтвердженому в Resend, напр. no-reply@mg.example.com."
+msgstr "Адреса на домені, підтвердженому в Resend, напр. no-reply@mg.example.com."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
 msgid "Adds the Odoo Message-Id as a custom header. Resend assigns its own id; the module tracks both and maps replies back to the Odoo thread."
-msgstr ""
-"Додає Message-Id з Odoo як користувацький заголовок. Resend призначає власний ідентифікатор; модуль відстежує обидва й зіставляє відповіді з ланцюжком повідомлень в Odoo."
+msgstr "Додає Message-Id з Odoo як користувацький заголовок. Resend призначає власний ідентифікатор; модуль відстежує обидва й зіставляє відповіді з ланцюжком повідомлень в Odoo."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__res_config_settings__resend_from_mode__always
@@ -395,14 +388,12 @@ msgstr "Завжди"
 #. module: rex_resend_connector
 #: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_save_inbound_original
 msgid "Attach the original .eml to every imported incoming email."
-msgstr ""
-"Прикріплювати оригінальний .eml до кожного імпортованого вхідного листа."
+msgstr "Прикріплювати оригінальний .eml до кожного імпортованого вхідного листа."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
 msgid "Attach the original message file to every imported incoming email."
-msgstr ""
-"Прикріплювати оригінальний файл повідомлення до кожного імпортованого вхідного листа."
+msgstr "Прикріплювати оригінальний файл повідомлення до кожного імпортованого вхідного листа."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_inbound_email__attachment_count
@@ -412,8 +403,7 @@ msgstr "Вкладення"
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
 msgid "Attachments are checked against the file types and the size allowed by Resend before sending."
-msgstr ""
-"Перед надсиланням вкладення перевіряються на відповідність типам файлів і розміру, дозволеним Resend."
+msgstr "Перед надсиланням вкладення перевіряються на відповідність типам файлів і розміру, дозволеним Resend."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_webhook_event__attempts
@@ -478,8 +468,7 @@ msgstr "Копія"
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
 msgid "Change only to use a proxy or a test server. Default: https://api.resend.com"
-msgstr ""
-"Змінюйте лише для використання проксі або тестового сервера. За замовчуванням: https://api.resend.com"
+msgstr "Змінюйте лише для використання проксі або тестового сервера. За замовчуванням: https://api.resend.com"
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
@@ -570,8 +559,7 @@ msgstr "З’єднання встановлено — доменів: %(count)s
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
 msgid "Copy the SPF and DKIM records shown on the form to your DNS provider."
-msgstr ""
-"Скопіюйте записи SPF і DKIM, показані у формі, до свого DNS-провайдера."
+msgstr "Скопіюйте записи SPF і DKIM, показані у формі, до свого DNS-провайдера."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
@@ -660,8 +648,7 @@ msgstr "Затримка між автоматичними повторними 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
 msgid "Deliver Odoo email through the Resend API instead of SMTP. No mail port is needed and every message gets a delivery status."
-msgstr ""
-"Надсилання пошти Odoo через Resend API замість SMTP. Поштовий порт не потрібен, а кожне повідомлення отримує статус доставки."
+msgstr "Надсилання пошти Odoo через Resend API замість SMTP. Поштовий порт не потрібен, а кожне повідомлення отримує статус доставки."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__mail_mail__resend_status__delivered
@@ -791,14 +778,12 @@ msgstr ""
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
 msgid "Each domain shows the DNS records Resend expects and its verification status."
-msgstr ""
-"Для кожного домену показано DNS-записи, яких очікує Resend, і статус перевірки."
+msgstr "Для кожного домену показано DNS-записи, яких очікує Resend, і статус перевірки."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
 msgid "Each email is sent with an idempotency key, so a retry cannot deliver it twice."
-msgstr ""
-"Кожен лист надсилається з ключем ідемпотентності, тож повторна спроба не доставить його двічі."
+msgstr "Кожен лист надсилається з ключем ідемпотентності, тож повторна спроба не доставить його двічі."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
@@ -878,8 +863,7 @@ msgstr "Кількість подій"
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
 msgid "Every address on the receiving domain is accepted by Resend. Routing is done by Odoo."
-msgstr ""
-"Resend приймає будь-яку адресу на домені отримання. Маршрутизацію виконує Odoo."
+msgstr "Resend приймає будь-яку адресу на домені отримання. Маршрутизацію виконує Odoo."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
@@ -901,8 +885,7 @@ msgstr "Не вдалося"
 #. module: rex_resend_connector
 #: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_preserve_message_id
 msgid "Forward the Message-Id generated by Odoo as a custom header. Resend assigns its own Message-Id anyway: the module tracks it and maps replies back to the right Odoo thread automatically. Disable this only if Resend rejects the header."
-msgstr ""
-"Передавати Message-Id, згенерований Odoo, як користувацький заголовок. Resend у будь-якому разі призначає власний Message-Id: модуль відстежує його та автоматично зіставляє відповіді з потрібним ланцюжком повідомлень в Odoo. Вимикайте цю опцію, лише якщо Resend відхиляє заголовок."
+msgstr "Передавати Message-Id, згенерований Odoo, як користувацький заголовок. Resend у будь-якому разі призначає власний Message-Id: модуль відстежує його та автоматично зіставляє відповіді з потрібним ланцюжком повідомлень в Odoo. Вимикайте цю опцію, лише якщо Resend відхиляє заголовок."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email__from_email
@@ -928,8 +911,7 @@ msgstr "Згенерований лист"
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
 msgid "How inline images are sent. Content-ID keeps cid references, data URI embeds the image in the HTML, attachment sends it as a normal file."
-msgstr ""
-"Спосіб надсилання вбудованих зображень. Content-ID зберігає посилання cid, data URI вбудовує зображення в HTML, вкладення надсилає його як звичайний файл."
+msgstr "Спосіб надсилання вбудованих зображень. Content-ID зберігає посилання cid, data URI вбудовує зображення в HTML, вкладення надсилає його як звичайний файл."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_ir_mail_server__id
@@ -1041,8 +1023,7 @@ msgstr "Зберігати необроблений JSON кожного викл
 #. module: rex_resend_connector
 #: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_store_payloads
 msgid "Keep the raw webhook JSON for debugging (recommended)."
-msgstr ""
-"Зберігати необроблений JSON вебхуків для налагодження (рекомендовано)."
+msgstr "Зберігати необроблений JSON вебхуків для налагодження (рекомендовано)."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email__last_event_type
@@ -1114,6 +1095,16 @@ msgid "Mail Delivery Failed"
 msgstr "Помилка доставки листа"
 
 #. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Mail Gateway for Resend"
+msgstr "Mail Gateway for Resend"
+
+#. module: rex_resend_connector
+#: model:ir.module.module,shortdesc:base.module_rex_resend_connector
+msgid "Mail Gateway for Resend: Send, Receive, Track"
+msgstr "Mail Gateway for Resend: надсилання, отримання, відстеження"
+
+#. module: rex_resend_connector
 #: model:ir.model,name:rex_resend_connector.model_ir_mail_server
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email__mail_server_id
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_email_search
@@ -1147,8 +1138,7 @@ msgstr "Масова розсилка працює повільно"
 #. module: rex_resend_connector
 #: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_enabled
 msgid "Master switch. When enabled, every outgoing mail server flagged with 'Use Resend API' delivers through Resend instead of SMTP. Turn it off to fall back to SMTP instantly, without restarting."
-msgstr ""
-"Головний перемикач. Якщо ввімкнено, кожен сервер вихідної пошти з позначкою «Використовувати Resend API» надсилає пошту через Resend замість SMTP. Вимкніть, щоб миттєво повернутися до SMTP без перезапуску."
+msgstr "Головний перемикач. Якщо ввімкнено, кожен сервер вихідної пошти з позначкою «Використовувати Resend API» надсилає пошту через Resend замість SMTP. Вимкніть, щоб миттєво повернутися до SMTP без перезапуску."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_webhook_tolerance
@@ -1178,8 +1168,7 @@ msgstr "Заголовок Message-Id листа, сформованого Odoo.
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
 msgid "Messages without a matching alias are kept with the No Route status."
-msgstr ""
-"Повідомлення без відповідного псевдоніма зберігаються зі статусом «Немає маршруту»."
+msgstr "Повідомлення без відповідного псевдоніма зберігаються зі статусом «Немає маршруту»."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_domain_record__name
@@ -1251,14 +1240,12 @@ msgstr "Сповіщення доставлено"
 #. module: rex_resend_connector
 #: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_auto_retry_max
 msgid "Number of automatic retries for emails that failed because of a transient Resend error (network, rate limit, 5xx). 0 disables it."
-msgstr ""
-"Кількість автоматичних повторних спроб для листів, які не вдалося надіслати через тимчасову помилку Resend (мережа, ліміт запитів, 5xx). 0 — вимкнено."
+msgstr "Кількість автоматичних повторних спроб для листів, які не вдалося надіслати через тимчасову помилку Resend (мережа, ліміт запитів, 5xx). 0 — вимкнено."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
 msgid "Number of automatic retries for temporary failures: network error, rate limit or server error. Zero disables them."
-msgstr ""
-"Кількість автоматичних повторних спроб у разі тимчасових збоїв: помилка мережі, перевищення ліміту запитів або помилка сервера. Нуль вимикає їх."
+msgstr "Кількість автоматичних повторних спроб у разі тимчасових збоїв: помилка мережі, перевищення ліміту запитів або помилка сервера. Нуль вимикає їх."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
@@ -1283,14 +1270,12 @@ msgstr "Odoo має публічну HTTPS-адресу. Вона потрібн
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
 msgid "Odoo may choose a sender on a domain Resend does not know. The module can replace it and keep the original address in Reply-To."
-msgstr ""
-"Odoo може обрати відправника на домені, невідомому Resend. Модуль може замінити його, зберігши початкову адресу в Reply-To."
+msgstr "Odoo може обрати відправника на домені, невідомому Resend. Модуль може замінити його, зберігши початкову адресу в Reply-To."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_from_mode
 msgid "Odoo may pick a sender address on a domain that Resend cannot use (users' personal addresses, catchall...). This option replaces it with the From address above, and keeps the original sender in Reply-To so that replies still reach the right person."
-msgstr ""
-"Odoo може обрати адресу відправника на домені, який Resend не може використовувати (особисті адреси користувачів, catchall...). Ця опція замінює її на адресу відправника, вказану вище, і зберігає початкового відправника в Reply-To, щоб відповіді все одно надходили потрібній людині."
+msgstr "Odoo може обрати адресу відправника на домені, який Resend не може використовувати (особисті адреси користувачів, catchall...). Ця опція замінює її на адресу відправника, вказану вище, і зберігає початкового відправника в Reply-To, щоб відповіді все одно надходили потрібній людині."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
@@ -1317,14 +1302,12 @@ msgstr ""
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
 msgid "Only administrators can change this configuration. This page can be read by every user."
-msgstr ""
-"Змінювати цю конфігурацію можуть лише адміністратори. Цю сторінку може переглядати будь-який користувач."
+msgstr "Змінювати цю конфігурацію можуть лише адміністратори. Цю сторінку може переглядати будь-який користувач."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_base_url
 msgid "Only change it to use a proxy or a mock server. Default: https://api.resend.com"
-msgstr ""
-"Змінюйте лише для використання проксі або сервера-заглушки. За замовчуванням: https://api.resend.com"
+msgstr "Змінюйте лише для використання проксі або сервера-заглушки. За замовчуванням: https://api.resend.com"
 
 #. module: rex_resend_connector
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__res_config_settings__resend_from_mode__unverified
@@ -1343,8 +1326,7 @@ msgstr ""
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
 msgid "Open <b>Resend &gt; Domains</b>, create the domain and click <b>Register in Resend</b>."
-msgstr ""
-"Відкрийте <b>Resend &gt; Домени</b>, створіть домен і натисніть <b>Зареєструвати в Resend</b>."
+msgstr "Відкрийте <b>Resend &gt; Домени</b>, створіть домен і натисніть <b>Зареєструвати в Resend</b>."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
@@ -1425,14 +1407,12 @@ msgstr "Відкрито / Перехід за посиланням"
 #. module: rex_resend_connector
 #: model:ir.model.fields,help:rex_resend_connector.field_ir_mail_server__resend_api_key
 msgid "Optional per-server API key. Leave empty to use the global one (Settings > Discuss > Resend)."
-msgstr ""
-"Необов’язковий API-ключ для окремого сервера. Залиште порожнім, щоб використовувати глобальний (Налаштування > Обговорення > Resend)."
+msgstr "Необов’язковий API-ключ для окремого сервера. Залиште порожнім, щоб використовувати глобальний (Налаштування > Обговорення > Resend)."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,help:rex_resend_connector.field_ir_mail_server__resend_from_email
 msgid "Optional per-server From address on a Resend verified domain. Leave empty to use the global setting."
-msgstr ""
-"Необов’язкова адреса відправника для окремого сервера на домені, підтвердженому в Resend. Залиште порожнім, щоб використовувати глобальне налаштування."
+msgstr "Необов’язкова адреса відправника для окремого сервера на домені, підтвердженому в Resend. Залиште порожнім, щоб використовувати глобальне налаштування."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_webhook_event__email_id
@@ -1506,14 +1486,12 @@ msgstr "Публічна базова URL-адреса"
 #. module: rex_resend_connector
 #: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_public_base_url
 msgid "Public URL of this Odoo instance used to build the webhook URL. Leave empty to use the system 'web.base.url'."
-msgstr ""
-"Публічна URL-адреса цього екземпляра Odoo, яка використовується для формування URL вебхука. Залиште порожнім, щоб використовувати системний параметр 'web.base.url'."
+msgstr "Публічна URL-адреса цього екземпляра Odoo, яка використовується для формування URL вебхука. Залиште порожнім, щоб використовувати системний параметр 'web.base.url'."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
 msgid "Public address of this Odoo instance, used to build the webhook URL. Leave empty to use the system base URL."
-msgstr ""
-"Публічна адреса цього екземпляра Odoo, яка використовується для формування URL вебхука. Залиште порожнім, щоб використовувати базову URL-адресу системи."
+msgstr "Публічна адреса цього екземпляра Odoo, яка використовується для формування URL вебхука. Залиште порожнім, щоб використовувати базову URL-адресу системи."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__resend_webhook_event__state__queued
@@ -1580,8 +1558,7 @@ msgstr "Зареєструвати в Resend"
 #. module: rex_resend_connector
 #: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_webhook_url
 msgid "Register this URL in Resend (Webhooks > Add endpoint) and select the email events."
-msgstr ""
-"Зареєструйте цю URL-адресу в Resend (Webhooks > Add endpoint) і виберіть події листів."
+msgstr "Зареєструйте цю URL-адресу в Resend (Webhooks > Add endpoint) і виберіть події листів."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
@@ -1636,14 +1613,12 @@ msgstr "Помилка Resend API для сервера «%(server)s»: %(messag
 #. module: rex_resend_connector
 #: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_api_key
 msgid "Resend API key (re_...). A 'Sending access' key is enough for outgoing email; domains and webhooks need 'Full access'."
-msgstr ""
-"API-ключ Resend (re_...). Для вихідної пошти достатньо ключа з доступом 'Sending access'; для доменів і вебхуків потрібен 'Full access'."
+msgstr "API-ключ Resend (re_...). Для вихідної пошти достатньо ключа з доступом 'Sending access'; для доменів і вебхуків потрібен 'Full access'."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
 msgid "Resend API key. A key with sending access is enough to send; domain and webhook management needs full access."
-msgstr ""
-"API-ключ Resend. Для надсилання достатньо ключа з доступом на надсилання; для керування доменами й вебхуками потрібен повний доступ."
+msgstr "API-ключ Resend. Для надсилання достатньо ключа з доступом на надсилання; для керування доменами й вебхуками потрібен повний доступ."
 
 #. module: rex_resend_connector
 #: model:ir.model,name:rex_resend_connector.model_resend_domain_record
@@ -1677,12 +1652,6 @@ msgstr "Домени Resend"
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_email_form
 msgid "Resend Email"
 msgstr "Лист Resend"
-
-#. module: rex_resend_connector
-#: model:ir.module.module,shortdesc:base.module_rex_resend_connector
-#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
-msgid "Resend Email Connector"
-msgstr "Resend Email Connector"
 
 #. module: rex_resend_connector
 #: model:ir.model,name:rex_resend_connector.model_resend_email_event
@@ -1776,20 +1745,17 @@ msgstr "Події вебхуків Resend"
 #. odoo-python
 #: code:addons/rex_resend_connector/wizard/resend_test_mail.py:0
 msgid "Resend accepted the email (status: %s). Open Resend > Emails to follow the delivery events."
-msgstr ""
-"Resend прийняв лист (статус: %s). Відкрийте Resend > Листи, щоб стежити за подіями доставки."
+msgstr "Resend прийняв лист (статус: %s). Відкрийте Resend > Листи, щоб стежити за подіями доставки."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_rate_limit
 msgid "Resend allows 10 requests per second per team, shared by every key. Keep this value slightly below the limit."
-msgstr ""
-"Resend дозволяє 10 запитів на секунду на команду, спільно для всіх ключів. Тримайте це значення трохи нижче ліміту."
+msgstr "Resend дозволяє 10 запитів на секунду на команду, спільно для всіх ключів. Тримайте це значення трохи нижче ліміту."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
 msgid "Resend allows 10 requests per second per team. Keep this value slightly below the limit."
-msgstr ""
-"Resend дозволяє 10 запитів на секунду на команду. Тримайте це значення трохи нижче ліміту."
+msgstr "Resend дозволяє 10 запитів на секунду на команду. Тримайте це значення трохи нижче ліміту."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
@@ -1803,8 +1769,7 @@ msgstr ""
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
 msgid "Resend calls Odoo when an email is delivered, opened, bounced or received. The call is signed with the secret below."
-msgstr ""
-"Resend звертається до Odoo, коли лист доставлено, відкрито, відхилено або отримано. Виклик підписується секретом, наведеним нижче."
+msgstr "Resend звертається до Odoo, коли лист доставлено, відкрито, відхилено або отримано. Виклик підписується секретом, наведеним нижче."
 
 #. module: rex_resend_connector
 #. odoo-python
@@ -1816,15 +1781,13 @@ msgstr "Підключення до Resend"
 #. odoo-python
 #: code:addons/rex_resend_connector/models/ir_mail_server.py:0
 msgid "Resend connection OK. %(count)s domain(s) accessible, %(verified)s verified."
-msgstr ""
-"З’єднання з Resend встановлено. Доступно доменів: %(count)s, підтверджено: %(verified)s."
+msgstr "З’єднання з Resend встановлено. Доступно доменів: %(count)s, підтверджено: %(verified)s."
 
 #. module: rex_resend_connector
 #. odoo-python
 #: code:addons/rex_resend_connector/models/ir_mail_server.py:0
 msgid "Resend is enabled for the outgoing server \"%(server)s\" but no API key is configured."
-msgstr ""
-"Resend увімкнено для сервера вихідної пошти «%(server)s», але API-ключ не налаштовано."
+msgstr "Resend увімкнено для сервера вихідної пошти «%(server)s», але API-ключ не налаштовано."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
@@ -1835,8 +1798,7 @@ msgstr "Resend увімкнено."
 #. odoo-python
 #: code:addons/rex_resend_connector/models/resend_connector.py:0
 msgid "Resend is not configured: please set an API key in Settings > Discuss > Resend."
-msgstr ""
-"Resend не налаштовано: вкажіть API-ключ у Налаштування > Обговорення > Resend."
+msgstr "Resend не налаштовано: вкажіть API-ключ у Налаштування > Обговорення > Resend."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
@@ -1915,8 +1877,7 @@ msgstr "Заплановано"
 #. odoo-python
 #: code:addons/rex_resend_connector/wizard/resend_test_mail.py:0
 msgid "Select an outgoing server flagged with \"Use Resend API\"."
-msgstr ""
-"Виберіть сервер вихідної пошти з позначкою «Використовувати Resend API»."
+msgstr "Виберіть сервер вихідної пошти з позначкою «Використовувати Resend API»."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_test_mail_form
@@ -1937,8 +1898,7 @@ msgstr "Передавати Message-ID з Odoo"
 #. module: rex_resend_connector
 #: model:ir.module.module,summary:base.module_rex_resend_connector
 msgid "Send Odoo email through Resend, receive replies and follow delivery"
-msgstr ""
-"Надсилайте пошту Odoo через Resend, отримуйте відповіді та відстежуйте доставку"
+msgstr "Надсилайте пошту Odoo через Resend, отримуйте відповіді та відстежуйте доставку"
 
 #. module: rex_resend_connector
 #: model:ir.ui.menu,name:rex_resend_connector.menu_resend_test_mail
@@ -1975,14 +1935,12 @@ msgstr "Надіслати тестовий лист"
 #. module: rex_resend_connector
 #: model:ir.model.fields,help:rex_resend_connector.field_ir_mail_server__resend_enabled
 msgid "Send the emails routed to this server through the Resend HTTP API instead of SMTP. The global switch (Settings > Discuss > Resend) must also be enabled."
-msgstr ""
-"Надсилати листи, спрямовані на цей сервер, через HTTP API Resend замість SMTP. Також має бути ввімкнений глобальний перемикач (Налаштування > Обговорення > Resend)."
+msgstr "Надсилати листи, спрямовані на цей сервер, через HTTP API Resend замість SMTP. Також має бути ввімкнений глобальний перемикач (Налаштування > Обговорення > Resend)."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
 msgid "Sender address on a domain verified in Resend, for example no-reply@mg.example.com."
-msgstr ""
-"Адреса відправника на домені, підтвердженому в Resend, наприклад no-reply@mg.example.com."
+msgstr "Адреса відправника на домені, підтвердженому в Resend, наприклад no-reply@mg.example.com."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__mail_mail__resend_status__sending
@@ -2014,8 +1972,7 @@ msgstr ""
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
 msgid "Set <b>Settings &gt; Discuss &gt; Alias Domain</b> to that subdomain."
-msgstr ""
-"Укажіть цей піддомен у <b>Налаштування &gt; Обговорення &gt; Домен псевдоніма</b>."
+msgstr "Укажіть цей піддомен у <b>Налаштування &gt; Обговорення &gt; Домен псевдоніма</b>."
 
 #. module: rex_resend_connector
 #: model:ir.ui.menu,name:rex_resend_connector.menu_resend_settings
@@ -2045,8 +2002,7 @@ msgstr "Розмір (байти)"
 #. module: rex_resend_connector
 #: model:ir.model.fields,help:rex_resend_connector.field_resend_email__send_key
 msgid "Stable key of one actual delivery: the RFC Message-Id plus its recipients. Odoo may split a single mail.mail into several emails (one per recipient); each of them is tracked separately and a retry of the same email reuses its row."
-msgstr ""
-"Стабільний ключ однієї фактичної доставки: RFC Message-Id разом з одержувачами. Odoo може розділити один mail.mail на кілька листів (по одному на одержувача); кожен із них відстежується окремо, а повторна спроба надсилання того самого листа використовує його наявний рядок."
+msgstr "Стабільний ключ однієї фактичної доставки: RFC Message-Id разом з одержувачами. Odoo може розділити один mail.mail на кілька листів (по одному на одержувача); кожен із них відстежується окремо, а повторна спроба надсилання того самого листа використовує його наявний рядок."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_domain__status
@@ -2133,15 +2089,13 @@ msgstr ""
 #. module: rex_resend_connector
 #: model:ir.model.fields,help:rex_resend_connector.field_resend_email__actual_message_id
 msgid "The RFC Message-Id that Resend actually used: it replaces the Message-Id generated by Odoo, so replies reference this one. Used to map an inbound reply back to the Odoo thread."
-msgstr ""
-"RFC Message-Id, який фактично використав Resend: він замінює Message-Id, згенерований Odoo, тому відповіді посилаються саме на нього. Використовується для зіставлення вхідної відповіді з ланцюжком повідомлень в Odoo."
+msgstr "RFC Message-Id, який фактично використав Resend: він замінює Message-Id, згенерований Odoo, тому відповіді посилаються саме на нього. Використовується для зіставлення вхідної відповіді з ланцюжком повідомлень в Odoo."
 
 #. module: rex_resend_connector
 #. odoo-python
 #: code:addons/rex_resend_connector/models/ir_mail_server.py:0
 msgid "The attachment \"%(name)s\" is too large for Resend (maximum %(max)s MB per file)."
-msgstr ""
-"Вкладення «%(name)s» завелике для Resend (максимум %(max)s МБ на файл)."
+msgstr "Вкладення «%(name)s» завелике для Resend (максимум %(max)s МБ на файл)."
 
 #. module: rex_resend_connector
 #. odoo-python
@@ -2156,8 +2110,7 @@ msgstr ""
 #. module: rex_resend_connector
 #: model:ir.model.fields,help:rex_resend_connector.field_resend_test_mail__mail_server_id
 msgid "The email goes through Odoo's standard pipeline: templates, attachments and delivery tracking are exercised exactly like a real send."
-msgstr ""
-"Лист проходить стандартним шляхом обробки Odoo: шаблони, вкладення та відстеження доставки працюють точно так само, як під час реального надсилання."
+msgstr "Лист проходить стандартним шляхом обробки Odoo: шаблони, вкладення та відстеження доставки працюють точно так само, як під час реального надсилання."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
@@ -2174,8 +2127,7 @@ msgstr "Лист завеликий для Resend API (%(size).1f МБ)."
 #. odoo-python
 #: code:addons/rex_resend_connector/models/ir_mail_server.py:0
 msgid "The file \"%(name)s\" cannot be sent through Resend: this file type is blocked by the Resend security policy."
-msgstr ""
-"Файл «%(name)s» не можна надіслати через Resend: цей тип файлів заблоковано політикою безпеки Resend."
+msgstr "Файл «%(name)s» не можна надіслати через Resend: цей тип файлів заблоковано політикою безпеки Resend."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
@@ -2271,8 +2223,7 @@ msgstr "Тип"
 #. module: rex_resend_connector
 #: model:ir.model.fields,help:rex_resend_connector.field_resend_webhook_event__svix_id
 msgid "Unique identifier of the webhook call, used to ignore Resend retries."
-msgstr ""
-"Унікальний ідентифікатор виклику вебхука, використовується для ігнорування повторних спроб Resend."
+msgstr "Унікальний ідентифікатор виклику вебхука, використовується для ігнорування повторних спроб Resend."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_ir_mail_server__resend_enabled
@@ -2282,8 +2233,7 @@ msgstr "Використовувати Resend API"
 #. module: rex_resend_connector
 #: model:ir.model.fields,help:rex_resend_connector.field_resend_test_mail__email_to
 msgid "Use delivered@resend.dev, bounced@resend.dev or complained@resend.dev to test the delivery webhooks without a verified domain."
-msgstr ""
-"Використовуйте delivered@resend.dev, bounced@resend.dev або complained@resend.dev, щоб перевірити вебхуки доставки без підтвердженого домену."
+msgstr "Використовуйте delivered@resend.dev, bounced@resend.dev або complained@resend.dev, щоб перевірити вебхуки доставки без підтвердженого домену."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_domain__is_primary
@@ -2370,8 +2320,7 @@ msgstr "Події вебхуків"
 #. odoo-python
 #: code:addons/rex_resend_connector/models/res_config_settings.py:0
 msgid "Webhook exists but Resend did not return its secret. Copy it from the Resend dashboard."
-msgstr ""
-"Вебхук існує, але Resend не повернув його секрет. Скопіюйте його з панелі керування Resend."
+msgstr "Вебхук існує, але Resend не повернув його секрет. Скопіюйте його з панелі керування Resend."
 
 #. module: rex_resend_connector
 #. odoo-python
@@ -2397,8 +2346,7 @@ msgstr "Ви можете увійти в Odoo як адміністратор."
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
 msgid "You have a Resend account (a free plan is enough for testing)."
-msgstr ""
-"У вас є обліковий запис Resend (для тестування достатньо безкоштовного тарифу)."
+msgstr "У вас є обліковий запис Resend (для тестування достатньо безкоштовного тарифу)."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
@@ -2495,8 +2443,7 @@ msgstr "whsec_..."
 #. module: rex_resend_connector
 #: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_webhook_secret
 msgid "whsec_... secret shown by Resend when the webhook is created. Several secrets may be separated by commas during a rotation."
-msgstr ""
-"whsec_... — секрет, який Resend показує під час створення вебхука. Під час ротації можна вказати кілька секретів через кому."
+msgstr "whsec_... — секрет, який Resend показує під час створення вебхука. Під час ротації можна вказати кілька секретів через кому."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_test_mail_form
