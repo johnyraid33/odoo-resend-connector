@@ -136,4 +136,4 @@ class ResendController(http.Controller):
             'domains': request.env['resend.domain'].sudo().search([]),
             'is_admin': request.env.user.has_group('base.group_system'),
         }
-        return request.render('resend_connector.documentation_page', values)
+        return request.render('rex_resend_connector.documentation_page', values)

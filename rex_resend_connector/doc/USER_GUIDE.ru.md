@@ -1,5 +1,7 @@
 # Resend Email Connector: руководство по установке и настройке
 
+[English](USER_GUIDE.md) | Русский | [Українська](USER_GUIDE.uk.md)
+
 Это руководство описывает установку и настройку модуля Resend Email Connector для
 Odoo. Оно рассчитано на администраторов, которые раньше не работали с Resend, и на
 пользователей, которым нужно только посмотреть статус письма.
@@ -147,7 +149,7 @@ Workspace или Microsoft 365, используйте для ответов п�
 
 ### 5.1 Обычная установка
 
-1. Скопируйте папку resend_connector в каталог addons вашего сервера Odoo.
+1. Скопируйте папку rex_resend_connector в каталог addons вашего сервера Odoo.
 2. Перезапустите службу Odoo.
 3. Откройте Apps, нажмите Update Apps List и найдите Resend Email Connector.
 4. Нажмите Install.
@@ -159,11 +161,11 @@ Workspace или Microsoft 365, используйте для ответов п�
     services:
       odoo:
         volumes:
-          - ./resend_connector:/mnt/extra-addons/resend_connector
+          - ./rex_resend_connector:/mnt/extra-addons/rex_resend_connector
 
 Затем перезапустите контейнер и установите модуль из Apps или выполните:
 
-    docker compose exec odoo odoo -d odoo -i resend_connector --stop-after-init
+    docker compose exec odoo odoo -d odoo -i rex_resend_connector --stop-after-init
 
 ### 5.3 После установки
 
@@ -405,7 +407,7 @@ Resend принимает любой адрес на домене приёма, 
 | Массовая рассылка идёт медленно | Resend разрешает 10 запросов в секунду на команду. Модуль ограничивает себя 8 и повторяет остальные, поэтому рассылка идёт дольше, но письма не теряются. |
 | Endpoint отключён со стороны Resend | Resend отключает endpoint, который долго отвечает ошибками. Исправьте URL или проверку подписи и включите или создайте endpoint заново. |
 
-Подробности есть в журнале Odoo. Ищите resend_connector и resend webhook.
+Подробности есть в журнале Odoo. Ищите rex_resend_connector и resend webhook.
 
 ## 12. Безопасность и конфиденциальность
 

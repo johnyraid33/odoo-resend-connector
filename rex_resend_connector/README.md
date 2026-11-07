@@ -52,11 +52,11 @@ This solves three common problems:
   on the failed message.
 * Rate limiting that keeps mass mailings below the Resend limit of 10 requests per
   second.
-* Russian translation of the user interface.
+* User interface in English, with Ukrainian and Russian translations.
 
 ## Installation
 
-1. Copy the resend_connector folder into an addons directory.
+1. Copy the rex_resend_connector folder into an addons directory.
 2. Restart Odoo, open Apps and update the apps list.
 3. Install "Resend Email Connector".
 4. Open Settings > Discuss > Resend.
@@ -65,15 +65,16 @@ With Docker:
 
     # add the folder as a volume in docker-compose.yml
     volumes:
-      - ./resend_connector:/mnt/extra-addons/resend_connector
+      - ./rex_resend_connector:/mnt/extra-addons/rex_resend_connector
 
-    docker compose exec odoo odoo -d odoo -i resend_connector --stop-after-init
+    docker compose exec odoo odoo -d odoo -i rex_resend_connector --stop-after-init
 
 ## Configuration
 
 The complete guide is shipped with the module:
 
 * doc/USER_GUIDE.md (English)
+* doc/USER_GUIDE.uk.md (Ukrainian)
 * doc/USER_GUIDE.ru.md (Russian)
 * Resend > Documentation inside Odoo
 
@@ -146,7 +147,7 @@ The module contains 46 tests that cover the HTTP client, the webhook signature
 (including the published Svix test vector), the outgoing payload, the delivery
 state machine and inbound routing. Run them with:
 
-    odoo -d odoo -u resend_connector --test-tags /resend_connector --stop-after-init
+    odoo -d odoo -u rex_resend_connector --test-tags /rex_resend_connector --stop-after-init
 
 ## Troubleshooting
 
@@ -175,10 +176,10 @@ code, so the same module runs on both versions.
 
 ## Folder layout
 
-    resend_connector/
+    rex_resend_connector/
       controllers/main.py          signed webhook and documentation page
       data/ir_cron.xml             webhook queue, domain sync, retries, housekeeping
-      doc/                         user guide in English and Russian
+      doc/                         user guide: English, Ukrainian, Russian
       models/
         resend_client.py           HTTP client, retries, rate limit, Svix check
         resend_connector.py        configuration and client factory

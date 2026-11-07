@@ -9,6 +9,6 @@
 
     <!-- Administrators get the Resend application automatically. -->
     <record id="base.group_system" model="res.groups">
-        <field name="implied_ids" eval="[(4, ref('resend_connector.group_resend_manager'))]"/>
+        <field name="implied_ids" eval="[(4, ref('rex_resend_connector.group_resend_manager'))]"/>
     </record>
 </odoo>

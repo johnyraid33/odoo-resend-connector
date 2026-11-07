@@ -36,14 +36,14 @@ is required.
 Installation
 ------------
 
-1. Copy the resend_connector folder into an addons directory.
+1. Copy the rex_resend_connector folder into an addons directory.
 2. Restart Odoo and update the Apps list.
 3. Install "Resend Email Connector".
 4. Open Settings > Discuss > Resend.
 
 With Docker, mount the module folder and run:
 
-    docker compose exec odoo odoo -d odoo -i resend_connector --stop-after-init
+    docker compose exec odoo odoo -d odoo -i rex_resend_connector --stop-after-init
 
 Configuration
 -------------

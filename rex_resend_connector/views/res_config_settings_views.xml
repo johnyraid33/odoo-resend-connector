@@ -17,7 +17,7 @@
                                 <div class="mt8">
                                     <button name="action_resend_test_connection" type="object"
                                         string="Test connection" class="btn-link"/>
-                                    <button name="%(resend_connector.action_resend_test_mail)d" type="action"
+                                    <button name="%(rex_resend_connector.action_resend_test_mail)d" type="action"
                                         string="Send test email" class="btn-link"/>
                                     <button name="action_resend_open_documentation" type="object"
                                         string="Setup guide" class="btn-link"/>
