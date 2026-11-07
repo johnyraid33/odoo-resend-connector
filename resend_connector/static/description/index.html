@@ -4,110 +4,223 @@
   <meta charset="utf-8"/>
   <title>Resend Email Connector</title>
   <style>
-    body { margin: 0; background: #ffffff; color: #14141a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-    .hero { background: #0b0b0f; color: #ffffff; padding: 40px 48px; }
-    .hero h1 { margin: 0 0 12px; font-size: 34px; font-weight: 600; letter-spacing: -0.01em; }
-    .hero p { margin: 0; max-width: 760px; color: #c9c9d4; font-size: 16px; line-height: 1.55; }
-    .hero .meta { margin-top: 18px; color: #8f8f9e; font-size: 13px; }
-    .hero a { color: #ffffff; }
-    .wrap { max-width: 980px; margin: 0 auto; padding: 40px 48px 56px; }
-    h2 { font-size: 21px; font-weight: 600; margin: 36px 0 12px; }
-    h2:first-child { margin-top: 0; }
-    p, li { font-size: 15px; line-height: 1.6; color: #2b2b35; }
-    ul { padding-left: 22px; }
-    li { margin-bottom: 7px; }
-    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-    th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid #e6e6ec; font-size: 14px; vertical-align: top; }
-    th { background: #f6f6f9; font-weight: 600; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 14px; }
-    .card { border: 1px solid #e6e6ec; border-radius: 8px; padding: 16px 18px; }
-    .card b { display: block; margin-bottom: 6px; font-size: 15px; }
-    .card span { color: #55555f; font-size: 14px; line-height: 1.5; }
-    .note { border-left: 3px solid #0b0b0f; padding: 10px 14px; background: #f8f8fa; margin: 14px 0; font-size: 14px; }
-    .foot { margin-top: 44px; padding-top: 18px; border-top: 1px solid #e6e6ec; color: #6a6a75; font-size: 13px; }
-    .foot a { color: #14141a; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #ffffff; color: #16161d;
+           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+           -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 40px; }
+    img { max-width: 100%; display: block; }
+    .hero { padding: 12px 0 0; }
+    .hero img { border-radius: 14px; box-shadow: 0 18px 50px rgba(16, 16, 32, .16); }
+    .intro { padding: 44px 0 8px; }
+    .intro h1 { font-size: 40px; line-height: 1.15; margin: 0 0 14px; letter-spacing: -0.02em; }
+    .intro p { font-size: 18px; line-height: 1.65; color: #4a4a57; margin: 0; max-width: 860px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .badge { font-size: 13px; color: #2b2b36; background: #f3f3f7; border: 1px solid #e3e3ea;
+             border-radius: 999px; padding: 7px 14px; }
+    h2 { font-size: 28px; letter-spacing: -0.01em; margin: 64px 0 8px; }
+    .lead { font-size: 17px; color: #55555f; line-height: 1.6; margin: 0 0 24px; max-width: 820px; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
+    .card { border: 1px solid #e6e6ec; border-radius: 12px; padding: 22px; background: #fbfbfd; }
+    .card b { display: block; font-size: 16px; margin-bottom: 8px; }
+    .card p { margin: 0; font-size: 14px; line-height: 1.6; color: #55555f; }
+    .feature { display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; margin: 30px 0 8px; }
+    .feature.reverse .text { order: 2; }
+    .feature.reverse .media { order: 1; }
+    .feature h3 { font-size: 21px; margin: 0 0 10px; }
+    .feature p { font-size: 15px; line-height: 1.7; color: #4c4c58; margin: 0 0 12px; }
+    .feature ul { margin: 0; padding-left: 20px; color: #4c4c58; font-size: 15px; line-height: 1.7; }
+    .media img { border: 1px solid #e3e3ea; border-radius: 10px; box-shadow: 0 12px 30px rgba(16, 16, 32, .10); }
+    .caption { text-align: center; font-size: 12px; color: #8a8a95; margin-top: 10px; }
+    .steps { display: grid; gap: 26px; margin-top: 8px; }
+    .step { display: grid; grid-template-columns: 46px 1fr; gap: 18px; align-items: start; }
+    .num { width: 46px; height: 46px; border-radius: 12px; background: #0b0b0f; color: #ffffff;
+           display: grid; place-items: center; font-size: 18px; font-weight: 700; }
+    .step h3 { margin: 3px 0 8px; font-size: 18px; }
+    .step p { margin: 0 0 14px; font-size: 15px; line-height: 1.65; color: #4c4c58; }
+    .step img { border: 1px solid #e3e3ea; border-radius: 10px; box-shadow: 0 10px 26px rgba(16, 16, 32, .08); }
+    table { width: 100%; border-collapse: collapse; margin-top: 6px; }
+    th, td { text-align: left; padding: 11px 12px; border-bottom: 1px solid #e8e8ee; font-size: 14px; vertical-align: top; }
+    th { background: #f7f7fa; font-weight: 600; }
+    .note { border-left: 3px solid #0b0b0f; background: #f7f7fa; padding: 14px 18px; font-size: 14px;
+            line-height: 1.65; color: #4c4c58; border-radius: 0 8px 8px 0; margin: 18px 0; }
+    .footer { margin-top: 64px; border-top: 1px solid #e6e6ec; padding: 26px 0 40px; color: #6a6a75;
+              font-size: 13px; line-height: 1.7; }
+    .footer b { color: #16161d; }
+    .footer a { color: #16161d; }
+    @media (max-width: 780px) {
+      .feature, .feature.reverse { grid-template-columns: 1fr; }
+      .feature.reverse .text, .feature.reverse .media { order: initial; }
+      .intro h1 { font-size: 30px; }
+    }
   </style>
 </head>
 <body>
-  <div class="hero">
-    <h1>Resend Email Connector</h1>
-    <p>Send Odoo email through Resend, receive replies in the chatter and follow the
-       delivery of every message without opening an SMTP port.</p>
-    <div class="meta">Author: <a href="https://rex.cy" target="_blank" rel="noopener">POLISHCHUK &amp; SONS LTD</a>
-      &nbsp;|&nbsp; License: LGPL-3 &nbsp;|&nbsp; Odoo 19.0 and 20.0</div>
-  </div>
-
   <div class="wrap">
-    <h2>What it does</h2>
-    <p>Odoo continues to prepare email the usual way: quotations, invoices, chatter
-       notifications, templates, mass mailings, attachments, Bcc and alias domains.
-       The module changes only the transport. Instead of an SMTP connection, the
-       message is sent to the Resend API over HTTPS, and the delivery events Resend
-       reports are written back to the original Odoo record.</p>
+    <div class="hero"><img src="img/cover.png" alt="Resend Email Connector for Odoo"/></div>
 
-    <h2>Main features</h2>
-    <div class="grid">
-      <div class="card"><b>Every Odoo email</b><span>Notifications, documents, templates and mass mailings use the same transport. No other module needs to be changed.</span></div>
-      <div class="card"><b>Delivery status</b><span>Sent, delivered, delayed, opened, clicked, bounced, complained or failed, with the Resend error text when something goes wrong.</span></div>
-      <div class="card"><b>Replies in the chatter</b><span>Incoming messages are fetched from Resend and processed by Odoo's own mail gateway, so they arrive in the right thread.</span></div>
-      <div class="card"><b>Domains and DNS</b><span>Register a domain, see the SPF, DKIM and MX records, verify it and keep the status in sync.</span></div>
-      <div class="card"><b>Signed webhooks</b><span>Delivery events are verified with the Svix signature, with replay protection and duplicate detection.</span></div>
-      <div class="card"><b>No mail port</b><span>Sending works over HTTPS on port 443, including on hosts that block ports 25, 465 and 587.</span></div>
+    <div class="intro">
+      <h1>Email that leaves Odoo and comes back with an answer</h1>
+      <p>The module sends every Odoo email through the Resend API, receives replies from
+         Resend and keeps the delivery status on the record that produced the message.
+         Odoo continues to build emails exactly as before; only the transport changes.</p>
+      <div class="badges">
+        <span class="badge">Odoo 19.0 and 20.0</span>
+        <span class="badge">Community and Enterprise</span>
+        <span class="badge">No SMTP port required</span>
+        <span class="badge">License LGPL-3</span>
+        <span class="badge">Free</span>
+      </div>
     </div>
+
+    <h2>Why teams install it</h2>
+    <p class="lead">Hosting providers block ports 25, 465 and 587, SMTP only confirms that a server
+       accepted a message, and replies stay in a mailbox instead of the Odoo record.</p>
+    <div class="cards">
+      <div class="card"><b>Delivery over HTTPS</b><p>Port 443 only. No outbound mail port to open, no firewall exception to negotiate with the hosting provider.</p></div>
+      <div class="card"><b>Status on every message</b><p>Sent, delivered, delayed, opened, clicked, bounced, complained or failed, with the Resend error text when something goes wrong.</p></div>
+      <div class="card"><b>Replies in the chatter</b><p>Incoming messages are imported through Odoo's mail gateway, so replies land in the thread they answer.</p></div>
+      <div class="card"><b>Domains and DNS</b><p>Register a domain, see the SPF, DKIM and MX records, verify it and keep the status in sync with Resend.</p></div>
+      <div class="card"><b>Signed webhooks</b><p>Every delivery event is verified with the Svix signature, with replay protection and duplicate detection.</p></div>
+      <div class="card"><b>Nothing else to change</b><p>Templates, mass mailings, alias domains, attachments and custom modules keep working. A server can stay on SMTP.</p></div>
+    </div>
+
+    <h2>A delivery status for every email</h2>
+    <div class="feature">
+      <div class="text">
+        <h3>One list, every message</h3>
+        <p>Open <b>Resend &gt; Emails</b> and see what happened after sending. Each row carries the
+           Resend message id, the recipients and the current status. The same status is shown on
+           the standard Odoo email record and on the document the email was sent from.</p>
+        <ul>
+          <li>Statuses are ranked: a late event cannot move a message backwards.</li>
+          <li>Bounced, complained and failed are final states with the error attached.</li>
+          <li>One Odoo email split into several deliveries is tracked per recipient.</li>
+        </ul>
+      </div>
+      <div class="media"><img src="img/01_emails_list.png" alt="Resend emails list in Odoo"/><div class="caption">Resend &gt; Emails</div></div>
+    </div>
+
+    <h2>See exactly what happened</h2>
+    <div class="feature reverse">
+      <div class="text">
+        <h3>History on the message</h3>
+        <p>Every email keeps its own event history: when it was sent, delivered, opened or
+           rejected. The Resend identifiers are stored next to the Odoo message id, so support
+           can match an Odoo record to the Resend dashboard in seconds.</p>
+        <ul>
+          <li>Delivered, opened and clicked events.</li>
+          <li>Bounce type, code and message for rejected mail.</li>
+          <li>Retry from Odoo when a message failed for a temporary reason.</li>
+        </ul>
+      </div>
+      <div class="media"><img src="img/02_email_form.png" alt="Email delivery history"/><div class="caption">Delivery history and event log</div></div>
+    </div>
+
+    <h2>Configuration in five steps</h2>
+    <p class="lead">The settings screen keeps everything in one place: the API key, the verified
+       sender, the webhook and the delivery options. The module creates the webhook in Resend
+       and stores the signing secret itself.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <div>
+          <h3>Enable Resend and paste the API key</h3>
+          <p>Settings &gt; Discuss &gt; Resend. A key with sending access is enough to send;
+             domain and webhook management from Odoo needs full access.</p>
+          <img src="img/03_settings.png" alt="Resend settings in Odoo"/>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <div>
+          <h3>Flag the outgoing server</h3>
+          <p>Settings &gt; Technical &gt; Outgoing Mail Servers. Tick <b>Use Resend API</b> on the
+             server Odoo should use, then press Test connection. Other servers stay on SMTP.</p>
+          <img src="img/04_mail_server.png" alt="Outgoing mail server with the Resend tab"/>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <div>
+          <h3>Verify the sending domain</h3>
+          <p>Add the domain, publish the SPF, DKIM and DMARC records shown on the form and press
+             Verify Now. A dedicated subdomain such as mg.example.com keeps the email reputation
+             separate from the website domain.</p>
+          <img src="img/06_domain_form.png" alt="Domain and DNS records in Odoo"/>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <div>
+          <h3>Create the webhook</h3>
+          <p>Odoo must be reachable from the internet. Press <b>Create / update webhook in Resend</b>
+             and the endpoint is registered with the email events and the signing secret. Events
+             can be inspected in <b>Resend &gt; Configuration &gt; Webhook Events</b>.</p>
+          <img src="img/08_webhook_events.png" alt="Webhook events received from Resend"/>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">5</div>
+        <div>
+          <h3>Send a test and read the result</h3>
+          <p>Use the test email button in the settings or send a real quotation. Resend also
+             provides test recipients that simulate delivery, bounce and spam complaint, so the
+             status handling can be checked without writing to real customers.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Replies come back to Odoo</h2>
+    <div class="feature">
+      <div class="text">
+        <h3>Incoming mail through Resend</h3>
+        <p>Publish the MX record of a receiving subdomain, point the Odoo alias domain to it and
+           let Resend receive the replies. The module downloads the original message, restores the
+           references to the Odoo thread and passes it to Odoo's own mail gateway.</p>
+        <ul>
+          <li>Aliases and catchall keep working.</li>
+          <li>Attachments and inline images are stored normally.</li>
+          <li>Unmatched messages stay in Resend &gt; Inbound instead of disappearing.</li>
+        </ul>
+      </div>
+      <div class="media"><img src="img/07_inbound_list.png" alt="Inbound emails in Odoo"/><div class="caption">Resend &gt; Inbound</div></div>
+    </div>
+
+    <h2>How it works</h2>
+    <img src="img/workflow.png" alt="Odoo to Resend to the recipient, with webhooks back to Odoo" style="border-radius: 10px;"/>
 
     <h2>Delivery statuses</h2>
     <table>
       <tr><th>Status</th><th>Meaning</th><th>What Odoo shows</th></tr>
-      <tr><td>Sent</td><td>The Resend API accepted the message</td><td>Email marked as sent</td></tr>
-      <tr><td>Delivered</td><td>The recipient server accepted the message</td><td>Notification marked as delivered</td></tr>
-      <tr><td>Delivery delayed</td><td>Resend is still retrying</td><td>Warning only, never lowers a later status</td></tr>
+      <tr><td>Sent</td><td>Accepted by the Resend API</td><td>Email marked as sent</td></tr>
+      <tr><td>Delivered</td><td>Accepted by the recipient server</td><td>Notification marked as delivered</td></tr>
+      <tr><td>Delivery delayed</td><td>Resend is still retrying</td><td>Warning only, later statuses are not affected</td></tr>
       <tr><td>Opened / Clicked</td><td>Tracking events from the recipient</td><td>Informational</td></tr>
-      <tr><td>Bounced</td><td>The recipient server rejected the message</td><td>Email failed, notification bounced</td></tr>
-      <tr><td>Complained</td><td>The recipient marked the message as spam</td><td>Notification cancelled</td></tr>
+      <tr><td>Bounced</td><td>Rejected by the recipient server</td><td>Email failed, notification bounced</td></tr>
+      <tr><td>Complained</td><td>Marked as spam by the recipient</td><td>Notification cancelled</td></tr>
       <tr><td>Failed</td><td>Quota, invalid data or a blocked attachment</td><td>Email failed with the reason</td></tr>
     </table>
 
-    <h2>Getting started</h2>
-    <ul>
-      <li>Install the module and open <b>Settings &gt; Discuss &gt; Resend</b>.</li>
-      <li>Create a Resend API key, paste it in the settings and set the From address
-          on a domain verified in Resend.</li>
-      <li>Tick <b>Use Resend API</b> on the outgoing mail server that Odoo should use.</li>
-      <li>Create the webhook from the settings screen. The Odoo instance must be
-          reachable from the internet for this step.</li>
-      <li>Send an email and open <b>Resend &gt; Emails</b> to see its status.</li>
-    </ul>
-    <div class="note">A detailed guide for administrators and end users is included in
-      the module: <b>Resend &gt; Documentation</b>, and in the <b>doc</b> folder
-      (English and Russian).</div>
+    <h2>Built to be trusted</h2>
+    <div class="cards">
+      <div class="card"><b>Signed webhooks</b><p>Svix HMAC-SHA256 with a constant time comparison, a five minute tolerance and a unique event table for replay protection.</p></div>
+      <div class="card"><b>Idempotent sending</b><p>Each email carries an idempotency key derived from the database and the mail record, so a retry never delivers it twice.</p></div>
+      <div class="card"><b>Resend limits respected</b><p>The module throttles requests below the Resend team limit, retries 429 answers with backoff and never drops a message.</p></div>
+      <div class="card"><b>Safe attachments</b><p>File types blocked by Resend and the size limits are checked before the message is sent.</p></div>
+      <div class="card"><b>Administrator only</b><p>API keys and the signing secret are system parameters readable only by administrators.</p></div>
+      <div class="card"><b>No vendor lock-in</b><p>Switch a server back to SMTP at any time; Odoo keeps its standard email records.</p></div>
+    </div>
 
-    <h2>Incoming mail</h2>
-    <p>Reply handling uses the receiving side of Resend. Publish the MX record of a
-       subdomain, point the Odoo alias domain to it and let Resend deliver the
-       messages. The module downloads the original message from Resend, restores the
-       references to the Odoo thread and passes it to Odoo's mail gateway. Messages
-       that do not match an alias stay available in <b>Resend &gt; Inbound</b>.</p>
+    <div class="note">
+      The module includes a complete setup guide inside Odoo (<b>Resend &gt; Documentation</b>) and in
+      the <b>doc</b> folder of the package, in English and Russian.
+    </div>
 
-    <h2>Good to know</h2>
-    <ul>
-      <li>Resend sends its own Message-Id. The module keeps the value and maps replies
-          back to the Odoo message, so threading works with any mail client.</li>
-      <li>Sending is idempotent: a retry cannot deliver the same email twice.</li>
-      <li>The module respects the Resend rate limit of 10 requests per second and
-          slows down mass mailings instead of dropping messages.</li>
-      <li>Some mail servers place Resend email in spam if the domain is not
-          authenticated. Publish SPF, DKIM and a DMARC record.</li>
-    </ul>
-
-    <h2>Requirements</h2>
-    <p>Odoo 19.0 or 20.0, a Resend account and, for production sending, a domain
-       verified in Resend. The module uses the requests library that ships with Odoo,
-       so no extra Python package is needed.</p>
-
-    <div class="foot">
-      POLISHCHUK &amp; SONS LTD &nbsp;|&nbsp;
-      <a href="https://rex.cy" target="_blank" rel="noopener">rex.cy</a> &nbsp;|&nbsp;
-      License LGPL-3.0 &nbsp;|&nbsp; Support: <a href="mailto:info@rex.cy">info@rex.cy</a>, <a href="https://rex.cy" target="_blank" rel="noopener">rex.cy</a>
+    <div class="footer">
+      <b>Resend Email Connector 1.0.0</b><br/>
+      POLISHCHUK &amp; SONS LTD · <a href="https://rex.cy">https://rex.cy</a> · info@rex.cy<br/>
+      License LGPL-3.0 · Odoo 19.0 and 20.0 · Support: info@rex.cy
     </div>
   </div>
 </body>
