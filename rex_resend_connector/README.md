@@ -52,7 +52,7 @@ This solves three common problems:
   on the failed message.
 * Rate limiting that keeps mass mailings below the Resend limit of 10 requests per
   second.
-* Russian translation of the user interface.
+* User interface in English, with Ukrainian and Russian translations.
 
 ## Installation
 
@@ -74,6 +74,7 @@ With Docker:
 The complete guide is shipped with the module:
 
 * doc/USER_GUIDE.md (English)
+* doc/USER_GUIDE.uk.md (Ukrainian)
 * doc/USER_GUIDE.ru.md (Russian)
 * Resend > Documentation inside Odoo
 
@@ -178,7 +179,7 @@ code, so the same module runs on both versions.
     rex_resend_connector/
       controllers/main.py          signed webhook and documentation page
       data/ir_cron.xml             webhook queue, domain sync, retries, housekeeping
-      doc/                         user guide in English and Russian
+      doc/                         user guide: English, Ukrainian, Russian
       models/
         resend_client.py           HTTP client, retries, rate limit, Svix check
         resend_connector.py        configuration and client factory

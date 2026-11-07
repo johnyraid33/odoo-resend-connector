@@ -1,5 +1,7 @@
 # Resend Email Connector: Installation and User Guide
 
+English | [Русский](USER_GUIDE.ru.md) | [Українська](USER_GUIDE.uk.md)
+
 This guide explains how to install and configure the Resend Email Connector for
 Odoo. It is written for administrators who have never used Resend and for users who
 only need to read the delivery status of an email.

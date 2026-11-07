@@ -10,6 +10,7 @@ mail from Resend and keeps the delivery status of every message on the Odoo reco
 * Module: [rex_resend_connector](rex_resend_connector)
 * Installation and configuration: [README](rex_resend_connector/README.md),
   [user guide, English](rex_resend_connector/doc/USER_GUIDE.md),
+  [посібник, українська](rex_resend_connector/doc/USER_GUIDE.uk.md),
   [руководство, русский](rex_resend_connector/doc/USER_GUIDE.ru.md)
 * Development stack and tests: [dev](dev)
 * Author: POLISHCHUK & SONS LTD, [https://rex.cy](https://rex.cy), info@rex.cy

@@ -1,6 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 20.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-07 10:20+0000\n"
+"Language-Team: Russian\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -8,9 +11,327 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. module: rex_resend_connector
+#: model:ir.module.module,description:base.module_rex_resend_connector
+msgid ""
+"\n"
+"Resend Email Connector\n"
+"======================\n"
+"\n"
+"Send Odoo email through Resend and keep track of what happens to every message.\n"
+"\n"
+"The module adds Resend as an outgoing mail transport. Odoo keeps building emails\n"
+"the usual way (templates, chatter notifications, invoices, mass mailings,\n"
+"attachments, Bcc, alias domains); the module only replaces the transport, so the\n"
+"messages leave over the Resend API instead of SMTP and no mail port has to be\n"
+"opened on the server.\n"
+"\n"
+"Main features\n"
+"-------------\n"
+"* Sending through Resend for every email Odoo produces. The option is set per\n"
+"  outgoing mail server, with a global switch to fall back to SMTP.\n"
+"* A delivery status for each message: sent, delivered, delivery delayed, opened,\n"
+"  clicked, bounced, complained, failed. Statuses are ranked, so a late webhook\n"
+"  cannot move a message backwards.\n"
+"* Incoming mail: replies and new messages are fetched from Resend and handed to\n"
+"  Odoo's mail gateway, so they land in the chatter of the record they belong to\n"
+"  and follow the configured aliases.\n"
+"* A Resend section in Odoo with Emails, Inbound, Domains, Webhook Events,\n"
+"  Delivery Events, Settings and Documentation.\n"
+"* Domain management: register a domain, show its DNS records, verify it and keep\n"
+"  the records in sync with Resend.\n"
+"* Webhook management: create the endpoint in Resend from the settings screen,\n"
+"  store the signing secret and verify every call (Svix HMAC-SHA256, replay\n"
+"  protection).\n"
+"* Automatic retries for transient Resend errors. A failed message stays in Odoo\n"
+"  with the Resend error message attached.\n"
+"\n"
+"Installation\n"
+"------------\n"
+"1. Copy the module into your addons path and update the Apps list.\n"
+"2. Install \"Resend Email Connector\".\n"
+"3. Open Settings > Discuss > Resend, enter the API key and the From address.\n"
+"4. Open Settings > Technical > Outgoing Mail Servers and tick \"Use Resend API\" on\n"
+"   the server Odoo should use.\n"
+"5. Create the webhook from the settings screen. Odoo has to be reachable from the\n"
+"   internet for this step.\n"
+"6. Verify a domain in Resend and publish the DNS records shown on the domain form.\n"
+"\n"
+"A complete guide, including DNS and incoming mail setup, is available in\n"
+"Resend > Documentation and in the doc folder of the module.\n"
+"\n"
+"Compatibility\n"
+"-------------\n"
+"Odoo 19.0 and 20.0, Community and Enterprise. The module depends on the mail\n"
+"module and on the requests library, which ships with Odoo.\n"
+"\n"
+"License: LGPL-3.\n"
+"Support: info@rex.cy\n"
+msgstr ""
+"\n"
+"Resend Email Connector\n"
+"======================\n"
+"\n"
+"Отправка почты Odoo через Resend и отслеживание того, что происходит с "
+"каждым письмом.\n"
+"\n"
+"Модуль добавляет Resend как транспорт исходящей почты. Odoo по-прежнему "
+"формирует\n"
+"письма как обычно (шаблоны, уведомления в чате, счета, массовые рассылки,\n"
+"вложения, скрытые копии, домены алиасов); модуль заменяет только транспорт, "
+"поэтому\n"
+"письма уходят через Resend API вместо SMTP и открывать почтовый порт на "
+"сервере\n"
+"не нужно.\n"
+"\n"
+"Основные возможности\n"
+"--------------------\n"
+"* Отправка через Resend всех писем, которые формирует Odoo. Опция задаётся "
+"для\n"
+"  каждого исходящего почтового сервера, общий переключатель возвращает "
+"отправку через SMTP.\n"
+"* Статус доставки для каждого письма: отправлено, доставлено, доставка "
+"задержана, открыто,\n"
+"  переход по ссылке, отклонено, жалоба на спам, ошибка. Статусы "
+"ранжированы, поэтому поздний webhook\n"
+"  не может откатить статус письма назад.\n"
+"* Входящая почта: ответы и новые письма загружаются из Resend и передаются "
+"в\n"
+"  почтовый шлюз Odoo, поэтому они попадают в чат карточки, к которой "
+"относятся,\n"
+"  и обрабатываются по настроенным алиасам.\n"
+"* Раздел Resend в Odoo: Письма, Входящие, Домены, События webhook,\n"
+"  События доставки, Настройки и Документация.\n"
+"* Управление доменами: регистрация домена, просмотр его DNS-записей, "
+"проверка и\n"
+"  синхронизация записей с Resend.\n"
+"* Управление webhook: создание endpoint в Resend прямо из настроек,\n"
+"  хранение секрета подписи и проверка каждого вызова (Svix HMAC-SHA256, "
+"защита\n"
+"  от повторного воспроизведения).\n"
+"* Автоматические повторы при временных ошибках Resend. Неотправленное "
+"письмо остаётся в Odoo\n"
+"  вместе с текстом ошибки Resend.\n"
+"\n"
+"Установка\n"
+"---------\n"
+"1. Скопируйте модуль в каталог addons и обновите список приложений.\n"
+"2. Установите «Resend Email Connector».\n"
+"3. Откройте Настройки > Обсуждение > Resend, введите API-ключ и адрес "
+"отправителя.\n"
+"4. Откройте Настройки > Технический > Серверы исходящей почты и включите "
+"«Использовать Resend API» для\n"
+"   сервера, через который Odoo должен отправлять почту.\n"
+"5. Создайте webhook на экране настроек. Для этого шага Odoo должен быть "
+"доступен из\n"
+"   интернета.\n"
+"6. Подтвердите домен в Resend и опубликуйте DNS-записи, показанные в форме "
+"домена.\n"
+"\n"
+"Полное руководство, включая настройку DNS и входящей почты, доступно в "
+"разделе\n"
+"Resend > Документация и в папке doc модуля.\n"
+"\n"
+"Совместимость\n"
+"-------------\n"
+"Odoo 19.0 и 20.0, Community и Enterprise. Модуль зависит от модуля mail\n"
+"и от библиотеки requests, которая входит в поставку Odoo.\n"
+"\n"
+"Лицензия: LGPL-3.\n"
+"Поддержка: info@rex.cy\n"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+", info@rex.cy<br/>\n"
+"                            License LGPL-3.0. Full guide in the doc folder of the module."
+msgstr ""
+", info@rex.cy<br/>\n"
+"                            Лицензия LGPL-3.0. Полное руководство находится "
+"в папке doc модуля."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "1. What the module does"
+msgstr "1. Что делает модуль"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "10. Troubleshooting"
+msgstr "10. Решение проблем"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "11. Security"
+msgstr "11. Безопасность"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "2. Before you start"
+msgstr "2. Перед началом"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "3. Account and API key"
+msgstr "3. Аккаунт и API-ключ"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "3. Create a Resend account and API key"
+msgstr "3. Создание аккаунта Resend и API-ключа"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "4. Verify a domain"
+msgstr "4. Подтверждение домена"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "4. Verify a sending domain"
+msgstr "4. Подтверждение домена отправки"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "5. Configure outgoing email"
+msgstr "5. Настройка исходящей почты"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "6. Send a test email"
+msgstr "6. Отправка тестового письма"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "7. Delivery webhooks"
+msgstr "7. Webhook доставки"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "8. Incoming email"
+msgstr "8. Входящая почта"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "8. Receive incoming email"
+msgstr "8. Приём входящей почты"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "9. Delivery statuses"
+msgstr "9. Статусы доставки"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "<b>Contents</b>"
+msgstr "<b>Содержание</b>"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "<b>Current status.</b>"
+msgstr "<b>Текущий статус.</b>"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+"<b>Resend Email Connector 1.0.0</b><br/>\n"
+"                            POLISHCHUK &amp; SONS LTD,"
+msgstr ""
+"<b>Resend Email Connector 1.0.0</b><br/>\n"
+"                            POLISHCHUK &amp; SONS LTD,"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+"<br/>\n"
+"                            <b>Webhook URL:</b>"
+msgstr ""
+"<br/>\n"
+"                            <b>URL webhook:</b>"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "<code>bounced@resend.dev</code>: hard bounce;"
+msgstr "<code>bounced@resend.dev</code>: жёсткий отказ;"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "<code>complained@resend.dev</code>: delivered, then marked as spam;"
+msgstr ""
+"<code>complained@resend.dev</code>: доставлено, затем помечено как спам;"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "<code>delivered@resend.dev</code>: delivered;"
+msgstr "<code>delivered@resend.dev</code>: доставлено;"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "<code>suppressed@resend.dev</code>: suppressed address."
+msgstr "<code>suppressed@resend.dev</code>: адрес в списке подавления."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "<span class=\"badge\" style=\"background:#5d3d55;border-color:#5d3d55;color:#fff\">Odoo 19 &amp; 20</span>"
+msgstr ""
+"<span class=\"badge\" "
+"style=\"background:#5d3d55;border-color:#5d3d55;color:#fff\">Odoo 19 &amp; "
+"20</span>"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid ""
+"<span class=\"text-success ms-2\" invisible=\"not resend_webhook_configured\">\n"
+"                                        <i class=\"fa fa-check\"/> Secret configured\n"
+"                                    </span>\n"
+"                                    <span class=\"text-warning ms-2\" invisible=\"resend_webhook_configured\">\n"
+"                                        <i class=\"fa fa-exclamation-triangle\"/> Not configured yet\n"
+"                                    </span>"
+msgstr ""
+"<span class=\"text-success ms-2\" invisible=\"not resend_webhook_configured\">\n"
+"                                        <i class=\"fa fa-check\"/> Секрет "
+"настроен\n"
+"                                    </span>\n"
+"                                    <span class=\"text-warning ms-2\" "
+"invisible=\"resend_webhook_configured\">\n"
+"                                        <i class=\"fa "
+"fa-exclamation-triangle\"/> Ещё не настроен\n"
+"                                    </span>"
+
+#. module: rex_resend_connector
+#: model:ir.model.constraint,message:rex_resend_connector.constraint_resend_email_resend_message_id_uniq
+msgid "A Resend email with this identifier already exists."
+msgstr "Письмо Resend с таким идентификатором уже существует."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+"A subdomain such as <b>mg.example.com</b> is recommended, so the reputation of the email\n"
+"                           domain is independent from the main website."
+msgstr ""
+"Рекомендуется использовать поддомен, например <b>mg.example.com</b>, чтобы "
+"репутация почтового\n"
+"                           домена не зависела от основного сайта."
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_resend_email__transient_failure
+msgid "A transient failure (network, rate limit, 5xx) may be retried automatically."
+msgstr ""
+"Временный сбой (сеть, ограничение частоты запросов, ошибка 5xx) может быть "
+"повторён автоматически."
+
+#. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_res_config_settings__resend_base_url
 msgid "API Base URL"
 msgstr "Базовый URL API"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "API base URL"
+msgstr "Базовый URL API"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "API key"
+msgstr "API-ключ"
 
 #. module: rex_resend_connector
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__mail_mail__resend_status__accepted
@@ -19,9 +340,76 @@ msgid "Accepted"
 msgstr "Принято"
 
 #. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Accepted by the Resend API"
+msgstr "Принято Resend API"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Accepted by the recipient server"
+msgstr "Принято сервером получателя"
+
+#. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
-msgid "Advanced"
-msgstr "Дополнительно"
+msgid "Accepted clock difference, in seconds, for the webhook signature."
+msgstr "Допустимое расхождение часов в секундах для подписи webhook."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Add a DMARC record, for example <code>v=DMARC1; p=none; rua=mailto:dmarc@example.com</code>."
+msgstr ""
+"Добавьте запись DMARC, например <code>v=DMARC1; p=none; "
+"rua=mailto:dmarc@example.com</code>."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+"Add the MX record of a subdomain, for example <b>reply.example.com</b>, to your DNS provider.\n"
+"                                Resend uses the record with the lowest priority."
+msgstr ""
+"Добавьте у DNS-провайдера MX-запись поддомена, например "
+"<b>reply.example.com</b>.\n"
+"                                Resend использует запись с наименьшим "
+"приоритетом."
+
+#. module: rex_resend_connector
+#: model_terms:ir.actions.act_window,help:rex_resend_connector.action_resend_domain
+msgid ""
+"Add the domain you want to send from. Resend gives you the SPF, DKIM and\n"
+"               MX records to publish at your DNS provider."
+msgstr ""
+"Добавьте домен, с которого хотите отправлять почту. Resend выдаст записи "
+"SPF, DKIM и\n"
+"               MX, которые нужно опубликовать у DNS-провайдера."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_domain_form
+msgid ""
+"Add these records at your DNS provider, then click\n"
+"                                <b>Verify Now</b>. Verification may take a few minutes\n"
+"                                (DNS propagation). SPF, DKIM and DMARC together are what\n"
+"                                keeps your mail out of the spam folder."
+msgstr ""
+"Добавьте эти записи у DNS-провайдера, затем нажмите\n"
+"                                <b>Проверить сейчас</b>. Проверка может "
+"занять несколько минут\n"
+"                                (распространение DNS). Именно SPF, DKIM и "
+"DMARC вместе\n"
+"                                не дают письмам попадать в спам."
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_from_email
+msgid "Address on a domain verified in Resend, e.g. no-reply@mg.example.com."
+msgstr ""
+"Адрес на домене, подтверждённом в Resend, например no-reply@mg.example.com."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "Adds the Odoo Message-Id as a custom header. Resend assigns its own id; the module tracks both and maps replies back to the Odoo thread."
+msgstr ""
+"Добавляет Message-Id Odoo как пользовательский заголовок. Resend назначает "
+"свой идентификатор; модуль отслеживает оба и привязывает ответы к ветке "
+"Odoo."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__res_config_settings__resend_from_mode__always
@@ -29,9 +417,29 @@ msgid "Always"
 msgstr "Всегда"
 
 #. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_save_inbound_original
+msgid "Attach the original .eml to every imported incoming email."
+msgstr ""
+"Прикреплять исходный файл .eml к каждому импортированному входящему письму."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "Attach the original message file to every imported incoming email."
+msgstr ""
+"Прикреплять файл исходного сообщения к каждому импортированному входящему "
+"письму."
+
+#. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_inbound_email__attachment_count
 msgid "Attachments"
 msgstr "Вложения"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Attachments are checked against the file types and the size allowed by Resend before sending."
+msgstr ""
+"Перед отправкой вложения проверяются на соответствие типам файлов и "
+"размеру, допустимым в Resend."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_webhook_event__attempts
@@ -42,6 +450,11 @@ msgstr "Попытки"
 #: model:ir.model.fields,field_description:rex_resend_connector.field_res_config_settings__resend_auto_retry_max
 msgid "Auto-Retry Transient Failures"
 msgstr "Автоповтор временных ошибок"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "Automatic retries"
+msgstr "Автоматические повторы"
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email__bcc_emails
@@ -89,6 +502,49 @@ msgid "Cc"
 msgstr "Копия"
 
 #. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "Change only to use a proxy or a test server. Default: https://api.resend.com"
+msgstr ""
+"Меняйте только для работы через прокси или тестовый сервер. По умолчанию: "
+"https://api.resend.com"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+"Check the <b>Webhook URL</b> in the settings. Odoo must be reachable from the internet\n"
+"                                at that address. If needed, set <b>Public Base URL</b> to the public address."
+msgstr ""
+"Проверьте <b>URL webhook</b> в настройках. Odoo должен быть доступен из "
+"интернета\n"
+"                                по этому адресу. При необходимости укажите "
+"публичный адрес в поле <b>Публичный базовый URL</b>."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+"Check the MX record, the email.received subscription, the alias domain and the Inbound\n"
+"                               list for messages without a route."
+msgstr ""
+"Проверьте MX-запись, подписку на email.received, домен алиасов и список "
+"«Входящие»\n"
+"                               на наличие писем без маршрута."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+"Click <b>Create / update webhook in Resend</b>. The endpoint is created, subscribed to\n"
+"                                the email events and the signing secret is stored."
+msgstr ""
+"Нажмите <b>Создать / обновить webhook в Resend</b>. Endpoint будет создан и "
+"подписан на\n"
+"                                события почты, а секрет подписи сохранён."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Click <b>Verify Now</b> and wait for DNS propagation."
+msgstr "Нажмите <b>Проверить сейчас</b> и дождитесь распространения DNS."
+
+#. module: rex_resend_connector
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__mail_mail__resend_status__clicked
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__resend_email__state__clicked
 msgid "Clicked"
@@ -106,10 +562,21 @@ msgid "Company"
 msgstr "Компания"
 
 #. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_email_search
+msgid "Complained"
+msgstr "Жалоба на спам"
+
+#. module: rex_resend_connector
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__mail_mail__resend_status__complained
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__resend_email__state__complained
 msgid "Complained (Spam)"
 msgstr "Жалоба на спам"
+
+#. module: rex_resend_connector
+#: model:ir.model,name:rex_resend_connector.model_res_config_settings
+msgid "Config Settings"
+msgstr "Настройки конфигурации"
 
 #. module: rex_resend_connector
 #: model:ir.ui.menu,name:rex_resend_connector.menu_resend_configuration
@@ -117,14 +584,93 @@ msgid "Configuration"
 msgstr "Настройка"
 
 #. module: rex_resend_connector
+#: model_terms:ir.actions.act_window,help:rex_resend_connector.action_resend_email
+msgid ""
+"Configure Resend and send an email from any Odoo record; every message\n"
+"               will be listed here with its delivery status."
+msgstr ""
+"Настройте Resend и отправьте письмо из любой записи Odoo; каждое письмо\n"
+"               появится здесь со своим статусом доставки."
+
+#. module: rex_resend_connector
+#. odoo-python
+#: code:addons/rex_resend_connector/models/res_config_settings.py:0
+msgid "Connection OK - %(count)s domain(s), verified: %(domains)s"
+msgstr "Подключение установлено. Доменов: %(count)s, подтверждены: %(domains)s"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Copy the SPF and DKIM records shown on the form to your DNS provider."
+msgstr "Скопируйте записи SPF и DKIM из формы и добавьте их у DNS-провайдера."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Copy the key. It starts with <code>re_</code>."
+msgstr "Скопируйте ключ. Он начинается с <code>re_</code>."
+
+#. module: rex_resend_connector
+#. odoo-python
+#: code:addons/rex_resend_connector/models/resend_domain.py:0
+msgid "Could not create the domain in Resend: %(error)s"
+msgstr "Не удалось создать домен в Resend: %(error)s"
+
+#. module: rex_resend_connector
+#. odoo-python
+#: code:addons/rex_resend_connector/models/resend_domain.py:0
+msgid "Could not verify the domain %(domain)s: %(error)s"
+msgstr "Не удалось проверить домен %(domain)s: %(error)s"
+
+#. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
 msgid "Create / update webhook in Resend"
 msgstr "Создать / обновить webhook в Resend"
 
 #. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+"Create a mail alias for the address, for example <b>sales@reply.example.com</b>, or simply\n"
+"                                reply to an email sent from Odoo."
+msgstr ""
+"Создайте почтовый алиас для адреса, например "
+"<b>sales@reply.example.com</b>, или просто\n"
+"                                ответьте на письмо, отправленное из Odoo."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Create an account on"
+msgstr "Создайте аккаунт на"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_email_list
+msgid "Created"
+msgstr "Создано"
+
+#. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_domain__api_created_at
 msgid "Created at Resend"
 msgstr "Создано в Resend"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_domain__create_uid
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_domain_record__create_uid
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email__create_uid
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email_event__create_uid
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_inbound_email__create_uid
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_test_mail__create_uid
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_webhook_event__create_uid
+msgid "Created by"
+msgstr "Создано"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_domain__create_date
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_domain_record__create_date
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email__create_date
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email_event__create_date
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_inbound_email__create_date
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_test_mail__create_date
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_webhook_event__create_date
+msgid "Created on"
+msgstr "Дата создания"
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_domain__record_ids
@@ -133,12 +679,41 @@ msgid "DNS Records"
 msgstr "DNS-записи"
 
 #. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_email_search
+msgid "Day"
+msgstr "День"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "Delay between automatic retries."
+msgstr "Задержка между автоматическими повторами."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "Deliver Odoo email through the Resend API instead of SMTP. No mail port is needed and every message gets a delivery status."
+msgstr ""
+"Отправлять почту Odoo через Resend API вместо SMTP. Почтовый порт не нужен, "
+"и каждое письмо получает статус доставки."
+
+#. module: rex_resend_connector
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__mail_mail__resend_status__delivered
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__resend_email__state__delivered
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_email_search
 msgid "Delivered"
 msgstr "Доставлено"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,field_description:rex_resend_connector.field_mail_mail__resend_email_count
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_mail_form_resend
+msgid "Deliveries"
+msgstr "Доставки"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_mail_form_resend
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_email_form
+msgid "Delivery"
+msgstr "Доставка"
 
 #. module: rex_resend_connector
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__mail_mail__resend_status__delayed
@@ -153,9 +728,55 @@ msgid "Delivery Events"
 msgstr "События доставки"
 
 #. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Delivery delayed"
+msgstr "Доставка задержана"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_email_form
+msgid ""
+"Delivery events received from Resend webhooks (or\n"
+"                                reconciliation). At-least-once delivery is expected:\n"
+"                                duplicate svix-ids are ignored and states are ranked so\n"
+"                                a late event never rolls a status backwards."
+msgstr ""
+"События доставки, полученные через webhook Resend (или\n"
+"                                при сверке). Доставка гарантируется как "
+"минимум один раз:\n"
+"                                повторяющиеся svix-id игнорируются, а "
+"статусы ранжированы, поэтому\n"
+"                                поздно пришедшее событие никогда не "
+"откатывает статус назад."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Delivery history"
+msgstr "История доставки"
+
+#. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
 msgid "Delivery webhooks"
 msgstr "Webhook доставки"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_mail_form_resend
+msgid "Diagnostics"
+msgstr "Диагностика"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,field_description:rex_resend_connector.field_ir_mail_server__display_name
+#: model:ir.model.fields,field_description:rex_resend_connector.field_mail_mail__display_name
+#: model:ir.model.fields,field_description:rex_resend_connector.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_connector__display_name
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_domain__display_name
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_domain_record__display_name
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email__display_name
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email_event__display_name
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_inbound_email__display_name
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_test_mail__display_name
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_webhook_event__display_name
+msgid "Display Name"
+msgstr "Отображаемое имя"
 
 #. module: rex_resend_connector
 #: model:ir.actions.act_url,name:rex_resend_connector.action_resend_documentation
@@ -171,16 +792,78 @@ msgid "Domain"
 msgstr "Домен"
 
 #. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Domain and DNS records"
+msgstr "Домен и DNS-записи"
+
+#. module: rex_resend_connector
 #: model:ir.actions.act_window,name:rex_resend_connector.action_resend_domain
 #: model:ir.model.fields,field_description:rex_resend_connector.field_res_config_settings__resend_domain_count
 #: model:ir.ui.menu,name:rex_resend_connector.menu_resend_domains
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
 msgid "Domains"
 msgstr "Домены"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Domains on this installation"
+msgstr "Домены в этой установке"
 
 #. module: rex_resend_connector
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__resend_inbound_email__state__duplicate
 msgid "Duplicate"
 msgstr "Дубликат"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+"Each call is verified with the Svix HMAC-SHA256 signature, a five minute tolerance and a\n"
+"                           unique event id. Calls that cannot be processed immediately are retried by a scheduled job."
+msgstr ""
+"Каждый вызов проверяется по подписи Svix HMAC-SHA256 с допуском пять минут "
+"и по\n"
+"                           уникальному идентификатору события. Вызовы, "
+"которые нельзя обработать сразу, повторяет задача по расписанию."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Each domain shows the DNS records Resend expects and its verification status."
+msgstr ""
+"Для каждого домена показаны DNS-записи, которые ожидает Resend, и статус "
+"проверки."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Each email is sent with an idempotency key, so a retry cannot deliver it twice."
+msgstr ""
+"Каждое письмо отправляется с ключом идемпотентности, поэтому повтор не "
+"может доставить его дважды."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Each email keeps its event history and the Resend identifiers."
+msgstr "Каждое письмо хранит историю событий и идентификаторы Resend."
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email_event__email_id
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_email_search
+msgid "Email"
+msgstr "Письмо"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Email failed with the reason"
+msgstr "Ошибка письма с указанием причины"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Email failed, notification bounced"
+msgstr "Ошибка письма, уведомление отклонено"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Email sent"
+msgstr "Письмо отправлено"
 
 #. module: rex_resend_connector
 #: model:ir.actions.act_window,name:rex_resend_connector.action_resend_email
@@ -232,6 +915,18 @@ msgid "Events Count"
 msgstr "Количество событий"
 
 #. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Every address on the receiving domain is accepted by Resend. Routing is done by Odoo."
+msgstr ""
+"Resend принимает любой адрес на домене приёма. Маршрутизацией занимается "
+"Odoo."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Every webhook call is listed with its type, status and payload."
+msgstr "Каждый вызов webhook отображается с типом, статусом и payload."
+
+#. module: rex_resend_connector
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__mail_mail__resend_status__failed
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__resend_domain__status__failure
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__resend_email__state__failed
@@ -242,6 +937,15 @@ msgstr "Количество событий"
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_webhook_event_search
 msgid "Failed"
 msgstr "Ошибка"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_preserve_message_id
+msgid "Forward the Message-Id generated by Odoo as a custom header. Resend assigns its own Message-Id anyway: the module tracks it and maps replies back to the right Odoo thread automatically. Disable this only if Resend rejects the header."
+msgstr ""
+"Передавать Message-Id, сгенерированный Odoo, как пользовательский "
+"заголовок. Resend в любом случае назначает свой Message-Id: модуль "
+"отслеживает его и автоматически привязывает ответы к нужной ветке Odoo. "
+"Отключайте эту опцию, только если Resend отклоняет заголовок."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email__from_email
@@ -255,14 +959,63 @@ msgid "From Address"
 msgstr "Адрес отправителя"
 
 #. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "From address"
+msgstr "Адрес отправителя"
+
+#. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_test_mail__mail_mail_id
 msgid "Generated Email"
 msgstr "Созданное письмо"
 
 #. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "How inline images are sent. Content-ID keeps cid references, data URI embeds the image in the HTML, attachment sends it as a normal file."
+msgstr ""
+"Способ отправки встроенных изображений. Content-ID сохраняет ссылки cid, "
+"data URI встраивает изображение в HTML, вложение отправляет его обычным "
+"файлом."
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,field_description:rex_resend_connector.field_ir_mail_server__id
+#: model:ir.model.fields,field_description:rex_resend_connector.field_mail_mail__id
+#: model:ir.model.fields,field_description:rex_resend_connector.field_res_config_settings__id
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_connector__id
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_domain__id
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_domain_record__id
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email__id
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email_event__id
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_inbound_email__id
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_test_mail__id
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_webhook_event__id
+msgid "ID"
+msgstr "ID"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_resend_email__resend_message_id
+msgid "Identifier returned by the Resend API."
+msgstr "Идентификатор, возвращённый Resend API."
+
+#. module: rex_resend_connector
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__resend_webhook_event__state__ignored
 msgid "Ignored"
 msgstr "Игнорировано"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+"In <b>Settings &gt; Discuss &gt; Resend</b> tick <b>Send emails through Resend</b>,\n"
+"                                paste the API key and set the <b>From address</b> on the verified domain."
+msgstr ""
+"В <b>Настройки &gt; Обсуждение &gt; Resend</b> включите <b>Отправлять "
+"письма через Resend</b>,\n"
+"                                вставьте API-ключ и укажите <b>Адрес "
+"отправителя</b> на подтверждённом домене."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_email_search
+msgid "In transit"
+msgstr "В пути"
 
 #. module: rex_resend_connector
 #: model:ir.ui.menu,name:rex_resend_connector.menu_resend_inbound
@@ -282,8 +1035,36 @@ msgid "Inbound Emails"
 msgstr "Входящие письма"
 
 #. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Inbound emails"
+msgstr "Входящие письма"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+"Incoming mail can be received from Resend as well. The module downloads the original message,\n"
+"                           restores the reference to the Odoo thread and passes it to Odoo's mail gateway, so replies\n"
+"                           appear in the chatter."
+msgstr ""
+"Входящую почту тоже можно принимать через Resend. Модуль загружает исходное "
+"письмо,\n"
+"                           восстанавливает ссылку на ветку Odoo и передаёт "
+"его в почтовый шлюз Odoo, поэтому ответы\n"
+"                           появляются в чате."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Informational"
+msgstr "Только для информации"
+
+#. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_res_config_settings__resend_inline_images_mode
 msgid "Inline Images"
+msgstr "Встроенные изображения"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "Inline images"
 msgstr "Встроенные изображения"
 
 #. module: rex_resend_connector
@@ -295,6 +1076,21 @@ msgstr "Сохранять Content-ID (рекомендуется)"
 #: model:ir.model.fields,field_description:rex_resend_connector.field_res_config_settings__resend_save_inbound_original
 msgid "Keep Original Inbound Messages"
 msgstr "Сохранять оригинал входящих писем"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "Keep original inbound messages"
+msgstr "Сохранять оригинал входящих писем"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "Keep the raw JSON of every webhook call for debugging."
+msgstr "Сохранять исходный JSON каждого вызова webhook для отладки."
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_store_payloads
+msgid "Keep the raw webhook JSON for debugging (recommended)."
+msgstr "Сохранять исходный JSON webhook для отладки (рекомендуется)."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email__last_event_type
@@ -317,6 +1113,51 @@ msgid "Last Sync"
 msgstr "Последняя синхронизация"
 
 #. module: rex_resend_connector
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_domain__write_uid
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_domain_record__write_uid
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email__write_uid
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email_event__write_uid
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_inbound_email__write_uid
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_test_mail__write_uid
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_webhook_event__write_uid
+msgid "Last Updated by"
+msgstr "Последнее обновление"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_domain__write_date
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_domain_record__write_date
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email__write_date
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email_event__write_date
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_inbound_email__write_date
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_test_mail__write_date
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_webhook_event__write_date
+msgid "Last Updated on"
+msgstr "Дата последнего обновления"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+"Leave <b>Rewrite From</b> on its default value. Odoo may choose a sender on a domain\n"
+"                                Resend does not know; the module then sends from the verified address and keeps the\n"
+"                                original sender in Reply-To."
+msgstr ""
+"Оставьте для <b>Подменять отправителя</b> значение по умолчанию. Odoo может "
+"выбрать отправителя на домене,\n"
+"                                который Resend не знает; тогда модуль "
+"отправит письмо с подтверждённого адреса, а\n"
+"                                исходного отправителя сохранит в Reply-To."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.ir_mail_server_view_form_resend
+msgid "Leave empty to use the global API key"
+msgstr "Оставьте пустым, чтобы использовать общий API-ключ"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.ir_mail_server_view_form_resend
+msgid "Leave empty to use the global From address"
+msgstr "Оставьте пустым, чтобы использовать общий адрес отправителя"
+
+#. module: rex_resend_connector
 #. odoo-python
 #: code:addons/rex_resend_connector/models/ir_mail_server.py:0
 msgid "Mail Delivery Failed"
@@ -333,6 +1174,63 @@ msgstr "Почтовый сервер"
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
 msgid "Manage domains"
 msgstr "Управление доменами"
+
+#. module: rex_resend_connector
+#: model:res.groups,comment:rex_resend_connector.group_resend_manager
+msgid ""
+"Manage the Resend email integration: configuration,\n"
+"            domains, webhook events and delivery tracking."
+msgstr ""
+"Управление интеграцией почты Resend: настройка,\n"
+"            домены, события webhook и отслеживание доставки."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Marked as spam by the recipient"
+msgstr "Помечено получателем как спам"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Mass mailing is slow"
+msgstr "Массовая рассылка идёт медленно"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_enabled
+msgid "Master switch. When enabled, every outgoing mail server flagged with 'Use Resend API' delivers through Resend instead of SMTP. Turn it off to fall back to SMTP instantly, without restarting."
+msgstr ""
+"Общий переключатель. Если он включён, каждый исходящий почтовый сервер с "
+"отметкой «Использовать Resend API» отправляет почту через Resend вместо "
+"SMTP. Выключите его, чтобы мгновенно вернуться к SMTP без перезапуска."
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_webhook_tolerance
+msgid "Maximum age difference accepted for the webhook timestamp."
+msgstr "Максимально допустимое расхождение для метки времени webhook."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Meaning"
+msgstr "Значение"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email__actual_message_id
+msgid "Message-ID at Resend"
+msgstr "Message-ID в Resend"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_inbound_email__message_id
+msgid "Message-Id"
+msgstr "Message-Id"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_resend_email__rfc_message_id
+msgid "Message-Id header of the email built by Odoo."
+msgstr "Заголовок Message-Id письма, сформированного Odoo."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Messages without a matching alias are kept with the No Route status."
+msgstr "Письма без подходящего алиаса сохраняются со статусом «Нет маршрута»."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_domain_record__name
@@ -357,6 +1255,26 @@ msgid "No Route"
 msgstr "Нет маршрута"
 
 #. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "No delivery status appears"
+msgstr "Статус доставки не появляется"
+
+#. module: rex_resend_connector
+#: model_terms:ir.actions.act_window,help:rex_resend_connector.action_resend_domain
+msgid "No domain yet"
+msgstr "Доменов пока нет"
+
+#. module: rex_resend_connector
+#: model_terms:ir.actions.act_window,help:rex_resend_connector.action_resend_email
+msgid "No email delivered through Resend yet"
+msgstr "Через Resend ещё не доставлено ни одного письма"
+
+#. module: rex_resend_connector
+#: model_terms:ir.actions.act_window,help:rex_resend_connector.action_resend_inbound_email
+msgid "No inbound email yet"
+msgstr "Входящих писем пока нет"
+
+#. module: rex_resend_connector
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__res_config_settings__resend_status__not_verified
 msgid "No verified domain"
 msgstr "Нет подтверждённого домена"
@@ -372,6 +1290,36 @@ msgid "Not configured"
 msgstr "Не настроено"
 
 #. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Notification cancelled"
+msgstr "Уведомление отменено"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Notification delivered"
+msgstr "Уведомление доставлено"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_auto_retry_max
+msgid "Number of automatic retries for emails that failed because of a transient Resend error (network, rate limit, 5xx). 0 disables it."
+msgstr ""
+"Количество автоматических повторов для писем, не отправленных из-за "
+"временной ошибки Resend (сеть, ограничение частоты запросов, 5xx). 0 "
+"отключает повторы."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "Number of automatic retries for temporary failures: network error, rate limit or server error. Zero disables them."
+msgstr ""
+"Количество автоматических повторов при временных сбоях: ошибка сети, "
+"ограничение частоты запросов или ошибка сервера. Ноль отключает повторы."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Odoo"
+msgstr "Odoo"
+
+#. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email__mail_mail_id
 msgid "Odoo Email"
 msgstr "Письмо Odoo"
@@ -382,9 +1330,137 @@ msgid "Odoo Message"
 msgstr "Сообщение Odoo"
 
 #. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Odoo has a public HTTPS address. It is required for delivery webhooks."
+msgstr "У Odoo есть публичный HTTPS-адрес. Он нужен для webhook доставки."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "Odoo may choose a sender on a domain Resend does not know. The module can replace it and keep the original address in Reply-To."
+msgstr ""
+"Odoo может выбрать отправителя на домене, который Resend не знает. Модуль "
+"может заменить его, сохранив исходный адрес в Reply-To."
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_from_mode
+msgid "Odoo may pick a sender address on a domain that Resend cannot use (users' personal addresses, catchall...). This option replaces it with the From address above, and keeps the original sender in Reply-To so that replies still reach the right person."
+msgstr ""
+"Odoo может выбрать адрес отправителя на домене, который Resend не может "
+"использовать (личные адреса пользователей, catchall...). Эта опция заменяет "
+"его адресом отправителя, указанным выше, и сохраняет исходного отправителя "
+"в Reply-To, чтобы ответы по-прежнему доходили до нужного человека."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid ""
+"Odoo must be reachable from the internet at this URL. Set\n"
+"                                    <b>Public Base URL</b> below if the public address is different."
+msgstr ""
+"Odoo должен быть доступен из интернета по этому URL. Если публичный адрес "
+"отличается,\n"
+"                                    укажите <b>Публичный базовый URL</b> "
+"ниже."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+"Odoo prepares email as usual: templates, quotations, invoices, chatter notifications,\n"
+"                           mass mailings, attachments, Bcc and alias domains. The module replaces only the transport.\n"
+"                           Instead of opening an SMTP connection, the message is sent to the Resend API over HTTPS,\n"
+"                           and the events Resend reports are written back to the Odoo record."
+msgstr ""
+"Odoo готовит письма как обычно: шаблоны, коммерческие предложения, счета, "
+"уведомления в чате,\n"
+"                           массовые рассылки, вложения, скрытые копии и "
+"домены алиасов. Модуль заменяет только транспорт.\n"
+"                           Вместо SMTP-соединения письмо отправляется в "
+"Resend API по HTTPS,\n"
+"                           а события, о которых сообщает Resend, "
+"записываются в карточку Odoo."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Only administrators can change this configuration. This page can be read by every user."
+msgstr ""
+"Изменять эту конфигурацию могут только администраторы. Эту страницу могут "
+"читать все пользователи."
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_base_url
+msgid "Only change it to use a proxy or a mock server. Default: https://api.resend.com"
+msgstr ""
+"Меняйте только для работы через прокси или mock-сервер. По умолчанию: "
+"https://api.resend.com"
+
+#. module: rex_resend_connector
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__res_config_settings__resend_from_mode__unverified
-msgid "Only when the sender domain is not verified in Resend"
-msgstr "Только если домен отправителя не подтверждён в Resend"
+msgid "Only when the sender domain is unverified"
+msgstr "Только если домен отправителя не подтверждён"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+"Open <b>Resend &gt; Configuration &gt; Webhook Events</b> to see the calls received from\n"
+"                                Resend."
+msgstr ""
+"Откройте <b>Resend &gt; Настройка &gt; События webhook</b>, чтобы увидеть "
+"вызовы, полученные от\n"
+"                                Resend."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Open <b>Resend &gt; Domains</b>, create the domain and click <b>Register in Resend</b>."
+msgstr ""
+"Откройте <b>Resend &gt; Домены</b>, создайте домен и нажмите "
+"<b>Зарегистрировать в Resend</b>."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+"Open <b>Settings &gt; Technical &gt; Outgoing Mail Servers</b>, tick\n"
+"                                <b>Use Resend API</b> on the server Odoo should use and click <b>Test connection</b>."
+msgstr ""
+"Откройте <b>Настройки &gt; Технический &gt; Серверы исходящей почты</b>, "
+"включите\n"
+"                                <b>Использовать Resend API</b> для сервера, "
+"через который Odoo должен отправлять почту, и нажмите <b>Проверить "
+"подключение</b>."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+"Open API Keys and create a key. Full access is needed to manage domains and webhooks\n"
+"                                from Odoo. Sending access is enough if the domain and the webhook are configured in\n"
+"                                the Resend dashboard."
+msgstr ""
+"Откройте API Keys и создайте ключ. Для управления доменами и webhook из "
+"Odoo нужен\n"
+"                                доступ Full access. Достаточно Sending "
+"access, если домен и webhook настроены в\n"
+"                                панели Resend."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+"Open Resend &gt; Configuration &gt; Webhook Events. If the list is empty, the webhook is\n"
+"                               missing or Odoo is not reachable from the internet."
+msgstr ""
+"Откройте Resend &gt; Настройка &gt; События webhook. Если список пуст, "
+"webhook\n"
+"                               не создан или Odoo недоступен из интернета."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+"Open a quotation or an invoice and send it by email, then open <b>Resend &gt; Emails</b>.\n"
+"                           The row shows the Resend id and the status. The test email button in the settings sends a\n"
+"                           message through the full pipeline."
+msgstr ""
+"Откройте коммерческое предложение или счёт и отправьте его по почте, затем "
+"откройте <b>Resend &gt; Письма</b>.\n"
+"                           В строке отображаются идентификатор Resend и "
+"статус. Кнопка тестового письма в настройках отправляет\n"
+"                           письмо по всему пути обработки Odoo."
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_mail_form_resend
@@ -402,6 +1478,17 @@ msgid "Open settings"
 msgstr "Открыть настройки"
 
 #. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+"Open the email and read the failure reason. It contains the Resend error, for example\n"
+"                               domain is not verified, invalid_api_key or daily_quota_exceeded."
+msgstr ""
+"Откройте письмо и прочитайте причину сбоя. Она содержит ошибку Resend, "
+"например\n"
+"                               domain is not verified, invalid_api_key или "
+"daily_quota_exceeded."
+
+#. module: rex_resend_connector
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__mail_mail__resend_status__opened
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__resend_email__state__opened
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_email_search
@@ -409,14 +1496,46 @@ msgid "Opened"
 msgstr "Открыто"
 
 #. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Opened / Clicked"
+msgstr "Открыто / Переход по ссылке"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_ir_mail_server__resend_api_key
+msgid "Optional per-server API key. Leave empty to use the global one (Settings > Discuss > Resend)."
+msgstr ""
+"Необязательный API-ключ для этого сервера. Оставьте пустым, чтобы "
+"использовать общий (Настройки > Обсуждение > Resend)."
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_ir_mail_server__resend_from_email
+msgid "Optional per-server From address on a Resend verified domain. Leave empty to use the global setting."
+msgstr ""
+"Необязательный адрес отправителя для этого сервера на домене, "
+"подтверждённом в Resend. Оставьте пустым, чтобы использовать общую "
+"настройку."
+
+#. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_webhook_event__email_id
 msgid "Outbound Email"
 msgstr "Исходящее письмо"
 
 #. module: rex_resend_connector
+#: model:ir.model,name:rex_resend_connector.model_mail_mail
+msgid "Outgoing Mail"
+msgstr "Исходящая почта"
+
+#. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_test_mail__mail_server_id
 msgid "Outgoing Server"
 msgstr "Исходящий сервер"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email_event__payload
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_webhook_event__payload
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_webhook_event_form
+msgid "Payload"
+msgstr "Payload"
 
 #. module: rex_resend_connector
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__resend_domain__status__pending
@@ -425,6 +1544,18 @@ msgstr "Исходящий сервер"
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_inbound_email_search
 msgid "Pending"
 msgstr "В очереди"
+
+#. module: rex_resend_connector
+#: model_terms:ir.actions.act_window,help:rex_resend_connector.action_resend_inbound_email
+msgid ""
+"Point the MX record of a Resend receiving domain to Resend, create a\n"
+"               webhook for the <b>email.received</b> event, and replies will appear here\n"
+"               and in the chatter of the records they answer."
+msgstr ""
+"Направьте MX-запись домена приёма Resend на Resend, создайте\n"
+"               webhook для события <b>email.received</b>, и ответы появятся "
+"здесь\n"
+"               и в чате записей, на которые они отвечают."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_domain_record__priority
@@ -450,14 +1581,49 @@ msgstr "Обработано"
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_res_config_settings__resend_public_base_url
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
 msgid "Public Base URL"
 msgstr "Публичный базовый URL"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_public_base_url
+msgid "Public URL of this Odoo instance used to build the webhook URL. Leave empty to use the system 'web.base.url'."
+msgstr ""
+"Публичный URL этого экземпляра Odoo для формирования URL webhook. Оставьте "
+"пустым, чтобы использовать системный параметр 'web.base.url'."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "Public address of this Odoo instance, used to build the webhook URL. Leave empty to use the system base URL."
+msgstr ""
+"Публичный адрес этого экземпляра Odoo для формирования URL webhook. "
+"Оставьте пустым, чтобы использовать системный базовый URL."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__resend_webhook_event__state__queued
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_webhook_event_search
 msgid "Queued"
 msgstr "В очереди"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Quota, invalid data, blocked attachment"
+msgstr "Квота, неверные данные, заблокированное вложение"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email__rfc_message_id
+msgid "RFC Message-ID"
+msgstr "RFC Message-ID"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_email_event_form
+msgid "Raw payload"
+msgstr "Исходный payload"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_resend_email_event__payload
+msgid "Raw webhook payload (JSON)."
+msgstr "Исходный payload webhook (JSON)."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__res_config_settings__resend_status__ready
@@ -469,6 +1635,11 @@ msgstr "Готово"
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_webhook_event__received_date
 msgid "Received"
 msgstr "Получено"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_domain__receiving_enabled
+msgid "Receiving Enabled"
+msgstr "Приём включён"
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_test_mail__email_to
@@ -491,9 +1662,39 @@ msgid "Register in Resend"
 msgstr "Зарегистрировать в Resend"
 
 #. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_webhook_url
+msgid "Register this URL in Resend (Webhooks > Add endpoint) and select the email events."
+msgstr ""
+"Зарегистрируйте этот URL в Resend (Webhooks > Add endpoint) и выберите "
+"события email."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Rejected by the recipient server"
+msgstr "Отклонено сервером получателя"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Replies do not appear in the chatter"
+msgstr "Ответы не появляются в чате"
+
+#. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_res_config_settings__resend_rate_limit
 msgid "Requests / second"
 msgstr "Запросов в секунду"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "Requests per second"
+msgstr "Запросов в секунду"
+
+#. module: rex_resend_connector
+#: model:ir.ui.menu,name:rex_resend_connector.menu_resend_root
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.ir_mail_server_view_form_resend
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_mail_form_resend
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_email_form
+msgid "Resend"
+msgstr "Resend"
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
@@ -512,9 +1713,34 @@ msgid "Resend API Key"
 msgstr "API-ключ Resend"
 
 #. module: rex_resend_connector
+#. odoo-python
+#: code:addons/rex_resend_connector/models/ir_mail_server.py:0
+msgid "Resend API error for server \"%(server)s\": %(message)s"
+msgstr "Ошибка Resend API для сервера «%(server)s»: %(message)s"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_api_key
+msgid "Resend API key (re_...). A 'Sending access' key is enough for outgoing email; domains and webhooks need 'Full access'."
+msgstr ""
+"API-ключ Resend (re_...). Для исходящей почты достаточно ключа 'Sending "
+"access'; для доменов и webhook нужен 'Full access'."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "Resend API key. A key with sending access is enough to send; domain and webhook management needs full access."
+msgstr ""
+"API-ключ Resend. Для отправки достаточно ключа с доступом Sending access; "
+"для управления доменами и webhook нужен Full access."
+
+#. module: rex_resend_connector
 #: model:ir.model,name:rex_resend_connector.model_resend_domain_record
 msgid "Resend DNS Record"
 msgstr "DNS-запись Resend"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,field_description:rex_resend_connector.field_mail_mail__resend_email_ids
+msgid "Resend Deliveries"
+msgstr "Доставки Resend"
 
 #. module: rex_resend_connector
 #: model:ir.model,name:rex_resend_connector.model_resend_domain
@@ -538,6 +1764,12 @@ msgstr "Домены Resend"
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_email_form
 msgid "Resend Email"
 msgstr "Письмо Resend"
+
+#. module: rex_resend_connector
+#: model:ir.module.module,shortdesc:base.module_rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Resend Email Connector"
+msgstr "Resend Email Connector"
 
 #. module: rex_resend_connector
 #: model:ir.model,name:rex_resend_connector.model_resend_email_event
@@ -564,6 +1796,11 @@ msgid "Resend Emails"
 msgstr "Письма Resend"
 
 #. module: rex_resend_connector
+#: model:ir.model.fields,field_description:rex_resend_connector.field_mail_mail__resend_error
+msgid "Resend Error"
+msgstr "Ошибка Resend"
+
+#. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_ir_mail_server__resend_from_email
 msgid "Resend From Address"
 msgstr "Адрес отправителя Resend"
@@ -572,6 +1809,11 @@ msgstr "Адрес отправителя Resend"
 #: model:ir.model,name:rex_resend_connector.model_resend_inbound_email
 msgid "Resend Inbound Email"
 msgstr "Входящее письмо Resend"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,field_description:rex_resend_connector.field_mail_mail__resend_last_event_type
+msgid "Resend Last Event"
+msgstr "Последнее событие Resend"
 
 #. module: rex_resend_connector
 #: model:res.groups,name:rex_resend_connector.group_resend_manager
@@ -586,6 +1828,11 @@ msgid "Resend Message-ID"
 msgstr "Message-ID Resend"
 
 #. module: rex_resend_connector
+#: model:ir.model.fields,field_description:rex_resend_connector.field_mail_mail__resend_retry_count
+msgid "Resend Retries"
+msgstr "Повторы Resend"
+
+#. module: rex_resend_connector
 #: model:ir.actions.act_window,name:rex_resend_connector.action_resend_settings
 msgid "Resend Settings"
 msgstr "Настройки Resend"
@@ -595,6 +1842,11 @@ msgstr "Настройки Resend"
 #: model:ir.model.fields,field_description:rex_resend_connector.field_res_config_settings__resend_status
 msgid "Resend Status"
 msgstr "Статус Resend"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,field_description:rex_resend_connector.field_mail_mail__resend_status_date
+msgid "Resend Status Date"
+msgstr "Дата статуса Resend"
 
 #. module: rex_resend_connector
 #: model:ir.model,name:rex_resend_connector.model_resend_webhook_event
@@ -609,9 +1861,86 @@ msgstr "События webhook Resend"
 
 #. module: rex_resend_connector
 #. odoo-python
+#: code:addons/rex_resend_connector/wizard/resend_test_mail.py:0
+msgid "Resend accepted the email (status: %s). Open Resend > Emails to follow the delivery events."
+msgstr ""
+"Resend принял письмо (статус: %s). Откройте Resend > Письма, чтобы следить "
+"за событиями доставки."
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_rate_limit
+msgid "Resend allows 10 requests per second per team, shared by every key. Keep this value slightly below the limit."
+msgstr ""
+"Resend разрешает 10 запросов в секунду на команду, общих для всех ключей. "
+"Держите это значение немного ниже лимита."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "Resend allows 10 requests per second per team. Keep this value slightly below the limit."
+msgstr ""
+"Resend разрешает 10 запросов в секунду на команду. Держите это значение "
+"немного ниже лимита."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+"Resend allows 10 requests per second per team. The module limits itself to 8 and retries\n"
+"                               the rest, so the mailing takes longer but no message is lost."
+msgstr ""
+"Resend разрешает 10 запросов в секунду на команду. Модуль ограничивает себя "
+"8 и повторяет\n"
+"                               остальные, поэтому рассылка идёт дольше, но "
+"письма не теряются."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "Resend calls Odoo when an email is delivered, opened, bounced or received. The call is signed with the secret below."
+msgstr ""
+"Resend вызывает Odoo, когда письмо доставлено, открыто, отклонено или "
+"получено. Вызов подписывается секретом ниже."
+
+#. module: rex_resend_connector
+#. odoo-python
 #: code:addons/rex_resend_connector/models/res_config_settings.py:0
 msgid "Resend connection"
 msgstr "Подключение к Resend"
+
+#. module: rex_resend_connector
+#. odoo-python
+#: code:addons/rex_resend_connector/models/ir_mail_server.py:0
+msgid "Resend connection OK. %(count)s domain(s) accessible, %(verified)s verified."
+msgstr ""
+"Подключение к Resend установлено. Доступно доменов: %(count)s, "
+"подтверждены: %(verified)s."
+
+#. module: rex_resend_connector
+#. odoo-python
+#: code:addons/rex_resend_connector/models/ir_mail_server.py:0
+msgid "Resend is enabled for the outgoing server \"%(server)s\" but no API key is configured."
+msgstr ""
+"Resend включён для исходящего сервера «%(server)s», но API-ключ не настроен."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Resend is enabled."
+msgstr "Resend включён."
+
+#. module: rex_resend_connector
+#. odoo-python
+#: code:addons/rex_resend_connector/models/resend_connector.py:0
+msgid "Resend is not configured: please set an API key in Settings > Discuss > Resend."
+msgstr ""
+"Resend не настроен: укажите API-ключ в Настройки > Обсуждение > Resend."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Resend is still retrying"
+msgstr "Resend продолжает попытки доставки"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Resend settings"
+msgstr "Настройки Resend"
 
 #. module: rex_resend_connector
 #. odoo-python
@@ -655,12 +1984,18 @@ msgid "Retry Delay (minutes)"
 msgstr "Задержка повтора (мин)"
 
 #. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "Retry delay (minutes)"
+msgstr "Задержка повтора (мин)"
+
+#. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_email_form
 msgid "Retry in Odoo"
 msgstr "Повторить в Odoo"
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_res_config_settings__resend_from_mode
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
 msgid "Rewrite From"
 msgstr "Подменять отправителя"
 
@@ -671,18 +2006,42 @@ msgid "Scheduled"
 msgstr "Запланировано"
 
 #. module: rex_resend_connector
+#. odoo-python
+#: code:addons/rex_resend_connector/wizard/resend_test_mail.py:0
+msgid "Select an outgoing server flagged with \"Use Resend API\"."
+msgstr "Выберите исходящий сервер с отметкой «Использовать Resend API»."
+
+#. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_test_mail_form
 msgid "Send"
 msgstr "Отправить"
 
 #. module: rex_resend_connector
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email__send_key
+msgid "Send Key"
+msgstr "Ключ отправки"
+
+#. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_res_config_settings__resend_preserve_message_id
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
 msgid "Send Odoo Message-ID"
 msgstr "Передавать Message-ID из Odoo"
 
 #. module: rex_resend_connector
+#: model:ir.module.module,summary:base.module_rex_resend_connector
+msgid "Send Odoo email through Resend, receive replies and follow delivery"
+msgstr ""
+"Отправка почты Odoo через Resend, приём ответов и отслеживание доставки"
+
+#. module: rex_resend_connector
 #: model:ir.ui.menu,name:rex_resend_connector.menu_resend_test_mail
 msgid "Send Test Email"
+msgstr "Отправить тестовое письмо"
+
+#. module: rex_resend_connector
+#: model:ir.actions.act_window,name:rex_resend_connector.action_resend_test_mail
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_test_mail_form
+msgid "Send a Test Email"
 msgstr "Отправить тестовое письмо"
 
 #. module: rex_resend_connector
@@ -707,10 +2066,30 @@ msgid "Send test email"
 msgstr "Отправить тестовое письмо"
 
 #. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_ir_mail_server__resend_enabled
+msgid "Send the emails routed to this server through the Resend HTTP API instead of SMTP. The global switch (Settings > Discuss > Resend) must also be enabled."
+msgstr ""
+"Отправлять письма, направленные на этот сервер, через HTTP API Resend "
+"вместо SMTP. Общий переключатель (Настройки > Обсуждение > Resend) также "
+"должен быть включён."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "Sender address on a domain verified in Resend, for example no-reply@mg.example.com."
+msgstr ""
+"Адрес отправителя на домене, подтверждённом в Resend, например "
+"no-reply@mg.example.com."
+
+#. module: rex_resend_connector
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__mail_mail__resend_status__sending
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__resend_email__state__sending
 msgid "Sending"
 msgstr "Отправляется"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_domain__sending_enabled
+msgid "Sending Enabled"
+msgstr "Отправка включена"
 
 #. module: rex_resend_connector
 #: model:ir.model.fields.selection,name:rex_resend_connector.selection__mail_mail__resend_status__sent
@@ -720,9 +2099,30 @@ msgid "Sent"
 msgstr "Отправлено"
 
 #. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+"Servers without the option keep using SMTP. The master switch disables Resend for all\n"
+"                           servers at once."
+msgstr ""
+"Серверы без этой опции продолжают использовать SMTP. Общий переключатель "
+"отключает Resend сразу для всех\n"
+"                           серверов."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Set <b>Settings &gt; Discuss &gt; Alias Domain</b> to that subdomain."
+msgstr ""
+"Укажите этот поддомен в <b>Настройки &gt; Обсуждение &gt; Домен псевдонима</b>."
+
+#. module: rex_resend_connector
 #: model:ir.ui.menu,name:rex_resend_connector.menu_resend_settings
 msgid "Settings"
 msgstr "Настройки"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Settings &gt; Discuss &gt; Resend"
+msgstr "Настройки &gt; Обсуждение &gt; Resend"
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
@@ -730,9 +2130,23 @@ msgid "Setup guide"
 msgstr "Инструкция по настройке"
 
 #. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Setup guide for administrators and users"
+msgstr "Руководство по настройке для администраторов и пользователей"
+
+#. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_inbound_email__raw_size
 msgid "Size (bytes)"
 msgstr "Размер (байт)"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_resend_email__send_key
+msgid "Stable key of one actual delivery: the RFC Message-Id plus its recipients. Odoo may split a single mail.mail into several emails (one per recipient); each of them is tracked separately and a retry of the same email reuses its row."
+msgstr ""
+"Стабильный ключ одной фактической доставки: RFC Message-Id и его "
+"получатели. Odoo может разделить одну запись mail.mail на несколько писем "
+"(по одному на получателя); каждое из них отслеживается отдельно, а повтор "
+"того же письма использует его строку."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_domain__status
@@ -741,6 +2155,7 @@ msgstr "Размер (байт)"
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_inbound_email__state
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_webhook_event__state
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_domain_search
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_email_search
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_inbound_email_search
@@ -759,11 +2174,21 @@ msgid "Store Webhook Payloads"
 msgstr "Хранить payload webhook"
 
 #. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "Store webhook payloads"
+msgstr "Хранить payload webhook"
+
+#. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email__subject
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_inbound_email__subject
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_test_mail__subject
 msgid "Subject"
 msgstr "Тема"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_webhook_event__svix_id
+msgid "Svix ID"
+msgstr "Svix ID"
 
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_domain_form
@@ -776,9 +2201,19 @@ msgid "Synchronise domains"
 msgstr "Синхронизировать домены"
 
 #. module: rex_resend_connector
+#: model:ir.model.fields,field_description:rex_resend_connector.field_resend_domain_record__ttl
+msgid "TTL"
+msgstr "TTL"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields.selection,name:rex_resend_connector.selection__resend_domain__status__temporary_failure
+msgid "Temporary Failure"
+msgstr "Временный сбой"
+
+#. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
-msgid "Test"
-msgstr "Проверить"
+msgid "Test connection"
+msgstr "Проверить подключение"
 
 #. module: rex_resend_connector
 #. odoo-python
@@ -787,10 +2222,148 @@ msgid "Test email sent"
 msgstr "Тестовое письмо отправлено"
 
 #. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+"The API key and the signing secret are system parameters that only administrators can read.\n"
+"                                They are never written to the log."
+msgstr ""
+"API-ключ и секрет подписи хранятся как системные параметры, которые могут "
+"читать только администраторы.\n"
+"                                Они никогда не записываются в журнал."
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_resend_email__actual_message_id
+msgid "The RFC Message-Id that Resend actually used: it replaces the Message-Id generated by Odoo, so replies reference this one. Used to map an inbound reply back to the Odoo thread."
+msgstr ""
+"RFC Message-Id, который фактически использовал Resend: он заменяет "
+"Message-Id, сгенерированный Odoo, поэтому ответы ссылаются именно на него. "
+"Используется для привязки входящего ответа к ветке Odoo."
+
+#. module: rex_resend_connector
+#. odoo-python
+#: code:addons/rex_resend_connector/models/ir_mail_server.py:0
+msgid "The attachment \"%(name)s\" is too large for Resend (maximum %(max)s MB per file)."
+msgstr ""
+"Вложение «%(name)s» слишком велико для Resend (максимум %(max)s МБ на файл)."
+
+#. module: rex_resend_connector
+#. odoo-python
+#: code:addons/rex_resend_connector/wizard/resend_test_mail.py:0
+msgid ""
+"The email could not be sent:\n"
+"%s"
+msgstr ""
+"Не удалось отправить письмо:\n"
+"%s"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_resend_test_mail__mail_server_id
+msgid "The email goes through Odoo's standard pipeline: templates, attachments and delivery tracking are exercised exactly like a real send."
+msgstr ""
+"Письмо проходит через стандартный конвейер Odoo: шаблоны, вложения и "
+"отслеживание доставки работают точно так же, как при реальной отправке."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "The email is not sent"
+msgstr "Письмо не отправляется"
+
+#. module: rex_resend_connector
+#. odoo-python
+#: code:addons/rex_resend_connector/models/ir_mail_server.py:0
+msgid "The email is too large for the Resend API (%(size).1f MB)."
+msgstr "Письмо слишком велико для Resend API (%(size).1f МБ)."
+
+#. module: rex_resend_connector
+#. odoo-python
+#: code:addons/rex_resend_connector/models/ir_mail_server.py:0
+msgid "The file \"%(name)s\" cannot be sent through Resend: this file type is blocked by the Resend security policy."
+msgstr ""
+"Файл «%(name)s» нельзя отправить через Resend: этот тип файлов заблокирован "
+"политикой безопасности Resend."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "The master switch is off, email goes through SMTP."
+msgstr "Общий переключатель выключен, почта идёт через SMTP."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "The master switch is on but no API key is set."
+msgstr "Общий переключатель включён, но API-ключ не задан."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+"The signing secret does not match. Copy the secret from the Resend dashboard again and\n"
+"                               check the server clock."
+msgstr ""
+"Секрет подписи не совпадает. Скопируйте секрет из панели Resend ещё раз и\n"
+"                               проверьте часы сервера."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "The webhook answers 401"
+msgstr "Webhook отвечает 401"
+
+#. module: rex_resend_connector
+#: model:ir.model.constraint,message:rex_resend_connector.constraint_resend_email_send_key_uniq
+msgid "This delivery is already tracked."
+msgstr "Эта доставка уже отслеживается."
+
+#. module: rex_resend_connector
+#: model:ir.model.constraint,message:rex_resend_connector.constraint_resend_domain_name_uniq
+msgid "This domain is already registered."
+msgstr "Этот домен уже зарегистрирован."
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_resend_domain__is_primary
+msgid "This domain matches the configured Resend From address."
+msgstr "Этот домен соответствует настроенному адресу отправителя Resend."
+
+#. module: rex_resend_connector
+#. odoo-python
+#: code:addons/rex_resend_connector/models/resend_domain.py:0
+msgid "This domain was not synchronised from Resend yet."
+msgstr "Этот домен ещё не синхронизирован из Resend."
+
+#. module: rex_resend_connector
+#: model:ir.model.constraint,message:rex_resend_connector.constraint_resend_inbound_email_resend_email_id_uniq
+msgid "This inbound email was already imported."
+msgstr "Это входящее письмо уже импортировано."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.ir_mail_server_view_form_resend
+msgid ""
+"This server delivers through the Resend HTTP API: no SMTP port is\n"
+"                        opened. Turn on the master switch in\n"
+"                        <b>Settings &gt; Discuss &gt; Resend</b> and tick\n"
+"                        <b>Use Resend API</b> above. The From address must be on a domain\n"
+"                        verified in Resend."
+msgstr ""
+"Этот сервер отправляет почту через HTTP API Resend: SMTP-порт\n"
+"                        не открывается. Включите общий переключатель в\n"
+"                        <b>Настройки &gt; Обсуждение &gt; Resend</b> и "
+"отметьте\n"
+"                        <b>Использовать Resend API</b> выше. Адрес "
+"отправителя должен быть на домене,\n"
+"                        подтверждённом в Resend."
+
+#. module: rex_resend_connector
+#: model:ir.model.constraint,message:rex_resend_connector.constraint_resend_webhook_event_svix_id_uniq
+msgid "This webhook event was already processed (duplicate svix-id)."
+msgstr "Это событие webhook уже обработано (повторяющийся svix-id)."
+
+#. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email__to_emails
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_inbound_email__to_emails
 msgid "To"
 msgstr "Кому"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Tracking events"
+msgstr "События отслеживания"
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email__transient_failure
@@ -803,9 +2376,24 @@ msgid "Type"
 msgstr "Тип"
 
 #. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_resend_webhook_event__svix_id
+msgid "Unique identifier of the webhook call, used to ignore Resend retries."
+msgstr ""
+"Уникальный идентификатор вызова webhook, используется для игнорирования "
+"повторных отправок Resend."
+
+#. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_ir_mail_server__resend_enabled
 msgid "Use Resend API"
 msgstr "Использовать Resend API"
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_resend_test_mail__email_to
+msgid "Use delivered@resend.dev, bounced@resend.dev or complained@resend.dev to test the delivery webhooks without a verified domain."
+msgstr ""
+"Используйте delivered@resend.dev, bounced@resend.dev или "
+"complained@resend.dev, чтобы проверить webhook доставки без подтверждённого "
+"домена."
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_domain__is_primary
@@ -818,14 +2406,30 @@ msgid "Value"
 msgstr "Значение"
 
 #. module: rex_resend_connector
+#: model:ir.model.fields.selection,name:rex_resend_connector.selection__resend_domain__status__verified
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_domain_search
+msgid "Verified"
+msgstr "Подтверждён"
+
+#. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_res_config_settings__resend_verified_domains
 msgid "Verified Domains"
 msgstr "Подтверждённые домены"
 
 #. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "Verified domains:"
+msgstr "Подтверждённые домены:"
+
+#. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_domain_form
 msgid "Verify Now"
 msgstr "Проверить сейчас"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Warning only"
+msgstr "Только предупреждение"
 
 #. module: rex_resend_connector
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email_event__webhook_event_id
@@ -857,3 +2461,168 @@ msgstr "Допуск времени webhook (сек)"
 #: model:ir.model.fields,field_description:rex_resend_connector.field_res_config_settings__resend_webhook_url
 msgid "Webhook URL"
 msgstr "URL webhook"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+"Webhook calls are verified with the Svix signature, a constant time comparison and a\n"
+"                                five minute tolerance. Duplicate calls are ignored."
+msgstr ""
+"Вызовы webhook проверяются по подписи Svix со сравнением за постоянное "
+"время и\n"
+"                                допуском пять минут. Повторные вызовы "
+"игнорируются."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Webhook events"
+msgstr "События webhook"
+
+#. module: rex_resend_connector
+#. odoo-python
+#: code:addons/rex_resend_connector/models/res_config_settings.py:0
+msgid "Webhook exists but Resend did not return its secret. Copy it from the Resend dashboard."
+msgstr ""
+"Webhook существует, но Resend не вернул его секрет. Скопируйте секрет из "
+"панели Resend."
+
+#. module: rex_resend_connector
+#. odoo-python
+#: code:addons/rex_resend_connector/models/res_config_settings.py:0
+msgid "Webhook ready: %s"
+msgstr "Webhook готов: %s"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "Webhook tolerance"
+msgstr "Допуск времени webhook"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Without a verified domain, Resend accepts only these recipients:"
+msgstr "Без подтверждённого домена Resend принимает только этих получателей:"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "You can log in to Odoo as an administrator."
+msgstr "Вы можете войти в Odoo как администратор."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "You have a Resend account (a free plan is enough for testing)."
+msgstr "У вас есть аккаунт Resend (для проверки достаточно бесплатного плана)."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "You have access to the DNS records of the sending domain."
+msgstr "У вас есть доступ к DNS-записям домена отправки."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_domain_form
+msgid "e.g. mg.example.com"
+msgstr "например, mg.example.com"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid ""
+"email.sent, email.delivered, email.delivery_delayed, email.opened,\n"
+"email.clicked, email.bounced, email.complained, email.failed,\n"
+"email.suppressed, email.received"
+msgstr ""
+"email.sent, email.delivered, email.delivery_delayed, email.opened,\n"
+"email.clicked, email.bounced, email.complained, email.failed,\n"
+"email.suppressed, email.received"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "https://api.resend.com"
+msgstr "https://api.resend.com"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "https://odoo.example.com"
+msgstr "https://odoo.example.com"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "https://rex.cy"
+msgstr "https://rex.cy"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "in Resend)"
+msgstr "в Resend)"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "no-reply@mg.example.com"
+msgstr "no-reply@mg.example.com"
+
+#. module: rex_resend_connector
+#. odoo-python
+#: code:addons/rex_resend_connector/models/ir_mail_server.py:0
+#: code:addons/rex_resend_connector/models/res_config_settings.py:0
+msgid "none"
+msgstr "нет"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "re_..."
+msgstr "re_..."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "resend.com"
+msgstr "resend.com"
+
+#. module: rex_resend_connector
+#. odoo-python
+#: code:addons/rex_resend_connector/wizard/resend_test_mail.py:0
+msgid "sent"
+msgstr "отправлено"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_test_mail_form
+msgid ""
+"test@resend.dev addresses: <b>delivered@resend.dev</b> (success),\n"
+"                    <b>bounced@resend.dev</b> (hard bounce), <b>complained@resend.dev</b>\n"
+"                    (spam complaint). They only work when sending from a @resend.dev address,\n"
+"                    which is allowed without a verified domain."
+msgstr ""
+"Адреса test@resend.dev: <b>delivered@resend.dev</b> (успешная доставка),\n"
+"                    <b>bounced@resend.dev</b> (жёсткий отказ), "
+"<b>complained@resend.dev</b>\n"
+"                    (жалоба на спам). Они работают только при отправке с "
+"адреса @resend.dev,\n"
+"                    который разрешён без подтверждённого домена."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_domain_form
+msgid "us-east-1"
+msgstr "us-east-1"
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.res_config_settings_view_form_resend
+msgid "whsec_..."
+msgstr "whsec_..."
+
+#. module: rex_resend_connector
+#: model:ir.model.fields,help:rex_resend_connector.field_res_config_settings__resend_webhook_secret
+msgid "whsec_... secret shown by Resend when the webhook is created. Several secrets may be separated by commas during a rotation."
+msgstr ""
+"Секрет whsec_..., который Resend показывает при создании webhook. Во время "
+"смены секрета можно указать несколько значений через запятую."
+
+#. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_test_mail_form
+msgid "you@example.com"
+msgstr "you@example.com"
+
+#~ msgid "Advanced"
+#~ msgstr "Дополнительно"
+
+#~ msgid "Only when the sender domain is not verified in Resend"
+#~ msgstr "Только если домен отправителя не подтверждён в Resend"
+
+#~ msgid "Test"
+#~ msgstr "Проверить"
