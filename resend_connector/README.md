@@ -3,6 +3,8 @@
 Odoo module that sends email through [Resend](https://resend.com), receives
 incoming mail from Resend and keeps the delivery status of every message in Odoo.
 
+![Resend Email Connector](static/description/img/cover.png)
+
 * Author: POLISHCHUK & SONS LTD
 * Website: [https://rex.cy](https://rex.cy)
 * Support: info@rex.cy
@@ -24,6 +26,12 @@ This solves three common problems:
 * SMTP only confirms that a server accepted the message, so nobody knows whether
   it was delivered, opened or rejected;
 * replies stay in a mailbox instead of the Odoo record they belong to.
+
+## Screenshots
+
+![Emails](static/description/img/01_emails_list.png)
+
+![Delivery history](static/description/img/02_email_form.png)
 
 ## Features
 
