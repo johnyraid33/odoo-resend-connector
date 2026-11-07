@@ -223,4 +223,4 @@ class ResConfigSettings(models.TransientModel):
     def action_resend_open_domains(self):
         self.ensure_one()
         return self.env['ir.actions.act_window']._for_xml_id(
-            'resend_connector.action_resend_domain')
+            'rex_resend_connector.action_resend_domain')

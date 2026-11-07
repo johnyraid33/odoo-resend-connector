@@ -4,7 +4,7 @@ Run inside an Odoo shell after starting mock_resend.py. The script sends mail
 through the normal pipeline, posts signed webhooks and imports an incoming
 message, then reports failures.
 """
-from odoo.addons.resend_connector.models.compat import param_get_str, param_set
+from odoo.addons.rex_resend_connector.models.compat import param_get_str, param_set
 
 import base64
 import json

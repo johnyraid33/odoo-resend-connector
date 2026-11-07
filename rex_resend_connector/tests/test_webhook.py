@@ -178,7 +178,7 @@ class TestResendWebhook(TransactionCase):
         Access = self.env['ir.access'] if IS_ODOO_20 else self.env['ir.model.access']
         rules = Access.search([('model_id', '=', model.id)])
         self.assertTrue(rules, 'resend.email must have access rules')
-        manager = self.env.ref('resend_connector.group_resend_manager')
+        manager = self.env.ref('rex_resend_connector.group_resend_manager')
         self.assertIn(manager, rules.group_id)
 
     def test_cron_reprocesses_failed_events(self):
@@ -219,9 +219,9 @@ class TestResendWebhook(TransactionCase):
             'raw': {'download_url': 'https://example.invalid/raw'},
             'attachments': [],
         }
-        with patch('odoo.addons.resend_connector.models.resend_client.ResendClient.get_received_email',
+        with patch('odoo.addons.rex_resend_connector.models.resend_client.ResendClient.get_received_email',
                    return_value=meta), \
-             patch('odoo.addons.resend_connector.models.resend_client.ResendClient.download_url',
+             patch('odoo.addons.rex_resend_connector.models.resend_client.ResendClient.download_url',
                    return_value=raw.encode()):
             inbound = self.env['resend.inbound.email'].create({
                 'resend_email_id': 'inbound-1', 'from_email': 'in@example.org',
@@ -237,7 +237,7 @@ class TestResendWebhook(TransactionCase):
         self.assertEqual(reply.res_id, partner.id)
 
     def test_inbound_api_error_is_retryable(self):
-        with patch('odoo.addons.resend_connector.models.resend_client.ResendClient.get_received_email',
+        with patch('odoo.addons.rex_resend_connector.models.resend_client.ResendClient.get_received_email',
                    side_effect=ResendAPIError('down', status_code=503, retryable=True)):
             inbound = self.env['resend.inbound.email'].create({
                 'resend_email_id': 'inbound-err', 'from_email': 'x@y.z',

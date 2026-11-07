@@ -73,7 +73,7 @@
                         </div>
                         <div class="actions">
                             <span class="badge" style="background:#5d3d55;border-color:#5d3d55;color:#fff">Odoo 19 &amp; 20</span>
-                            <a class="btn solid" href="/web#action=resend_connector.action_resend_settings">Open settings</a>
+                            <a class="btn solid" href="/web#action=rex_resend_connector.action_resend_settings">Open settings</a>
                         </div>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
                             <li>Add a DMARC record, for example <code>v=DMARC1; p=none; rua=mailto:dmarc@example.com</code>.</li>
                             <li>Click <b>Verify Now</b> and wait for DNS propagation.</li>
                         </ol>
-                        <img src="/resend_connector/static/description/img/06_domain_form.png" alt="Domain and DNS records"/>
+                        <img src="/rex_resend_connector/static/description/img/06_domain_form.png" alt="Domain and DNS records"/>
                         <div class="caption">Each domain shows the DNS records Resend expects and its verification status.</div>
                         <p>A subdomain such as <b>mg.example.com</b> is recommended, so the reputation of the email
                            domain is independent from the main website.</p>
@@ -154,7 +154,7 @@
                             <li>Open <b>Settings &gt; Technical &gt; Outgoing Mail Servers</b>, tick
                                 <b>Use Resend API</b> on the server Odoo should use and click <b>Test connection</b>.</li>
                         </ol>
-                        <img src="/resend_connector/static/description/img/03_settings.png" alt="Resend settings"/>
+                        <img src="/rex_resend_connector/static/description/img/03_settings.png" alt="Resend settings"/>
                         <div class="caption">Settings &gt; Discuss &gt; Resend</div>
                         <p>Servers without the option keep using SMTP. The master switch disables Resend for all
                            servers at once.</p>
@@ -183,7 +183,7 @@
                         <pre>email.sent, email.delivered, email.delivery_delayed, email.opened,
 email.clicked, email.bounced, email.complained, email.failed,
 email.suppressed, email.received</pre>
-                        <img src="/resend_connector/static/description/img/08_webhook_events.png" alt="Webhook events"/>
+                        <img src="/rex_resend_connector/static/description/img/08_webhook_events.png" alt="Webhook events"/>
                         <div class="caption">Every webhook call is listed with its type, status and payload.</div>
                         <p>Each call is verified with the Svix HMAC-SHA256 signature, a five minute tolerance and a
                            unique event id. Calls that cannot be processed immediately are retried by a scheduled job.</p>
@@ -196,12 +196,12 @@ email.suppressed, email.received</pre>
                             <li>Create a mail alias for the address, for example <b>sales@reply.example.com</b>, or simply
                                 reply to an email sent from Odoo.</li>
                         </ol>
-                        <img src="/resend_connector/static/description/img/07_inbound_list.png" alt="Inbound emails"/>
+                        <img src="/rex_resend_connector/static/description/img/07_inbound_list.png" alt="Inbound emails"/>
                         <div class="caption">Messages without a matching alias are kept with the No Route status.</div>
                         <p>Every address on the receiving domain is accepted by Resend. Routing is done by Odoo.</p>
 
                         <h2 id="status">9. Delivery statuses</h2>
-                        <img src="/resend_connector/static/description/img/02_email_form.png" alt="Delivery history"/>
+                        <img src="/rex_resend_connector/static/description/img/02_email_form.png" alt="Delivery history"/>
                         <div class="caption">Each email keeps its event history and the Resend identifiers.</div>
                         <table>
                             <thead><tr><th>Status</th><th>Meaning</th><th>Odoo</th></tr></thead>

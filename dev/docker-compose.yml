@@ -30,7 +30,7 @@ services:
     volumes:
       - odoo-data:/var/lib/odoo
       - ./odoo.conf:/etc/odoo/odoo.conf:ro
-      - ../resend_connector:/mnt/extra-addons/resend_connector
+      - ../rex_resend_connector:/mnt/extra-addons/rex_resend_connector
     command: ["odoo", "--addons-path=/mnt/extra-addons,/usr/lib/python3/dist-packages/odoo/addons"]
 
   mailpit:

@@ -9,7 +9,7 @@ First public release.
 * Signed webhooks with replay protection and duplicate detection.
 * Incoming mail through the Resend receiving API, routed by Odoo's mail gateway.
 * Domain and webhook management from the settings screen.
-* Settings, documentation page, Russian translation and a test email wizard.
+* Settings, documentation page, Ukrainian and Russian translations and a test email wizard.
 * Scheduled jobs for queued webhooks, transient retries, domain sync, status
   reconciliation and housekeeping.
 * Compatibility layer for Odoo 19.0 and 20.0.

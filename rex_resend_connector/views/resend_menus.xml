@@ -4,7 +4,7 @@
         <field name="name">Resend Settings</field>
         <field name="res_model">res.config.settings</field>
         <field name="view_mode">form</field>
-        <field name="context">{'module': 'resend_connector'}</field>
+        <field name="context">{'module': 'rex_resend_connector'}</field>
     </record>
 
     <record id="action_resend_documentation" model="ir.actions.act_url">
@@ -14,8 +14,8 @@
     </record>
 
     <menuitem id="menu_resend_root" name="Resend"
-        web_icon="resend_connector,static/description/icon.png"
-        groups="resend_connector.group_resend_manager" sequence="75"/>
+        web_icon="rex_resend_connector,static/description/icon.png"
+        groups="rex_resend_connector.group_resend_manager" sequence="75"/>
 
     <menuitem id="menu_resend_emails" parent="menu_resend_root" name="Emails"
         action="action_resend_email" sequence="10"/>
