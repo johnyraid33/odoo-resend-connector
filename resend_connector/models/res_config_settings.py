@@ -39,7 +39,7 @@ class ResConfigSettings(models.TransientModel):
         help="Address on a domain verified in Resend, e.g. no-reply@mg.example.com.",
     )
     resend_from_mode = fields.Selection([
-        ('unverified', 'Only when the sender domain is not verified in Resend'),
+        ('unverified', 'Only when the sender domain is unverified'),
         ('always', 'Always'),
         ('off', 'Never - use the address Odoo chooses'),
     ], string='Rewrite From', config_parameter='resend.from_mode', default='unverified',

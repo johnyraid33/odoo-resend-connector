@@ -10,126 +10,142 @@
                     <block title="Resend (email API)" id="resend">
                         <setting id="resend_enabled_setting"
                             string="Send emails through Resend"
-                            help="Deliver Odoo emails over HTTPS through Resend instead of SMTP: no mail port to open, real delivery status."
+                            help="Deliver Odoo email through the Resend API instead of SMTP. No mail port is needed and every message gets a delivery status."
                             documentation="https://resend.com/docs">
                             <field name="resend_enabled"/>
-                            <div class="content-group mt-3" invisible="not resend_enabled">
-                                <div class="row">
-                                    <label for="resend_api_key" class="col-lg-3 o_light_label"/>
-                                    <field name="resend_api_key" password="True" class="col-lg-5"
-                                        placeholder="re_..."/>
+                            <div class="content-group" invisible="not resend_enabled">
+                                <div class="mt8">
                                     <button name="action_resend_test_connection" type="object"
-                                        string="Test" class="btn-link col-lg-2" icon="fa-plug"/>
+                                        string="Test connection" class="btn-link"/>
                                     <button name="%(resend_connector.action_resend_test_mail)d" type="action"
-                                        string="Send test email" class="btn-link col-lg-3"
-                                        icon="fa-paper-plane-o"/>
+                                        string="Send test email" class="btn-link"/>
+                                    <button name="action_resend_open_documentation" type="object"
+                                        string="Setup guide" class="btn-link"/>
                                 </div>
-                                <div class="row mt-2">
-                                    <label for="resend_from_email" class="col-lg-3 o_light_label"/>
-                                    <field name="resend_from_email" class="col-lg-5"
-                                        placeholder="no-reply@mg.example.com"/>
-                                </div>
-                                <div class="row mt-2">
-                                    <label for="resend_from_mode" class="col-lg-3 o_light_label"/>
-                                    <field name="resend_from_mode" class="col-lg-5"/>
-                                </div>
-                                <div class="row mt-2">
-                                    <label for="resend_status" class="col-lg-3 o_light_label"/>
-                                    <div class="col-lg-5">
-                                        <field name="resend_status" class="oe_inline"/>
-                                        <span class="text-muted ms-2" invisible="not resend_verified_domains">
-                                            (<field name="resend_verified_domains" class="oe_inline"/>)
-                                        </span>
-                                    </div>
-                                </div>
+                            </div>
+                        </setting>
+
+                        <setting id="resend_api_setting" string="API key"
+                            help="Resend API key. A key with sending access is enough to send; domain and webhook management needs full access."
+                            invisible="not resend_enabled">
+                            <field name="resend_api_key" password="True" placeholder="re_..."/>
+                        </setting>
+
+                        <setting id="resend_from_setting" string="From address"
+                            help="Sender address on a domain verified in Resend, for example no-reply@mg.example.com."
+                            invisible="not resend_enabled">
+                            <field name="resend_from_email" placeholder="no-reply@mg.example.com"/>
+                        </setting>
+
+                        <setting id="resend_from_mode_setting" string="Rewrite From"
+                            help="Odoo may choose a sender on a domain Resend does not know. The module can replace it and keep the original address in Reply-To."
+                            invisible="not resend_enabled">
+                            <field name="resend_from_mode"/>
+                        </setting>
+
+                        <setting id="resend_status_setting" string="Status"
+                            invisible="not resend_enabled">
+                            <field name="resend_status"/>
+                            <div class="text-muted mt-1" invisible="not resend_verified_domains">
+                                Verified domains: <field name="resend_verified_domains" class="oe_inline"/>
+                                <span invisible="not resend_domain_count">&#160;(<field name="resend_domain_count" class="oe_inline"/> in Resend)</span>
+                            </div>
+                        </setting>
+
+                        <setting id="resend_domains_setting" string="Domains"
+                            invisible="not resend_enabled">
+                            <div class="content-group">
                                 <div class="mt8">
                                     <button name="action_resend_sync_domains" type="object"
-                                        string="Synchronise domains" class="btn-link" icon="fa-refresh"/>
+                                        string="Synchronise domains" class="btn-link"/>
                                     <button name="action_resend_open_domains" type="object"
-                                        string="Manage domains" class="btn-link" icon="fa-globe"/>
-                                    <button name="action_resend_open_documentation" type="object"
-                                        string="Setup guide" class="btn-link" icon="fa-book"/>
+                                        string="Manage domains" class="btn-link"/>
                                 </div>
                             </div>
                         </setting>
 
-                        <setting id="resend_webhook_setting"
-                            string="Delivery webhooks"
-                            help="Resend posts delivery events (delivered, opened, bounced, complained, received) to Odoo. Signed with a whsec_ secret."
+                        <setting id="resend_webhook_setting" string="Delivery webhooks"
+                            help="Resend calls Odoo when an email is delivered, opened, bounced or received. The call is signed with the secret below."
                             invisible="not resend_enabled">
-                            <div class="row">
-                                <label for="resend_webhook_url" class="col-lg-3 o_light_label"/>
-                                <field name="resend_webhook_url" class="col-lg-5" readonly="1"
-                                    widget="CopyClipboardChar"/>
-                            </div>
-                            <div class="row mt-2">
-                                <label for="resend_webhook_secret" class="col-lg-3 o_light_label"/>
-                                <field name="resend_webhook_secret" password="True" class="col-lg-5"
-                                    placeholder="whsec_..."/>
-                            </div>
-                            <div class="mt8">
-                                <button name="action_resend_create_webhook" type="object"
-                                    string="Create / update webhook in Resend" class="btn-link"
-                                    icon="fa-cloud-upload"/>
-                                <span class="text-success ms-2" invisible="not resend_webhook_configured">
-                                    <i class="fa fa-check"/> Secret configured
-                                </span>
-                                <span class="text-warning ms-2" invisible="resend_webhook_configured">
-                                    <i class="fa fa-exclamation-triangle"/> Not configured yet
-                                </span>
-                            </div>
-                            <div class="text-muted mt-2">
-                                The endpoint must be reachable from the Internet (a public
-                                HTTPS URL). Test it with
-                                <field name="resend_webhook_url" class="oe_inline" readonly="1"
-                                    invisible="1"/> the health URL shown in the setup guide.
+                            <field name="resend_webhook_url" readonly="1" widget="CopyClipboardChar"/>
+                            <field name="resend_webhook_secret" password="True" placeholder="whsec_..."/>
+                            <div class="content-group">
+                                <div class="mt8">
+                                    <button name="action_resend_create_webhook" type="object"
+                                        string="Create / update webhook in Resend" class="btn-link"
+                                       />
+                                    <span class="text-success ms-2" invisible="not resend_webhook_configured">
+                                        <i class="fa fa-check"/> Secret configured
+                                    </span>
+                                    <span class="text-warning ms-2" invisible="resend_webhook_configured">
+                                        <i class="fa fa-exclamation-triangle"/> Not configured yet
+                                    </span>
+                                </div>
+                                <div class="text-muted mt-2">
+                                    Odoo must be reachable from the internet at this URL. Set
+                                    <b>Public Base URL</b> below if the public address is different.
+                                </div>
                             </div>
                         </setting>
 
-                        <setting id="resend_advanced_setting" string="Advanced"
+                        <setting id="resend_inline_setting" string="Inline images"
+                            help="How inline images are sent. Content-ID keeps cid references, data URI embeds the image in the HTML, attachment sends it as a normal file."
                             invisible="not resend_enabled">
-                            <div class="row">
-                                <label for="resend_inline_images_mode" class="col-lg-3 o_light_label"/>
-                                <field name="resend_inline_images_mode" class="col-lg-5"/>
-                            </div>
-                            <div class="row mt-2">
-                                <label for="resend_rate_limit" class="col-lg-3 o_light_label"/>
-                                <field name="resend_rate_limit" class="col-lg-2"/>
-                                <span class="col-lg-3 text-muted">requests / second (Resend allows 10)</span>
-                            </div>
-                            <div class="row mt-2">
-                                <label for="resend_auto_retry_max" class="col-lg-3 o_light_label"/>
-                                <field name="resend_auto_retry_max" class="col-lg-2"/>
-                                <label for="resend_retry_delay" class="col-lg-2 o_light_label">delay (min)</label>
-                                <field name="resend_retry_delay" class="col-lg-2"/>
-                            </div>
-                            <div class="row mt-2">
-                                <label for="resend_preserve_message_id" class="col-lg-3 o_light_label"/>
-                                <field name="resend_preserve_message_id" class="col-lg-5"/>
-                            </div>
-                            <div class="row mt-2">
-                                <label for="resend_store_payloads" class="col-lg-3 o_light_label"/>
-                                <field name="resend_store_payloads" class="col-lg-5"/>
-                            </div>
-                            <div class="row mt-2">
-                                <label for="resend_save_inbound_original" class="col-lg-3 o_light_label"/>
-                                <field name="resend_save_inbound_original" class="col-lg-5"/>
-                            </div>
-                            <div class="row mt-2">
-                                <label for="resend_webhook_tolerance" class="col-lg-3 o_light_label"/>
-                                <field name="resend_webhook_tolerance" class="col-lg-2"/>
-                                <span class="col-lg-3 text-muted">seconds of clock tolerance</span>
-                            </div>
-                            <div class="row mt-2">
-                                <label for="resend_public_base_url" class="col-lg-3 o_light_label"/>
-                                <field name="resend_public_base_url" class="col-lg-5"
-                                    placeholder="https://odoo.example.com"/>
-                            </div>
-                            <div class="row mt-2">
-                                <label for="resend_base_url" class="col-lg-3 o_light_label"/>
-                                <field name="resend_base_url" class="col-lg-5"
-                                    placeholder="https://api.resend.com"/>
-                            </div>
+                            <field name="resend_inline_images_mode"/>
+                        </setting>
+
+                        <setting id="resend_message_id_setting" string="Send Odoo Message-ID"
+                            help="Adds the Odoo Message-Id as a custom header. Resend assigns its own id; the module tracks both and maps replies back to the Odoo thread."
+                            invisible="not resend_enabled">
+                            <field name="resend_preserve_message_id"/>
+                        </setting>
+
+                        <setting id="resend_payloads_setting" string="Store webhook payloads"
+                            help="Keep the raw JSON of every webhook call for debugging."
+                            invisible="not resend_enabled">
+                            <field name="resend_store_payloads"/>
+                        </setting>
+
+                        <setting id="resend_inbound_setting" string="Keep original inbound messages"
+                            help="Attach the original message file to every imported incoming email."
+                            invisible="not resend_enabled">
+                            <field name="resend_save_inbound_original"/>
+                        </setting>
+
+                        <setting id="resend_retry_setting" string="Automatic retries"
+                            help="Number of automatic retries for temporary failures: network error, rate limit or server error. Zero disables them."
+                            invisible="not resend_enabled">
+                            <field name="resend_auto_retry_max"/>
+                        </setting>
+
+                        <setting id="resend_retry_delay_setting" string="Retry delay (minutes)"
+                            help="Delay between automatic retries."
+                            invisible="not resend_enabled">
+                            <field name="resend_retry_delay"/>
+                        </setting>
+
+                        <setting id="resend_rate_setting" string="Requests per second"
+                            help="Resend allows 10 requests per second per team. Keep this value slightly below the limit."
+                            invisible="not resend_enabled">
+                            <field name="resend_rate_limit"/>
+                        </setting>
+
+                        <setting id="resend_tolerance_setting" string="Webhook tolerance"
+                            help="Accepted clock difference, in seconds, for the webhook signature."
+                            invisible="not resend_enabled">
+                            <field name="resend_webhook_tolerance"/>
+                        </setting>
+
+                        <setting id="resend_public_url_setting" string="Public Base URL"
+                            help="Public address of this Odoo instance, used to build the webhook URL. Leave empty to use the system base URL."
+                            invisible="not resend_enabled">
+                            <field name="resend_public_base_url" placeholder="https://odoo.example.com"/>
+                        </setting>
+
+                        <setting id="resend_base_url_setting" string="API base URL"
+                            help="Change only to use a proxy or a test server. Default: https://api.resend.com"
+                            invisible="not resend_enabled">
+                            <field name="resend_base_url" placeholder="https://api.resend.com"/>
                         </setting>
                     </block>
                 </div>
