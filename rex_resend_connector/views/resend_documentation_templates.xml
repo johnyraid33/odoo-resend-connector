@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="documentation_page" name="Resend Email Connector - Documentation">
+    <template id="documentation_page" name="Mail Gateway for Resend - Documentation">
         <html>
             <head>
                 <meta charset="utf-8"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-                <title>Resend Email Connector - Documentation</title>
+                <title>Mail Gateway for Resend - Documentation</title>
                 <style>
                     :root { --ink: #1f1f27; --muted: #62626e; --line: #e4e4ea; --purple: #714b67; --soft: #f6f4f7; }
                     * { box-sizing: border-box; }
@@ -68,7 +68,7 @@
                 <div class="top">
                     <div class="inner">
                         <div>
-                            <h1>Resend Email Connector</h1>
+                            <h1>Mail Gateway for Resend</h1>
                             <p class="sub">Setup guide for administrators and users</p>
                         </div>
                         <div class="actions">
@@ -254,7 +254,7 @@ email.suppressed, email.received</pre>
                         </ul>
 
                         <div class="footer">
-                            <b>Resend Email Connector 1.0.0</b><br/>
+                            <b>Mail Gateway for Resend 1.0.0</b><br/>
                             POLISHCHUK &amp; SONS LTD, <a href="https://rex.cy">https://rex.cy</a>, info@rex.cy<br/>
                             License LGPL-3.0. Full guide in the doc folder of the module.
                         </div>

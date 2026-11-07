@@ -2,13 +2,13 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0.html).
 
 {
-    'name': 'Resend Email Connector',
+    'name': 'Mail Gateway for Resend: Send, Receive, Track',
     'version': '19.0.1.0.0',
     'category': 'Productivity/Discuss',
     'summary': 'Send Odoo email through Resend, receive replies and follow delivery',
     'description': """
-Resend Email Connector
-======================
+Mail Gateway for Resend
+=======================
 
 Send Odoo email through Resend and keep track of what happens to every message.
 
@@ -41,7 +41,7 @@ Main features
 Installation
 ------------
 1. Copy the module into your addons path and update the Apps list.
-2. Install "Resend Email Connector".
+2. Install "Mail Gateway for Resend".
 3. Open Settings > Discuss > Resend, enter the API key and the From address.
 4. Open Settings > Technical > Outgoing Mail Servers and tick "Use Resend API" on
    the server Odoo should use.

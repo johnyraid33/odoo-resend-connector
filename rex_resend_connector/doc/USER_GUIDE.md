@@ -1,8 +1,8 @@
-# Resend Email Connector: Installation and User Guide
+# Mail Gateway for Resend: Installation and User Guide
 
 English | [Русский](USER_GUIDE.ru.md) | [Українська](USER_GUIDE.uk.md)
 
-This guide explains how to install and configure the Resend Email Connector for
+This guide explains how to install and configure the Mail Gateway for Resend for
 Odoo. It is written for administrators who have never used Resend and for users who
 only need to read the delivery status of an email.
 
@@ -150,7 +150,7 @@ second MX record on the main domain would conflict with your existing mailbox.
 
 1. Copy the rex_resend_connector folder into an addons directory of your Odoo server.
 2. Restart the Odoo service.
-3. Open Apps, click Update Apps List and search for Resend Email Connector.
+3. Open Apps, click Update Apps List and search for Mail Gateway for Resend.
 4. Click Install.
 
 ### 5.2 Docker installation
