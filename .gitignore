@@ -6,3 +6,4 @@ __pycache__/
 odoo-src/
 
 dist/
+dev/store/preview/
