@@ -2,15 +2,15 @@
 
 Public repository of the Resend Email Connector module for Odoo 19.0 and 20.0.
 
-![Resend Email Connector](resend_connector/static/description/img/cover.png)
+![Resend Email Connector](rex_resend_connector/static/description/img/cover.png)
 
 The module sends Odoo email through [Resend](https://resend.com), receives incoming
 mail from Resend and keeps the delivery status of every message on the Odoo record.
 
-* Module: [resend_connector](resend_connector)
-* Installation and configuration: [README](resend_connector/README.md),
-  [user guide, English](resend_connector/doc/USER_GUIDE.md),
-  [руководство, русский](resend_connector/doc/USER_GUIDE.ru.md)
+* Module: [rex_resend_connector](rex_resend_connector)
+* Installation and configuration: [README](rex_resend_connector/README.md),
+  [user guide, English](rex_resend_connector/doc/USER_GUIDE.md),
+  [руководство, русский](rex_resend_connector/doc/USER_GUIDE.ru.md)
 * Development stack and tests: [dev](dev)
 * Author: POLISHCHUK & SONS LTD, [https://rex.cy](https://rex.cy), info@rex.cy
 * License: LGPL-3.0

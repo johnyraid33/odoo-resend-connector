@@ -7,7 +7,7 @@ Run inside the Odoo shell:
 
 Or edit the constants below.
 """
-from odoo.addons.resend_connector.models.compat import param_get_str, param_set
+from odoo.addons.rex_resend_connector.models.compat import param_get_str, param_set
 
 import os
 import time

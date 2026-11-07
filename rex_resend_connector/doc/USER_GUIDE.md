@@ -146,7 +146,7 @@ second MX record on the main domain would conflict with your existing mailbox.
 
 ### 5.1 Standard installation
 
-1. Copy the resend_connector folder into an addons directory of your Odoo server.
+1. Copy the rex_resend_connector folder into an addons directory of your Odoo server.
 2. Restart the Odoo service.
 3. Open Apps, click Update Apps List and search for Resend Email Connector.
 4. Click Install.
@@ -158,11 +158,11 @@ Add the module folder as a volume in docker-compose.yml:
     services:
       odoo:
         volumes:
-          - ./resend_connector:/mnt/extra-addons/resend_connector
+          - ./rex_resend_connector:/mnt/extra-addons/rex_resend_connector
 
 Then restart the container and install the module from Apps, or run:
 
-    docker compose exec odoo odoo -d odoo -i resend_connector --stop-after-init
+    docker compose exec odoo odoo -d odoo -i rex_resend_connector --stop-after-init
 
 ### 5.3 After installation
 
@@ -404,7 +404,7 @@ job does this once a day.
 | Mass mailing is slow | Resend allows 10 requests per second per team. The module limits itself to 8 and retries the rest, so the mailing takes longer but is not lost. |
 | The webhook endpoint was disabled by Resend | Resend disables endpoints that keep failing. Fix the URL or the signature check and re-enable or recreate the endpoint in the Resend dashboard. |
 
-The Odoo log contains more detail. Search for resend_connector and resend webhook.
+The Odoo log contains more detail. Search for rex_resend_connector and resend webhook.
 
 ## 12. Security and privacy
 

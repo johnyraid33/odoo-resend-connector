@@ -60,14 +60,14 @@ _SESSION_LOCK = threading.Lock()
 #: Odoo 19 in ir.model.access (perm_* columns), so a single CSV cannot work on
 #: both versions. The rules are ([model], [group xmlid], [crud operations]).
 ACCESS_RULES = [
-    ('resend.email', 'resend_connector.group_resend_manager', 'crud'),
-    ('resend.email.event', 'resend_connector.group_resend_manager', 'r'),
-    ('resend.domain', 'resend_connector.group_resend_manager', 'crud'),
-    ('resend.domain.record', 'resend_connector.group_resend_manager', 'r'),
-    ('resend.webhook.event', 'resend_connector.group_resend_manager', 'r'),
-    ('resend.inbound.email', 'resend_connector.group_resend_manager', 'crud'),
+    ('resend.email', 'rex_resend_connector.group_resend_manager', 'crud'),
+    ('resend.email.event', 'rex_resend_connector.group_resend_manager', 'r'),
+    ('resend.domain', 'rex_resend_connector.group_resend_manager', 'crud'),
+    ('resend.domain.record', 'rex_resend_connector.group_resend_manager', 'r'),
+    ('resend.webhook.event', 'rex_resend_connector.group_resend_manager', 'r'),
+    ('resend.inbound.email', 'rex_resend_connector.group_resend_manager', 'crud'),
     ('resend.connector', 'base.group_user', 'r'),
-    ('resend.connector', 'resend_connector.group_resend_manager', 'crud'),
+    ('resend.connector', 'rex_resend_connector.group_resend_manager', 'crud'),
     ('resend.test.mail', 'base.group_user', 'crud'),
 ]
 
@@ -85,7 +85,7 @@ class ResendConnector(models.AbstractModel):
         Must be called after the security XML: the manager group is created by
         the data files.
         """
-        if not self.env.ref('resend_connector.group_resend_manager', raise_if_not_found=False):
+        if not self.env.ref('rex_resend_connector.group_resend_manager', raise_if_not_found=False):
             return False
         if IS_ODOO_20:
             Access = self.env['ir.access'].sudo()

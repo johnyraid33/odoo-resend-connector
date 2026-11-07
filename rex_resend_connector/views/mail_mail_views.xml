@@ -24,7 +24,7 @@
                 <field name="resend_message_id" invisible="not resend_message_id"/>
             </xpath>
             <xpath expr="//notebook" position="inside">
-                <page name="resend" string="Resend" groups="resend_connector.group_resend_manager"
+                <page name="resend" string="Resend" groups="rex_resend_connector.group_resend_manager"
                     invisible="not resend_message_id">
                     <group>
                         <group string="Delivery">

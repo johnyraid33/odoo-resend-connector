@@ -7,7 +7,7 @@ Odoo 20 stack (default):
 * Odoo 20.0 on http://localhost:8069, database odoo_resend, login admin/admin
 * PostgreSQL 17
 * Mailpit on http://localhost:8025 for SMTP checks
-* The module is mounted at /mnt/extra-addons/resend_connector
+* The module is mounted at /mnt/extra-addons/rex_resend_connector
 
 Odoo 19 stack (docker-compose.19.yml): same module, port 8070, database
 odoo_resend19.
@@ -15,7 +15,7 @@ odoo_resend19.
 ## Start
 
     docker compose up -d db
-    docker compose run --rm odoo odoo -d odoo_resend -i resend_connector --stop-after-init
+    docker compose run --rm odoo odoo -d odoo_resend -i rex_resend_connector --stop-after-init
     docker compose up -d odoo mailpit
 
 Set the administrator password on a new database:
@@ -28,13 +28,13 @@ Set the administrator password on a new database:
 Odoo 19:
 
     docker compose -f docker-compose.19.yml up -d db
-    docker compose -f docker-compose.19.yml run --rm odoo odoo -d odoo_resend19 -i resend_connector --stop-after-init
+    docker compose -f docker-compose.19.yml run --rm odoo odoo -d odoo_resend19 -i rex_resend_connector --stop-after-init
     docker compose -f docker-compose.19.yml up -d odoo
 
 ## Run the tests
 
-    docker compose run --rm -T odoo odoo -d odoo_resend -u resend_connector \
-        --test-tags /resend_connector --stop-after-init
+    docker compose run --rm -T odoo odoo -d odoo_resend -u rex_resend_connector \
+        --test-tags /rex_resend_connector --stop-after-init
 
 For Odoo 19 use the same command with -f docker-compose.19.yml and the odoo_resend19
 database.

@@ -25,7 +25,7 @@ def _fake_send_email(self_client, payload, idempotency_key=None):
     return {'id': 'resend-mock-%s' % len(_PAYLOADS)}
 
 
-_SEND_EMAIL = 'odoo.addons.resend_connector.models.resend_client.ResendClient.send_email'
+_SEND_EMAIL = 'odoo.addons.rex_resend_connector.models.resend_client.ResendClient.send_email'
 _DISABLE_SEND = 'odoo.addons.base.models.ir_mail_server.IrMail_Server._disable_send'
 
 
