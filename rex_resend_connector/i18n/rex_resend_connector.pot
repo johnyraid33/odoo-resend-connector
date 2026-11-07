@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 20.0-20261102\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-07 10:20+0000\n"
-"PO-Revision-Date: 2026-11-07 10:20+0000\n"
+"POT-Creation-Date: 2026-11-07 10:36+0000\n"
+"PO-Revision-Date: 2026-11-07 10:36+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,8 +19,8 @@ msgstr ""
 #: model:ir.module.module,description:base.module_rex_resend_connector
 msgid ""
 "\n"
-"Resend Email Connector\n"
-"======================\n"
+"Mail Gateway for Resend\n"
+"=======================\n"
 "\n"
 "Send Odoo email through Resend and keep track of what happens to every message.\n"
 "\n"
@@ -53,7 +53,7 @@ msgid ""
 "Installation\n"
 "------------\n"
 "1. Copy the module into your addons path and update the Apps list.\n"
-"2. Install \"Resend Email Connector\".\n"
+"2. Install \"Mail Gateway for Resend\".\n"
 "3. Open Settings > Discuss > Resend, enter the API key and the From address.\n"
 "4. Open Settings > Technical > Outgoing Mail Servers and tick \"Use Resend API\" on\n"
 "   the server Odoo should use.\n"
@@ -163,7 +163,7 @@ msgstr ""
 #. module: rex_resend_connector
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
 msgid ""
-"<b>Resend Email Connector 1.0.0</b><br/>\n"
+"<b>Mail Gateway for Resend 1.0.0</b><br/>\n"
 "                            POLISHCHUK &amp; SONS LTD,"
 msgstr ""
 
@@ -1016,6 +1016,16 @@ msgid "Mail Delivery Failed"
 msgstr ""
 
 #. module: rex_resend_connector
+#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
+msgid "Mail Gateway for Resend"
+msgstr ""
+
+#. module: rex_resend_connector
+#: model:ir.module.module,shortdesc:base.module_rex_resend_connector
+msgid "Mail Gateway for Resend: Send, Receive, Track"
+msgstr ""
+
+#. module: rex_resend_connector
 #: model:ir.model,name:rex_resend_connector.model_ir_mail_server
 #: model:ir.model.fields,field_description:rex_resend_connector.field_resend_email__mail_server_id
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_email_search
@@ -1570,12 +1580,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:rex_resend_connector.field_mail_mail__resend_email_id
 #: model_terms:ir.ui.view,arch_db:rex_resend_connector.view_resend_email_form
 msgid "Resend Email"
-msgstr ""
-
-#. module: rex_resend_connector
-#: model:ir.module.module,shortdesc:base.module_rex_resend_connector
-#: model_terms:ir.ui.view,arch_db:rex_resend_connector.documentation_page
-msgid "Resend Email Connector"
 msgstr ""
 
 #. module: rex_resend_connector

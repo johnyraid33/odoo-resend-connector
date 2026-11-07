@@ -1,5 +1,5 @@
-Resend Email Connector
-======================
+Mail Gateway for Resend
+=======================
 
 Send Odoo email through Resend, receive incoming mail from Resend and keep the
 delivery status of every message in Odoo.
@@ -38,7 +38,7 @@ Installation
 
 1. Copy the rex_resend_connector folder into an addons directory.
 2. Restart Odoo and update the Apps list.
-3. Install "Resend Email Connector".
+3. Install "Mail Gateway for Resend".
 4. Open Settings > Discuss > Resend.
 
 With Docker, mount the module folder and run:

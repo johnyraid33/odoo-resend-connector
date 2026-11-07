@@ -1,0 +1,100 @@
+<!doctype html>
+<!--
+  Source of rex_resend_connector/static/description/img/cover.png (1600x900).
+  Render: python3 dev/store/render_cover.py
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1600px; height: 900px; overflow: hidden; }
+  body {
+    font-family: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
+    color: #fff;
+    background:
+      radial-gradient(ellipse 900px 600px at 78% 62%, rgba(88, 52, 160, 0.38), transparent 70%),
+      radial-gradient(ellipse 700px 500px at 8% 10%, rgba(40, 70, 90, 0.35), transparent 70%),
+      #0b0d17;
+    position: relative;
+  }
+  body::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .eyebrow {
+    position: absolute; left: 80px; top: 70px;
+    font-size: 15px; letter-spacing: 4.2px; color: #a9adbd; text-transform: uppercase;
+  }
+  h1 {
+    position: absolute; left: 76px; top: 112px;
+    font-size: 84px; line-height: 78px; font-weight: 800; letter-spacing: -2.5px;
+  }
+  h1 .accent {
+    background: linear-gradient(90deg, #c9b8ff 0%, #a7c7f2 55%, #8fe3cf 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .lead {
+    position: absolute; left: 80px; top: 370px; width: 560px;
+    font-size: 25px; line-height: 34px; color: #c9ccd8;
+  }
+  ul { position: absolute; left: 80px; top: 472px; list-style: none; }
+  li { display: flex; align-items: center; height: 40px; font-size: 20px; color: #e8e9ef; }
+  li i {
+    width: 26px; height: 26px; border-radius: 50%; margin-right: 13px;
+    border: 1px solid #3f7d73; background: rgba(54, 120, 108, 0.25);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-style: normal; font-size: 14px; color: #8fe3cf;
+  }
+  .pills { position: absolute; left: 80px; top: 793px; display: flex; gap: 12px; }
+  .pill {
+    height: 37px; padding: 0 16px; border-radius: 19px; font-size: 16px;
+    display: inline-flex; align-items: center; color: #e8e9ef;
+    border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.05);
+  }
+  .foot {
+    position: absolute; right: 120px; top: 803px;
+    font-size: 14px; letter-spacing: 2.4px; color: #a9adbd; text-transform: uppercase;
+  }
+  .stage { position: absolute; left: 718px; top: 150px; width: 790px; perspective: 1900px; }
+  .shot {
+    width: 790px; border-radius: 16px; overflow: hidden; background: #fff;
+    transform: rotateY(-11deg) rotateX(5deg) rotateZ(-1.6deg);
+    transform-origin: left center;
+    box-shadow: 0 40px 90px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.08);
+  }
+  .shot img { display: block; width: 100%; }
+  .shot .blank { height: 95px; background: #fff; }
+  .badge {
+    position: absolute; height: 42px; padding: 0 18px; border-radius: 9px;
+    font-size: 17px; font-weight: 600; display: inline-flex; align-items: center;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+  }
+  .delivered { left: 1390px; top: 88px; background: #123b2a; color: #8be3b0; border: 1px solid #2f7a55; }
+  .opened { left: 1422px; top: 370px; background: #13234a; color: #a9c6ff; border: 1px solid #3c5da3; }
+  .bounced { left: 700px; top: 570px; background: #3b1219; color: #ffb3bd; border: 1px solid #8a2e3b; }
+</style>
+</head>
+<body>
+  <div class="eyebrow">POLISHCHUK &amp; SONS LTD · Odoo module</div>
+  <h1>Mail<br>Gateway<br><span class="accent">for Resend</span></h1>
+  <div class="lead">Send, receive and track Odoo email through Resend. No mail port, no blind spots.</div>
+  <ul>
+    <li><i>✓</i>Every Odoo email delivered over HTTPS</li>
+    <li><i>✓</i>Delivered, opened, bounced, complained</li>
+    <li><i>✓</i>Replies arrive in the right chatter thread</li>
+  </ul>
+  <div class="pills"><span class="pill">Odoo 19 &amp; 20</span><span class="pill">LGPL-3</span><span class="pill">Free</span></div>
+  <div class="foot">Resend.com · API + Webhooks</div>
+
+  <div class="stage">
+    <div class="shot"><img src="../../rex_resend_connector/static/description/img/01_emails_list.png" alt=""></div>
+  </div>
+  <div class="badge delivered">Delivered</div>
+  <div class="badge opened">Opened</div>
+  <div class="badge bounced">Bounced</div>
+</body>
+</html>
